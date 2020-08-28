@@ -91,9 +91,9 @@ public class RegistrationView extends VerticalLayout implements View {
         //Checkbox
         final Binder<UserDTO> checkboxBinder = new Binder<>();
         RadioButtonGroup<String> radioButtonGroup = new RadioButtonGroup<>("Registrieren als:");
-        radioButtonGroup.setItems("Student", "Unternehmen");
+        radioButtonGroup.setItems("Kunde", "Vertriebler");
         radioButtonGroup.setRequiredIndicatorVisible(true);
-        radioButtonGroup.isSelected("Student");
+        radioButtonGroup.isSelected("Kunde");
         checkboxBinder.forField(radioButtonGroup)
                 .asRequired("Bitte wählen Sie!")
                 .bind(UserDTO::getPassword, UserDTO::setPassword);
