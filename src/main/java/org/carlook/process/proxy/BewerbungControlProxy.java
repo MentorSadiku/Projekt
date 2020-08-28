@@ -2,7 +2,7 @@ package org.carlook.process.proxy;
 
 import com.vaadin.ui.Button;
 import org.carlook.model.objects.dto.BewerbungDTO;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.BewerbungControlInterface;
@@ -31,7 +31,7 @@ public class BewerbungControlProxy implements BewerbungControlInterface {
         return BewerbungControl.getInstance().getLatestApply(userDTO);
     }
 
-    public void applyForStellenanzeige(StellenanzeigeDTO stellenanzeige, int id_bewerbung) throws DatabaseException {
+    public void applyForStellenanzeige(AutoDTO stellenanzeige, int id_bewerbung) throws DatabaseException {
         BewerbungControl.getInstance().applyForStellenanzeige(stellenanzeige, id_bewerbung);
     }
 
@@ -39,11 +39,11 @@ public class BewerbungControlProxy implements BewerbungControlInterface {
         BewerbungControl.getInstance().applyingIsAllowed();
     }
 
-    public void checkAlreadyApplied(StellenanzeigeDTO stellenanzeigeDTO, UserDTO userDTO) throws BewerbungException, DatabaseException, SQLException {
-        BewerbungControl.getInstance().checkAlreadyApplied(stellenanzeigeDTO, userDTO);
+    public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws BewerbungException, DatabaseException, SQLException {
+        BewerbungControl.getInstance().checkAlreadyApplied(autoDTO, userDTO);
 
     }
-    public void checkAllowed(StellenanzeigeDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton) {
+    public void checkAllowed(AutoDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton) {
         BewerbungControl.getInstance().checkAllowed(stellenanzeige, userDTO, bewerbenButton);
     }
 
@@ -51,7 +51,7 @@ public class BewerbungControlProxy implements BewerbungControlInterface {
         BewerbungControl.getInstance().createBewerbung(bewerbungstext, userDTO);
     }
 
-    public BewerbungDTO getBewerbungForStellenanzeige(StellenanzeigeDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
+    public BewerbungDTO getBewerbungForStellenanzeige(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
         return BewerbungControl.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
     }
 

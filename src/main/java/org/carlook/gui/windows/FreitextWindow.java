@@ -1,7 +1,7 @@
 package org.carlook.gui.windows;
 
 import com.vaadin.ui.*;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.BewerbungException;
 import org.carlook.process.exceptions.DatabaseException;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class FreitextWindow extends Window {
 
-    public FreitextWindow(StellenanzeigeDTO stellenanzeige, UserDTO userDTO) {
+    public FreitextWindow(AutoDTO stellenanzeige, UserDTO userDTO) {
         super(stellenanzeige.getName());
         center();
 

@@ -1,7 +1,7 @@
 package org.carlook.model.objects.dto;
 
 public class BewerbungDTO extends AbstractDTO {
-    private String text;
+    /*private String text;
     private int id;
 
     public void setFreitext(String text){
@@ -18,4 +18,6 @@ public class BewerbungDTO extends AbstractDTO {
     public int getId(){
         return this.id;
     }
+
+     */
 }

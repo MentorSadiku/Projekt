@@ -12,7 +12,7 @@ import org.carlook.gui.ui.MyUI;
 import org.carlook.gui.windows.DeleteBewerbungWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.model.objects.dto.BewerbungDTO;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.proxy.BewerbungControlProxy;
@@ -24,8 +24,8 @@ import java.util.List;
 
 public class BewerbungView extends VerticalLayout implements View {
 
-    private StellenanzeigeDTO selektiert;
-    private List<StellenanzeigeDTO> list;
+    private AutoDTO selektiert;
+    private List<AutoDTO> list;
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
@@ -44,10 +44,10 @@ public class BewerbungView extends VerticalLayout implements View {
         line.setSizeFull();
         setStyleName("schrift-profil");
         //Tabelle
-        final Grid<StellenanzeigeDTO> grid = new Grid<>("Ihre Bewerbungen");
+        final Grid<AutoDTO> grid = new Grid<>("Ihre Bewerbungen");
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
-        SingleSelect<StellenanzeigeDTO> selection = grid.asSingleSelect();
+        SingleSelect<AutoDTO> selection = grid.asSingleSelect();
         grid.setStyleName("schrift-tabelle");
         //Tabelle füllen
         try {
@@ -63,9 +63,9 @@ public class BewerbungView extends VerticalLayout implements View {
         deleteButton.setEnabled(false);
 
         //Tabellen Select Config
-        grid.addSelectionListener(new SelectionListener<StellenanzeigeDTO>() {
+        grid.addSelectionListener(new SelectionListener<AutoDTO>() {
             @Override
-            public void selectionChange(SelectionEvent<StellenanzeigeDTO> event) {
+            public void selectionChange(SelectionEvent<AutoDTO> event) {
                 if (selection.getValue() == null) {
                     deleteButton.setEnabled(false);
                 }

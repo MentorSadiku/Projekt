@@ -4,7 +4,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import org.carlook.gui.ui.MyUI;
 import org.carlook.model.dao.StellenanzeigeDAO;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -32,45 +32,45 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
 
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
+    public List<AutoDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
         return StellenanzeigeDAO.getInstance().getStellenanzeigenForUnternehmen(vertrieblerDTO);
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<AutoDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
         return StellenanzeigeDAO.getInstance().getStellenanzeigeforStudent(endkundeDTO);
 
     }
 
-    public void createStellenanzeige(StellenanzeigeDTO stellenanzeigeDTO) throws StellenanzeigeException {
+    public void createStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
-        boolean result = StellenanzeigeDAO.getInstance().createStellenanzeige(stellenanzeigeDTO, userDTO);
+        boolean result = StellenanzeigeDAO.getInstance().createStellenanzeige(autoDTO, userDTO);
         if (result) {
             return;
         }
         throw new StellenanzeigeException();
     }
 
-    public void updateStellenanzeige(StellenanzeigeDTO stellenanzeigeDTO) throws StellenanzeigeException {
-        boolean result = StellenanzeigeDAO.getInstance().updateStellenanzeige(stellenanzeigeDTO);
+    public void updateStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
+        boolean result = StellenanzeigeDAO.getInstance().updateStellenanzeige(autoDTO);
         if (result) {
             return;
         }
         throw new StellenanzeigeException();
     }
 
-    public void deleteStellenanzeige(StellenanzeigeDTO stellenanzeigeDTO) throws StellenanzeigeException {
-        boolean result = StellenanzeigeDAO.getInstance().deleteStellenanzeige(stellenanzeigeDTO);
+    public void deleteStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
+        boolean result = StellenanzeigeDAO.getInstance().deleteStellenanzeige(autoDTO);
         if (result) {
             return;
         }
         throw new StellenanzeigeException();
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
+    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
         return StellenanzeigeDAO.getInstance().getStellenanzeigenForSearch(suchtext, filter);
     }
 
-    public int getAnzahlBewerber(StellenanzeigeDTO stellenanzeigeDTO) throws DatabaseException, SQLException {
+    public int getAnzahlBewerber(AutoDTO autoDTO) throws DatabaseException, SQLException {
         int anzahl_bewerber = 0;
         String sql = "SELECT count(id_bewerbung) " +
                 "FROM collhbrs.bewerbung_to_stellenanzeige " +
@@ -78,7 +78,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
         ResultSet rs;
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         try {
-            statement.setInt(1, stellenanzeigeDTO.getId_anzeige());
+            statement.setInt(1, autoDTO.getBaujahr());
             rs = statement.executeQuery();
         } catch (SQLException throwables) {
             throw new DatabaseException("Fehler im SQL-Befehl: Bitte den Programmierer informieren!");

@@ -4,7 +4,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import org.carlook.model.dao.BewerbungDAO;
 import org.carlook.model.objects.dto.BewerbungDTO;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.BewerbungControlInterface;
@@ -56,13 +56,13 @@ public class BewerbungControl implements BewerbungControlInterface {
         return id_bewerbung;
     }
 
-    public void applyForStellenanzeige(StellenanzeigeDTO stellenanzeige, int id_bewerbung) throws DatabaseException {
+    public void applyForStellenanzeige(AutoDTO stellenanzeige, int id_bewerbung) throws DatabaseException {
         String sql = "INSERT INTO collhbrs.bewerbung_to_stellenanzeige (id_bewerbung, id_anzeige) " +
                 "VALUES (?, ?);";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         try {
             statement.setInt(1, id_bewerbung);
-            statement.setInt(2, stellenanzeige.getId_anzeige());
+            statement.setInt(2, stellenanzeige.getBaujahr());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger((BewerbungDAO.class.getName())).log(Level.SEVERE, null, ex);
@@ -90,7 +90,7 @@ public class BewerbungControl implements BewerbungControlInterface {
         }
     }
 
-    public void checkAlreadyApplied(StellenanzeigeDTO stellenanzeigeDTO, UserDTO userDTO) throws DatabaseException, SQLException, BewerbungException {
+    public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws DatabaseException, SQLException, BewerbungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
         List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
         String sql = "SELECT id_anzeige " +
@@ -103,7 +103,7 @@ public class BewerbungControl implements BewerbungControlInterface {
             int id_bewerbung = bewerbungDTO.getId();
             try {
                 statement.setInt(1, id_bewerbung);
-                statement.setInt(2, stellenanzeigeDTO.getId_anzeige());
+                statement.setInt(2, autoDTO.getBaujahr());
                 rs = statement.executeQuery();
                 if (rs.next()) {
                     throw new BewerbungException();
@@ -117,7 +117,7 @@ public class BewerbungControl implements BewerbungControlInterface {
         }
 
     }
-    public void checkAllowed(StellenanzeigeDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton) {
+    public void checkAllowed(AutoDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton) {
         if (userDTO == null || !userDTO.hasRole(Roles.STUDENT)) {
             bewerbenButton.setVisible(false);
             return;
@@ -142,7 +142,7 @@ public class BewerbungControl implements BewerbungControlInterface {
         }
     }
 
-    public BewerbungDTO getBewerbungForStellenanzeige(StellenanzeigeDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
+    public BewerbungDTO getBewerbungForStellenanzeige(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
         List<BewerbungDTO> list = getBewerbungenForStudent(endkundeDTO);
         BewerbungDTO bewerbungDTO = new BewerbungDTO();
         String sql = "SELECT id_bewerbung " +
@@ -153,7 +153,7 @@ public class BewerbungControl implements BewerbungControlInterface {
         ResultSet rs = null;
         for (BewerbungDTO bewerbung :list ) {
             try {
-                statement.setInt(1, selektiert.getId_anzeige());
+                statement.setInt(1, selektiert.getBaujahr());
                 statement.setInt(2, bewerbung.getId());
                 rs = statement.executeQuery();
                 if ( rs.next() ) {

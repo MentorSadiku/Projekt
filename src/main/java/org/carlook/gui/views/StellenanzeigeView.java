@@ -13,7 +13,7 @@ import org.carlook.gui.windows.CreateStellenanzeigeWindow;
 import org.carlook.gui.windows.DeleteStellenanzeigeWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.gui.windows.StellenanzeigeWindow;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.proxy.SearchControlProxy;
 import org.carlook.services.util.BuildGrid;
@@ -23,8 +23,8 @@ import java.util.List;
 
 public class StellenanzeigeView extends VerticalLayout implements View {
 
-    private StellenanzeigeDTO selektiert;
-    private List<StellenanzeigeDTO> list;
+    private AutoDTO selektiert;
+    private List<AutoDTO> list;
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
@@ -43,11 +43,11 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         this.addComponent(line);
         line.setSizeFull();
         //Tabelle
-        final Grid<StellenanzeigeDTO> grid = new Grid<>("Ihre Stellenanzeigen");
+        final Grid<AutoDTO> grid = new Grid<>("Ihre Stellenanzeigen");
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
         grid.setStyleName("schrift-tabelle");
-        SingleSelect<StellenanzeigeDTO> selection = grid.asSingleSelect();
+        SingleSelect<AutoDTO> selection = grid.asSingleSelect();
 
         //Tabelle befüllen
         try {
@@ -56,7 +56,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         BuildGrid.buildGrid(grid);
-        grid.addColumn(StellenanzeigeDTO::getAnzahl_bewerber).setCaption("Anzahl der Bewerber");
+        grid.addColumn(AutoDTO::getAnzahl_bewerber).setCaption("Anzahl der Bewerber");
         grid.setItems(list);
 
         //ShowButton
@@ -71,9 +71,9 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         deleteButton.setEnabled(false);
 
         //Tabellen Select Config
-        grid.addSelectionListener(new SelectionListener<StellenanzeigeDTO>() {
+        grid.addSelectionListener(new SelectionListener<AutoDTO>() {
             @Override
-            public void selectionChange(SelectionEvent<StellenanzeigeDTO> event) {
+            public void selectionChange(SelectionEvent<AutoDTO> event) {
                 if (selection.getValue() == null) {
                     showButton.setEnabled(false);
                     deleteButton.setEnabled(false);
@@ -99,7 +99,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         createButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                CreateStellenanzeigeWindow window = new CreateStellenanzeigeWindow(new StellenanzeigeDTO(), grid, vertrieblerDTO);
+                CreateStellenanzeigeWindow window = new CreateStellenanzeigeWindow(new AutoDTO(), grid, vertrieblerDTO);
                 UI.getCurrent().addWindow(window);
             }
         });

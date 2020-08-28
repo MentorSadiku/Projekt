@@ -1,7 +1,7 @@
 package org.carlook.gui.windows;
 
 import com.vaadin.ui.*;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.exceptions.StellenanzeigeException;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CreateStellenanzeigeWindow extends Window {
 
-    public CreateStellenanzeigeWindow(StellenanzeigeDTO stellenanzeige, Grid<StellenanzeigeDTO> grid, VertrieblerDTO vertrieblerDTO) {
+    public CreateStellenanzeigeWindow(AutoDTO stellenanzeige, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
         super("Ihre Stellenanzeige");
         center();
 
@@ -21,7 +21,7 @@ public class CreateStellenanzeigeWindow extends Window {
 
         //Art
         TextField art = new TextField("Art der Anstellung");
-        art.setValue(stellenanzeige.getArt());
+        art.setValue(stellenanzeige.getMarke());
 
         //Branche
         TextField branche = new TextField("Branche");
@@ -50,7 +50,7 @@ public class CreateStellenanzeigeWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 stellenanzeige.setName(name.getValue());
-                stellenanzeige.setArt(art.getValue());
+                stellenanzeige.setMarke(art.getValue());
                 stellenanzeige.setBranche(branche.getValue());
                 stellenanzeige.setStudiengang(studiengang.getValue());
                 stellenanzeige.setOrt(ort.getValue());
@@ -63,7 +63,7 @@ public class CreateStellenanzeigeWindow extends Window {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
                 UI.getCurrent().addWindow(new ConfirmationWindow("Stellenanzeige erfolgreich gespeichert"));
-                List<StellenanzeigeDTO> list = null;
+                List<AutoDTO> list = null;
                 try {
                     list = StellenanzeigeControlProxy.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
                 } catch (SQLException e) {

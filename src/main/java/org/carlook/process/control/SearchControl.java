@@ -2,7 +2,7 @@ package org.carlook.process.control;
 
 import com.vaadin.ui.UI;
 import org.carlook.gui.ui.MyUI;
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -26,7 +26,7 @@ public class SearchControl implements SearchControlInterface {
 
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForUser() throws SQLException {
+    public List<AutoDTO> getAnzeigenForUser() throws SQLException {
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
         if (userDTO.hasRole(Roles.STUDENT)) {
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
@@ -36,7 +36,7 @@ public class SearchControl implements SearchControlInterface {
         return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
+    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
         if (filter == null) {
             filter = "name";
         }

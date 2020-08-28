@@ -1,6 +1,6 @@
 package org.carlook.process.proxy;
 
-import org.carlook.model.objects.dto.StellenanzeigeDTO;
+import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.process.Interfaces.SearchControlInterface;
 import org.carlook.process.control.SearchControl;
 
@@ -21,11 +21,11 @@ public class SearchControlProxy implements SearchControlInterface {
 
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForUser() throws SQLException {
+    public List<AutoDTO> getAnzeigenForUser() throws SQLException {
         return SearchControl.getInstance().getAnzeigenForUser();
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
+    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
         return SearchControl.getInstance().getAnzeigenForSearch(suchtext, filter);
     }
 }
