@@ -18,7 +18,7 @@ public class  TopPanel extends HorizontalLayout {
         //Logo links oben in der Ecke
         ThemeResource icon = new ThemeResource("Benutzerdefiniert-1.png");
         Image logo = new Image(null, icon);
-        logo.setWidth("150");
+        logo.setWidth("80");
         logo.setStyleName("HomeButtonStyle");
         logo.addClickListener(new MouseEvents.ClickListener() {
 
