@@ -9,9 +9,9 @@ import java.util.Properties;
 
 public class JDBCConnection {
     private static JDBCConnection connection = null;
-    private String login = "pwelte2s";
-    private String passwort = "pwelte2s";
-    private String url = "jdbc:postgresql://dumbo.inf.h-brs.de/pwelte2s";
+    private String login = "ckedik2s";
+    private String passwort = "ckedik2s";
+    private String url = "jdbc:postgresql://dumbo.inf.h-brs.de/ckedik2s";
     private Connection conn = null;
 
     public static JDBCConnection getInstance() throws DatabaseException {

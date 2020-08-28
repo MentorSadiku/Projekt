@@ -33,7 +33,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
     }
 
     public List<AutoDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
-        return StellenanzeigeDAO.getInstance().getStellenanzeigenForUnternehmen(vertrieblerDTO);
+        return StellenanzeigeDAO.getInstance().getAutoList(vertrieblerDTO);
     }
 
     public List<AutoDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
@@ -43,7 +43,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
 
     public void createStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
-        boolean result = StellenanzeigeDAO.getInstance().createStellenanzeige(autoDTO, userDTO);
+        boolean result = StellenanzeigeDAO.getInstance().createAuto(autoDTO, userDTO);
         if (result) {
             return;
         }
@@ -59,7 +59,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
     }
 
     public void deleteStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
-        boolean result = StellenanzeigeDAO.getInstance().deleteStellenanzeige(autoDTO);
+        boolean result = StellenanzeigeDAO.getInstance().deleteAuto(autoDTO);
         if (result) {
             return;
         }

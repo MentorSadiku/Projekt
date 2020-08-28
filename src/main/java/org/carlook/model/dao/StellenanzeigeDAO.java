@@ -27,8 +27,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
         return dao;
     }
 
-    //Erzeugt die Stellenanezeigen, die ein Unternehmen erstellt hat
-    public List<AutoDTO> getStellenanzeigenForUnternehmen(UserDTO userDTO) throws SQLException {
+    //Erzeugt die Autos, die ein Vertriebler erstellt hat
+    public List<AutoDTO> getAutoList(UserDTO userDTO) throws SQLException {
         String sql = "SELECT id_anzeige, beschreibung, art, name, zeitraum, branche, studiengang, ort " +
                 "FROM collhbrs.stellenanzeige " +
                 "WHERE id = ? ;";
@@ -47,22 +47,18 @@ public class StellenanzeigeDAO extends AbstractDAO {
     }
 
 
-    //Erstellt eine neue Stellenanzeige in der Datenbank
-    public boolean createStellenanzeige(AutoDTO stellenanzeige, UserDTO userDTO) {
-        String sql = "INSERT INTO collhbrs.stellenanzeige(id, beschreibung, art, name, zeitraum, branche, studiengang, ort)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    //Erstellt ein neues Auto in der Datenbank
+    public boolean createAuto(AutoDTO auto, UserDTO userDTO) {
+        String sql = "INSERT INTO carlook.auto(marke, baujahr, beschreibung, id)" +
+                "VALUES (?, ?, ?, ?)";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
-            statement.setInt(1, userDTO.getId());
-            statement.setString(2, stellenanzeige.getBeschreibung());
-            statement.setString(3, stellenanzeige.getMarke());
-            statement.setString(4, stellenanzeige.getName());
-            statement.setObject(5, stellenanzeige.getZeitraum());
-            statement.setString(6, stellenanzeige.getBranche());
-            statement.setString(7, stellenanzeige.getStudiengang());
-            statement.setString(8, stellenanzeige.getOrt());
+            statement.setString(1, auto.getMarke());
+            statement.setInt(2, auto.getBaujahr());
+            statement.setString(3, auto.getBeschreibung());
+            statement.setInt(4, userDTO.getId());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -71,21 +67,16 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     }
 
-    //Verändert eine bestehende Stellenanzeige in der Datenbank
-    public boolean updateStellenanzeige(AutoDTO stellenanzeige) {
-        String sql = "UPDATE collhbrs.stellenanzeige " +
-                "SET beschreibung = ?, art = ?,  name = ?, zeitraum = ?, branche = ?, studiengang = ?, ort = ?  " +
-                "WHERE collhbrs.stellenanzeige.id_anzeige = ? ;";
+    //Verändert ein bestehendes Auto in der Datenbank
+    public boolean updateAuto(AutoDTO auto) {
+        String sql = "UPDATE collhbrs.auto " +
+                "SET marke = ?, art = ?,  baujahr = ?, beschreibung = ?" +
+                "WHERE carlook.auto.auto_id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
-            statement.setString(1, stellenanzeige.getBeschreibung());
-            statement.setString(2, stellenanzeige.getMarke());
-            statement.setString(3, stellenanzeige.getName());
-            statement.setObject(4, stellenanzeige.getZeitraum());
-            statement.setString(5, stellenanzeige.getBranche());
-            statement.setString(6, stellenanzeige.getStudiengang());
-            statement.setString(7, stellenanzeige.getOrt());
-            statement.setInt(8, stellenanzeige.getBaujahr());
+            statement.setString(1, auto.getMarke());
+            statement.setInt(2, auto.getBaujahr());
+            statement.setString(3, auto.getBeschreibung());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -94,14 +85,14 @@ public class StellenanzeigeDAO extends AbstractDAO {
     }
 
 
-    //Löscht eine Stellenanzeige aus der Datenbank
-    public boolean deleteStellenanzeige(AutoDTO stellenanzeige) {
+    //Löscht ein Auto aus der Datenbank
+    public boolean deleteAuto(AutoDTO auto) {
         String sql = "DELETE " +
-                "FROM collhbrs.stellenanzeige " +
-                "WHERE collhbrs.stellenanzeige.id_anzeige = ? ;";
+                "FROM carlook.auto " +
+                "WHERE carlook.auto.auto_id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
-            statement.setInt(1, stellenanzeige.getBaujahr());
+            statement.setInt(1, auto.getAuto_id());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -109,13 +100,13 @@ public class StellenanzeigeDAO extends AbstractDAO {
         }
     }
 
-    public List<AutoDTO> getStellenanzeigenForSearch(String suchtext, String filter) throws SQLException {
+    public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
         filter = filter.toLowerCase();
         PreparedStatement statement;
         ResultSet rs = null;
         if (suchtext.equals("")) {
-            String sql = "SELECT id_anzeige, beschreibung, art, name, zeitraum, branche, studiengang, ort " +
-                    "FROM collhbrs.stellenanzeige ;";
+            String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
+                    "FROM carlook.auto ; ";
             statement = this.getPreparedStatement(sql);
             try {
                 rs = statement.executeQuery();
@@ -123,8 +114,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
         } else {
-            String sql = "SELECT id_anzeige, beschreibung, art, name, zeitraum, branche, studiengang, ort " +
-                    "FROM collhbrs.stellenanzeige " +
+            String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
+                    "FROM carlook.auto " +
                     "WHERE " + filter + " like ? ;";
             statement = this.getPreparedStatement(sql);
 
@@ -144,13 +135,13 @@ public class StellenanzeigeDAO extends AbstractDAO {
         return list;
     }
 
-    //Zeigt alle Stellenanzeigen an, auf die sich ein Student beworben hat
-    public List<AutoDTO> getStellenanzeigeforStudent(EndkundeDTO endkundeDTO) throws SQLException {
-        String sql = "SELECT id_anzeige, beschreibung, art, name, zeitraum, branche, studiengang, ort " +
-                "FROM collhbrs.stellenanzeige " +
-                "WHERE id_anzeige = ( SELECT id_anzeige " +
-                "FROM collhbrs.bewerbung_to_stellenanzeige " +
-                "WHERE id_bewerbung = ? );";
+    //Zeigt alle Stellenanzeigen an, auf die sich ein Student beworben hat (***Benz***)
+    public List<AutoDTO> reserviereAuto(EndkundeDTO endkundeDTO) throws SQLException {
+        String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
+                "FROM carlook.auto " +
+                "WHERE auto_id = ( SELECT auto_id " +
+                "FROM carlook.reservierung " +
+                "WHERE auto_id = ? );";
         PreparedStatement statement = this.getPreparedStatement(sql);
         List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
         List<AutoDTO> listStellenanzeige = new ArrayList<>();
@@ -177,14 +168,11 @@ public class StellenanzeigeDAO extends AbstractDAO {
             while (rs.next()) {
 
                 autoDTO = new AutoDTO();
-                autoDTO.setBaujahr(rs.getInt(1));
-                autoDTO.setBeschreibung(rs.getString(2));
-                autoDTO.setMarke(rs.getString(3));
-                autoDTO.setName(rs.getString(4));
-                autoDTO.setZeitraum(rs.getDate(5).toLocalDate());
-                autoDTO.setBranche(rs.getString(6));
-                autoDTO.setStudiengang(rs.getString(7));
-                autoDTO.setOrt(rs.getString(8));
+                autoDTO.setMarke(rs.getString(1));
+                autoDTO.setBaujahr(rs.getInt(2));
+                autoDTO.setBeschreibung(rs.getString(3));
+
+               //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 try {
 
                     autoDTO.setAnzahl_bewerber(StellenanzeigeControlProxy.getInstance().getAnzahlBewerber(autoDTO));
