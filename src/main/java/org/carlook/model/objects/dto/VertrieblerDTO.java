@@ -1,17 +1,19 @@
 package org.carlook.model.objects.dto;
 
-public class UnternehmenDTO extends UserDTO {
-    private String ansprechpartner;
+public class VertrieblerDTO extends UserDTO {
+   /* private String ansprechpartner;
     private String strasse;
     private Integer plz;
     private Integer haus_nr;
     private String zusatz;
     private String ort;
     private String branche;
+    */
 
-    public UnternehmenDTO(UserDTO userDTO) {
+    public VertrieblerDTO(UserDTO userDTO) {
         super(userDTO);
     }
+    /*
 
     public String getAnsprechpartner() {
         return ansprechpartner;
@@ -68,4 +70,6 @@ public class UnternehmenDTO extends UserDTO {
     public void setOrt(String ort) {
         this.ort = ort;
     }
+
+    */
 }

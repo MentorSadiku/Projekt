@@ -3,7 +3,7 @@ package org.carlook.model.dao;
 import com.vaadin.ui.Notification;
 import org.carlook.model.objects.dto.BewerbungDTO;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
@@ -145,14 +145,14 @@ public class StellenanzeigeDAO extends AbstractDAO {
     }
 
     //Zeigt alle Stellenanzeigen an, auf die sich ein Student beworben hat
-    public List<StellenanzeigeDTO> getStellenanzeigeforStudent(StudentDTO studentDTO) throws SQLException {
+    public List<StellenanzeigeDTO> getStellenanzeigeforStudent(EndkundeDTO endkundeDTO) throws SQLException {
         String sql = "SELECT id_anzeige, beschreibung, art, name, zeitraum, branche, studiengang, ort " +
                 "FROM collhbrs.stellenanzeige " +
                 "WHERE id_anzeige = ( SELECT id_anzeige " +
                 "FROM collhbrs.bewerbung_to_stellenanzeige " +
                 "WHERE id_bewerbung = ? );";
         PreparedStatement statement = this.getPreparedStatement(sql);
-        List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(studentDTO);
+        List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
         List<StellenanzeigeDTO> listStellenanzeige = new ArrayList<>();
         ResultSet rs = null;
         for (BewerbungDTO bewerbungDTO : list) {

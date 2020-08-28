@@ -3,8 +3,8 @@ package org.carlook.process.control;
 import com.vaadin.ui.UI;
 import org.carlook.gui.ui.MyUI;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.SearchControlInterface;
 import org.carlook.services.util.Roles;
@@ -29,11 +29,11 @@ public class SearchControl implements SearchControlInterface {
     public List<StellenanzeigeDTO> getAnzeigenForUser() throws SQLException {
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
         if (userDTO.hasRole(Roles.STUDENT)) {
-            StudentDTO studentDTO = new StudentDTO(userDTO);
-            return StellenanzeigeControl.getInstance().getAnzeigenForStudent(studentDTO);
+            EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
+            return StellenanzeigeControl.getInstance().getAnzeigenForStudent(endkundeDTO);
         }
-        UnternehmenDTO unternehmenDTO = new UnternehmenDTO(userDTO);
-        return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(unternehmenDTO);
+        VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
+        return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
     }
 
     public List<StellenanzeigeDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {

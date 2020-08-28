@@ -3,8 +3,8 @@ package org.carlook.process.control;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import org.carlook.gui.ui.MyUI;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.LoginControlInterface;
 import org.carlook.process.exceptions.DatabaseException;
@@ -52,10 +52,10 @@ public class LoginControl implements LoginControlInterface {
                 userDTO.setId(rs.getInt(1));
                 userDTO.setEmail(email);
                 if ( userDTO.hasRole(Roles.STUDENT) ) {
-                    userDTO = ProfileControl.getInstance().getStudent(new StudentDTO(userDTO));
+                    userDTO = ProfileControl.getInstance().getStudent(new EndkundeDTO(userDTO));
                 }
                 else {
-                    userDTO = ProfileControl.getInstance().getUnternehmen(new UnternehmenDTO(userDTO));
+                    userDTO = ProfileControl.getInstance().getUnternehmen(new VertrieblerDTO(userDTO));
                 }
             }
             else {

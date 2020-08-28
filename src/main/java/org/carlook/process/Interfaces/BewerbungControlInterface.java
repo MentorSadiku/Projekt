@@ -3,7 +3,7 @@ package org.carlook.process.Interfaces;
 import com.vaadin.ui.Button;
 import org.carlook.model.objects.dto.BewerbungDTO;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.BewerbungException;
 import org.carlook.process.exceptions.DatabaseException;
@@ -25,9 +25,9 @@ public interface BewerbungControlInterface {
 
     void createBewerbung(String bewerbungstext, UserDTO userDTO) throws BewerbungException;
 
-    BewerbungDTO getBewerbungForStellenanzeige(StellenanzeigeDTO selektiert, StudentDTO studentDTO) throws SQLException, DatabaseException;
+    BewerbungDTO getBewerbungForStellenanzeige(StellenanzeigeDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException;
 
-    List<BewerbungDTO> getBewerbungenForStudent(StudentDTO studentDTO) throws SQLException;
+    List<BewerbungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException;
 
     void deleteBewerbung(BewerbungDTO bewerbungDTO) throws BewerbungException;
 }

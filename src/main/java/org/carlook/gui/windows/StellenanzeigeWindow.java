@@ -2,7 +2,7 @@ package org.carlook.gui.windows;
 
 import com.vaadin.ui.*;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.StellenanzeigeException;
 import org.carlook.process.proxy.BewerbungControlProxy;
@@ -89,7 +89,7 @@ public class StellenanzeigeWindow extends Window {
         setContent(verticalLayout);
     }
 
-    public StellenanzeigeWindow(StellenanzeigeDTO stellenanzeige, Grid<StellenanzeigeDTO> grid, UnternehmenDTO unternehmenDTO) {
+    public StellenanzeigeWindow(StellenanzeigeDTO stellenanzeige, Grid<StellenanzeigeDTO> grid, VertrieblerDTO vertrieblerDTO) {
         super(stellenanzeige.getName());
         center();
 
@@ -142,7 +142,7 @@ public class StellenanzeigeWindow extends Window {
                 UI.getCurrent().addWindow(new ConfirmationWindow("Stellenanzeige erfolgreich gespeichert"));
                 List<StellenanzeigeDTO> list = null;
                 try {
-                    list = StellenanzeigeControlProxy.getInstance().getAnzeigenForUnternehmen(unternehmenDTO);
+                    list = StellenanzeigeControlProxy.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
                 }

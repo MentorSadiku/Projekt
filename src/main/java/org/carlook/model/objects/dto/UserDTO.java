@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDTO extends AbstractDTO implements Serializable {
     private int id;
-    private String vorname;
+
     private String name;
     private String email;
     private String password;
@@ -18,20 +18,15 @@ public class UserDTO extends AbstractDTO implements Serializable {
     public UserDTO() {}
     public UserDTO(UserDTO userDTO) {
         this.id = userDTO.id;
-        this.vorname = userDTO.vorname;
         this.name = userDTO.name;
         this.email = userDTO.email;
         this.password = userDTO.password;
         this.roles = userDTO.roles;
     }
 
-    public String getVorname() {
-        return vorname;
-    }
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
-    }
+
+
 
     public String getName() {
         return name;

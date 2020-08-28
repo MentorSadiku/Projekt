@@ -1,8 +1,8 @@
 package org.carlook.process.proxy;
 
 import org.carlook.model.objects.dto.BewerbungDTO;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.ProfileControlInterface;
 import org.carlook.process.control.ProfileControl;
@@ -25,27 +25,27 @@ public class ProfileControlProxy implements ProfileControlInterface {
     }
 
 
-    public void updateStudentData(StudentDTO studentDTO) throws ProfileException {
-        ProfileControl.getInstance().updateStudentData(studentDTO);
+    public void updateStudentData(EndkundeDTO endkundeDTO) throws ProfileException {
+        ProfileControl.getInstance().updateStudentData(endkundeDTO);
     }
 
-    public void updateUnternehmenData(UnternehmenDTO unternehmenDTO) throws ProfileException {
-        ProfileControl.getInstance().updateUnternehmenData(unternehmenDTO);
+    public void updateUnternehmenData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
+        ProfileControl.getInstance().updateUnternehmenData(vertrieblerDTO);
     }
 
-    public StudentDTO getStudent(UserDTO userDTO) throws SQLException {
+    public EndkundeDTO getStudent(UserDTO userDTO) throws SQLException {
         return ProfileControl.getInstance().getStudent(userDTO);
     }
 
-    public UnternehmenDTO getUnternehmen(UserDTO userDTO) throws SQLException {
+    public VertrieblerDTO getUnternehmen(UserDTO userDTO) throws SQLException {
         return ProfileControl.getInstance().getUnternehmen(userDTO);
     }
 
-    public void setBewerbung(String text, StudentDTO studentDTO) throws ProfileException {
-        ProfileControl.getInstance().setBewerbung(text, studentDTO);
+    public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
+        ProfileControl.getInstance().setBewerbung(text, endkundeDTO);
     }
 
-    public List<BewerbungDTO> getBewerbung(StudentDTO studentDTO) throws SQLException {
-        return ProfileControl.getInstance().getBewerbung(studentDTO);
+    public List<BewerbungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
+        return ProfileControl.getInstance().getBewerbung(endkundeDTO);
     }
 }

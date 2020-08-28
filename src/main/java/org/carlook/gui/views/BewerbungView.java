@@ -13,7 +13,7 @@ import org.carlook.gui.windows.DeleteBewerbungWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.model.objects.dto.BewerbungDTO;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.proxy.BewerbungControlProxy;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
@@ -30,12 +30,12 @@ public class BewerbungView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        StudentDTO studentDTO = new StudentDTO( ( (MyUI) UI.getCurrent() ).getUserDTO() );
+        EndkundeDTO endkundeDTO = new EndkundeDTO( ( (MyUI) UI.getCurrent() ).getUserDTO() );
 
-        this.setUp(studentDTO);
+        this.setUp(endkundeDTO);
     }
 
-    private void setUp(StudentDTO studentDTO) {
+    private void setUp(EndkundeDTO endkundeDTO) {
 
         //Top Layer
         this.addComponent( new TopPanel() );
@@ -51,7 +51,7 @@ public class BewerbungView extends VerticalLayout implements View {
         grid.setStyleName("schrift-tabelle");
         //Tabelle füllen
         try {
-            list = StellenanzeigeControlProxy.getInstance().getAnzeigenForStudent(studentDTO);
+            list = StellenanzeigeControlProxy.getInstance().getAnzeigenForStudent(endkundeDTO);
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
@@ -82,7 +82,7 @@ public class BewerbungView extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 BewerbungDTO bewerbungDTO = null;
                 try {
-                    bewerbungDTO = BewerbungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, studentDTO);
+                    bewerbungDTO = BewerbungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
                 } catch (DatabaseException e) {

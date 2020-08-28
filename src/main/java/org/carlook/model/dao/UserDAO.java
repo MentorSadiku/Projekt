@@ -27,7 +27,7 @@ public class UserDAO extends AbstractDAO {
         try {
             rs = statement.executeQuery();
         } catch (SQLException throwables) {
-            System.out.println("Fehler 1 bei addStudent");
+            System.out.println("Fehler 1 bei addEndkunde");
         }
 
         int currentValue = 0;
@@ -37,7 +37,7 @@ public class UserDAO extends AbstractDAO {
             rs.next();
             currentValue = rs.getInt(1);
         } catch (SQLException throwables) {
-            System.out.println("Fehler 2 bei addStudent");
+            System.out.println("Fehler 2 bei addEndkunde");
         } finally {
             assert rs != null;
             rs.close();

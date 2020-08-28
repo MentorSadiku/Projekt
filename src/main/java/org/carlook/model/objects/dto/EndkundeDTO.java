@@ -2,17 +2,19 @@ package org.carlook.model.objects.dto;
 
 import java.time.LocalDate;
 
-public class StudentDTO extends UserDTO {
-    private String anrede;
+public class EndkundeDTO extends UserDTO {
+    /*private String anrede;
     private String hochschule;
     private Integer semester;
     private LocalDate gebDatum = LocalDate.now();
     private String kenntnisse;
     private String studiengang;
+    */
 
-    public StudentDTO(UserDTO userDTO) {
+    public EndkundeDTO(UserDTO userDTO) {
         super(userDTO);
     }
+    /*
 
     public String getAnrede() {
         return anrede;
@@ -61,4 +63,6 @@ public class StudentDTO extends UserDTO {
     public void setStudiengang(String studiengang) {
         this.studiengang = studiengang;
     }
+
+     */
 }

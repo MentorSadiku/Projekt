@@ -9,8 +9,8 @@ import org.carlook.gui.ui.MyUI;
 import org.carlook.gui.windows.ConfirmationWindow;
 import org.carlook.gui.windows.DeleteProfileWindow;
 import org.carlook.gui.windows.DeleteWindow;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.ProfileException;
 import org.carlook.process.proxy.ProfileControlProxy;
@@ -93,68 +93,68 @@ public class ProfileView extends VerticalLayout implements View {
 
         if (userDTO.hasRole(Roles.STUDENT)) {
             //Werte einsetzen
-            StudentDTO studentDTO = new StudentDTO(userDTO);
+            EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
             try {
-                studentDTO = ProfileControlProxy.getInstance().getStudent(userDTO);
+                endkundeDTO = ProfileControlProxy.getInstance().getStudent(userDTO);
             } catch (SQLException e) {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
-            if (studentDTO.getAnrede() != null) {
-                anrede.setValue(studentDTO.getAnrede());
+            /*if (endkundeDTO.getAnrede() != null) {
+                anrede.setValue(endkundeDTO.getAnrede());
             }
-            if (studentDTO.getVorname() != null) {
-                vorname.setValue(studentDTO.getVorname());
+            if (endkundeDTO.getVorname() != null) {
+                vorname.setValue(endkundeDTO.getVorname());
+            }*/
+            if (endkundeDTO.getName() != null) {
+                name.setValue(endkundeDTO.getName());
             }
-            if (studentDTO.getName() != null) {
-                name.setValue(studentDTO.getName());
+           /* if (endkundeDTO.getHochschule() != null) {
+                hochschule.setValue(endkundeDTO.getHochschule());
             }
-            if (studentDTO.getHochschule() != null) {
-                hochschule.setValue(studentDTO.getHochschule());
+            if (endkundeDTO.getSemester() != 0) {
+                semester.setValue(String.valueOf(endkundeDTO.getSemester()));
             }
-            if (studentDTO.getSemester() != 0) {
-                semester.setValue(String.valueOf(studentDTO.getSemester()));
+            if (endkundeDTO.getGebDatum() != null) {
+                gebDatum.setValue(endkundeDTO.getGebDatum());
             }
-            if (studentDTO.getGebDatum() != null) {
-                gebDatum.setValue(studentDTO.getGebDatum());
+            if (endkundeDTO.getKenntnisse() != null) {
+                kenntnisse.setValue(endkundeDTO.getKenntnisse());
             }
-            if (studentDTO.getKenntnisse() != null) {
-                kenntnisse.setValue(studentDTO.getKenntnisse());
-            }
-            if (studentDTO.getStudiengang() != null) {
-                studiengang.setValue(studentDTO.getStudiengang());
-            }
+            if (endkundeDTO.getStudiengang() != null) {
+                studiengang.setValue(endkundeDTO.getStudiengang());
+            }*/
         } else {
             //Werte Setzen
-            UnternehmenDTO unternehmenDTO = new UnternehmenDTO(userDTO);
+            VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
             try {
-                unternehmenDTO = ProfileControlProxy.getInstance().getUnternehmen(userDTO);
+                vertrieblerDTO = ProfileControlProxy.getInstance().getUnternehmen(userDTO);
             } catch (SQLException e) {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
-            if (unternehmenDTO.getName() != null) {
-                firmenname.setValue(unternehmenDTO.getName());
+            if (vertrieblerDTO.getName() != null) {
+                firmenname.setValue(vertrieblerDTO.getName());
             }
-            if (unternehmenDTO.getAnsprechpartner() != null) {
-                ansprechpartner.setValue(unternehmenDTO.getAnsprechpartner());
+            /*if (vertrieblerDTO.getAnsprechpartner() != null) {
+                ansprechpartner.setValue(vertrieblerDTO.getAnsprechpartner());
             }
-            if (unternehmenDTO.getStrasse() != null) {
-                strasse.setValue(unternehmenDTO.getStrasse());
+            if (vertrieblerDTO.getStrasse() != null) {
+                strasse.setValue(vertrieblerDTO.getStrasse());
             }
-            if (unternehmenDTO.getPlz() != null) {
-                plz.setValue(String.valueOf(unternehmenDTO.getPlz()));
+            if (vertrieblerDTO.getPlz() != null) {
+                plz.setValue(String.valueOf(vertrieblerDTO.getPlz()));
             }
-            if (unternehmenDTO.getHaus_nr() != null) {
-                haus_nr.setValue(String.valueOf(unternehmenDTO.getHaus_nr()));
+            if (vertrieblerDTO.getHaus_nr() != null) {
+                haus_nr.setValue(String.valueOf(vertrieblerDTO.getHaus_nr()));
             }
-            if (unternehmenDTO.getZusatz() != null) {
-                zusatz.setValue(unternehmenDTO.getZusatz());
+            if (vertrieblerDTO.getZusatz() != null) {
+                zusatz.setValue(vertrieblerDTO.getZusatz());
             }
-            if (unternehmenDTO.getOrt() != null) {
-                ort.setValue(unternehmenDTO.getOrt());
+            if (vertrieblerDTO.getOrt() != null) {
+                ort.setValue(vertrieblerDTO.getOrt());
             }
-            if (unternehmenDTO.getBranche() != null) {
-                branche.setValue(unternehmenDTO.getBranche());
-            }
+            if (vertrieblerDTO.getBranche() != null) {
+                branche.setValue(vertrieblerDTO.getBranche());
+            }*/
         }
 
         //Event Nutzer löschen
@@ -174,40 +174,40 @@ public class ProfileView extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 //UI.getCurrent().addWindow(new ConfirmationWindow("Sollen alle Daten aktualisiert werden?"));
                 if (userDTO.hasRole(Roles.STUDENT)) {
-                    StudentDTO studentDTO = new StudentDTO(userDTO);
-                    studentDTO.setAnrede(anrede.getValue());
-                    studentDTO.setVorname(vorname.getValue());
-                    studentDTO.setName(name.getValue());
-                    studentDTO.setHochschule(hochschule.getValue());
-                    try {
-                        studentDTO.setSemester(Integer.valueOf(semester.getValue()));
+                    EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
+                    //endkundeDTO.setAnrede(anrede.getValue());
+                    //endkundeDTO.setVorname(vorname.getValue());
+                    endkundeDTO.setName(name.getValue());
+                    //endkundeDTO.setHochschule(hochschule.getValue());
+                    /*try {
+                        endkundeDTO.setSemester(Integer.valueOf(semester.getValue()));
                     } catch (NumberFormatException e) {
-                        studentDTO.setSemester(0);
+                        endkundeDTO.setSemester(0);
                     }
-                    studentDTO.setGebDatum(gebDatum.getValue());
-                    studentDTO.setKenntnisse(kenntnisse.getValue());
-                    studentDTO.setStudiengang(studiengang.getValue());
+                    endkundeDTO.setGebDatum(gebDatum.getValue());
+                    endkundeDTO.setKenntnisse(kenntnisse.getValue());
+                    endkundeDTO.setStudiengang(studiengang.getValue());*/
 
                     try {
-                        ProfileControlProxy.getInstance().updateStudentData(studentDTO);
+                        ProfileControlProxy.getInstance().updateStudentData(endkundeDTO);
                         UI.getCurrent().addWindow(new ConfirmationWindow("Ihr Profil wurde erfolgreich aktualisiert!"));
                     } catch (ProfileException e) {
                         Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                     }
 
                 } else {
-                    UnternehmenDTO unternehmenDTO = new UnternehmenDTO(userDTO);
-                    unternehmenDTO.setName(firmenname.getValue());
-                    unternehmenDTO.setAnsprechpartner(ansprechpartner.getValue());
-                    unternehmenDTO.setStrasse(strasse.getValue());
-                    unternehmenDTO.setPlz(Integer.valueOf(plz.getValue()));
-                    unternehmenDTO.setHaus_nr(Integer.valueOf(haus_nr.getValue()));
-                    unternehmenDTO.setZusatz(zusatz.getValue());
-                    unternehmenDTO.setBranche(branche.getValue());
-                    unternehmenDTO.setOrt(ort.getValue());
+                    VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
+                    vertrieblerDTO.setName(firmenname.getValue());
+                   /* vertrieblerDTO.setAnsprechpartner(ansprechpartner.getValue());
+                    vertrieblerDTO.setStrasse(strasse.getValue());
+                    vertrieblerDTO.setPlz(Integer.valueOf(plz.getValue()));
+                    vertrieblerDTO.setHaus_nr(Integer.valueOf(haus_nr.getValue()));
+                    vertrieblerDTO.setZusatz(zusatz.getValue());
+                    vertrieblerDTO.setBranche(branche.getValue());
+                    vertrieblerDTO.setOrt(ort.getValue());*/
 
                     try {
-                        ProfileControlProxy.getInstance().updateUnternehmenData(unternehmenDTO);
+                        ProfileControlProxy.getInstance().updateUnternehmenData(vertrieblerDTO);
                         UI.getCurrent().addWindow(new ConfirmationWindow("Ihr Profil wurde erfolgreich aktualisiert!"));
                     } catch (ProfileException e) {
                         Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);

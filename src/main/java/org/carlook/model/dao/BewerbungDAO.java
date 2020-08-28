@@ -3,7 +3,7 @@ package org.carlook.model.dao;
 import com.vaadin.ui.Notification;
 import org.carlook.model.factory.BewerbungDTOFactory;
 import org.carlook.model.objects.dto.BewerbungDTO;
-import org.carlook.model.objects.dto.StudentDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.services.db.JDBCConnection;
 
@@ -53,7 +53,7 @@ public class BewerbungDAO extends AbstractDAO {
         return bewerbungDTO;
     }
 
-    public List<BewerbungDTO> getBewerbungenForStudent(StudentDTO studentDTO) throws SQLException {
+    public List<BewerbungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
         String sql = "SELECT id_bewerbung, freitext " +
                 "FROM collhbrs.bewerbung " +
                 "WHERE id = ? ;";
@@ -61,7 +61,7 @@ public class BewerbungDAO extends AbstractDAO {
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs = null;
         try {
-            statement.setInt(1, studentDTO.getId());
+            statement.setInt(1, endkundeDTO.getId());
             rs = statement.executeQuery();
         } catch (SQLException ex) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
@@ -87,12 +87,12 @@ public class BewerbungDAO extends AbstractDAO {
         return list;
     }
 
-    public boolean createBewerbung(String text, StudentDTO studentDTO) {
+    public boolean createBewerbung(String text, EndkundeDTO endkundeDTO) {
         String sql = "INSERT INTO collhbrs.bewerbung (id, freitext) " +
                 "VALUES (?, ?); ";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
-            statement.setInt(1, studentDTO.getId());
+            statement.setInt(1, endkundeDTO.getId());
             statement.setString(2, text);
             statement.executeUpdate();
             return true;

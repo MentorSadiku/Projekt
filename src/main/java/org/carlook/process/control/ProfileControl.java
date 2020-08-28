@@ -1,11 +1,11 @@
 package org.carlook.process.control;
 
 import org.carlook.model.dao.BewerbungDAO;
-import org.carlook.model.dao.StudentDAO;
-import org.carlook.model.dao.UnternehmenDAO;
+import org.carlook.model.dao.EndkundeDAO;
+import org.carlook.model.dao.VertrieblerDAO;
 import org.carlook.model.objects.dto.BewerbungDTO;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.ProfileControlInterface;
 import org.carlook.process.exceptions.ProfileException;
@@ -27,39 +27,39 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
 
-    public void updateStudentData(StudentDTO studentDTO) throws ProfileException {
-        boolean result =  StudentDAO.getInstance().updateStudent(studentDTO);
+    public void updateStudentData(EndkundeDTO endkundeDTO) throws ProfileException {
+        boolean result =  EndkundeDAO.getInstance().updateStudent(endkundeDTO);
         if (result) {
             return;
         }
         throw new ProfileException();
     }
 
-    public void updateUnternehmenData(UnternehmenDTO unternehmenDTO) throws ProfileException {
-        boolean result = UnternehmenDAO.getInstance().updateUnternehmen(unternehmenDTO);
+    public void updateUnternehmenData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
+        boolean result = VertrieblerDAO.getInstance().updateUnternehmen(vertrieblerDTO);
         if (result) {
             return;
         }
         throw new ProfileException();
     }
 
-    public StudentDTO getStudent(UserDTO userDTO) throws SQLException {
-        return StudentDAO.getInstance().getAllDataStudent(userDTO);
+    public EndkundeDTO getStudent(UserDTO userDTO) throws SQLException {
+        return EndkundeDAO.getInstance().getAllDataStudent(userDTO);
     }
 
-    public UnternehmenDTO getUnternehmen(UserDTO userDTO) throws SQLException {
-        return UnternehmenDAO.getInstance().getAllDataUnternehmen(userDTO);
+    public VertrieblerDTO getUnternehmen(UserDTO userDTO) throws SQLException {
+        return VertrieblerDAO.getInstance().getAllDataUnternehmen(userDTO);
     }
 
-    public void setBewerbung(String text, StudentDTO studentDTO) throws ProfileException {
-        boolean result =  BewerbungDAO.getInstance().createBewerbung(text, studentDTO);
+    public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
+        boolean result =  BewerbungDAO.getInstance().createBewerbung(text, endkundeDTO);
         if (result) {
             return;
         }
         throw new ProfileException();
     }
 
-    public List<BewerbungDTO> getBewerbung(StudentDTO studentDTO) throws SQLException {
-        return BewerbungDAO.getInstance().getBewerbungenForStudent(studentDTO);
+    public List<BewerbungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
+        return BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
     }
 }

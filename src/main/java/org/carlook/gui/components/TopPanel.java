@@ -37,8 +37,8 @@ public class  TopPanel extends HorizontalLayout {
         UserDTO userDTO = ( (MyUI) MyUI.getCurrent() ).getUserDTO();
         Label welcome = new Label("Willkommen bei carlook!");
         if (userDTO != null) {
-            if (userDTO.hasRole(Roles.STUDENT) && userDTO.getVorname() != null) {
-                welcome = new Label("Willkommen " + userDTO.getVorname() + "!");
+            if (userDTO.hasRole(Roles.STUDENT) && userDTO.getName() != null) {
+                welcome = new Label("Willkommen " + userDTO.getName() + "!");
             }
             if (userDTO.hasRole(Roles.UNTERNEHMEN) && userDTO.getName() != null) {
                 welcome = new Label("Willkommen " + userDTO.getName() + "!");

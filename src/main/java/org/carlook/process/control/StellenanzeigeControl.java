@@ -5,8 +5,8 @@ import com.vaadin.ui.UI;
 import org.carlook.gui.ui.MyUI;
 import org.carlook.model.dao.StellenanzeigeDAO;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.StellenanzeigeControlInterface;
 import org.carlook.process.exceptions.DatabaseException;
@@ -32,12 +32,12 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
 
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForUnternehmen(UnternehmenDTO unternehmenDTO) throws SQLException {
-        return StellenanzeigeDAO.getInstance().getStellenanzeigenForUnternehmen(unternehmenDTO);
+    public List<StellenanzeigeDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
+        return StellenanzeigeDAO.getInstance().getStellenanzeigenForUnternehmen(vertrieblerDTO);
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForStudent(StudentDTO studentDTO) throws SQLException {
-        return StellenanzeigeDAO.getInstance().getStellenanzeigeforStudent(studentDTO);
+    public List<StellenanzeigeDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+        return StellenanzeigeDAO.getInstance().getStellenanzeigeforStudent(endkundeDTO);
 
     }
 

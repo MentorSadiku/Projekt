@@ -14,7 +14,7 @@ import org.carlook.gui.windows.DeleteStellenanzeigeWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.gui.windows.StellenanzeigeWindow;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.proxy.SearchControlProxy;
 import org.carlook.services.util.BuildGrid;
 
@@ -30,11 +30,11 @@ public class StellenanzeigeView extends VerticalLayout implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
         //User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
-        UnternehmenDTO unternehmenDTO = new UnternehmenDTO(((MyUI) UI.getCurrent()).getUserDTO());
-        this.setUp(unternehmenDTO);
+        VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(((MyUI) UI.getCurrent()).getUserDTO());
+        this.setUp(vertrieblerDTO);
     }
 
-    private void setUp(UnternehmenDTO unternehmenDTO) {
+    private void setUp(VertrieblerDTO vertrieblerDTO) {
 
         //Top Layer
         this.addComponent(new TopPanel());
@@ -90,7 +90,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         showButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                StellenanzeigeWindow window = new StellenanzeigeWindow(selektiert, grid, unternehmenDTO);
+                StellenanzeigeWindow window = new StellenanzeigeWindow(selektiert, grid, vertrieblerDTO);
                 UI.getCurrent().addWindow(window);
             }
         });
@@ -99,7 +99,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         createButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                CreateStellenanzeigeWindow window = new CreateStellenanzeigeWindow(new StellenanzeigeDTO(), grid, unternehmenDTO);
+                CreateStellenanzeigeWindow window = new CreateStellenanzeigeWindow(new StellenanzeigeDTO(), grid, vertrieblerDTO);
                 UI.getCurrent().addWindow(window);
             }
         });

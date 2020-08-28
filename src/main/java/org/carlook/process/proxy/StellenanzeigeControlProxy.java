@@ -1,8 +1,8 @@
 package org.carlook.process.proxy;
 
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
-import org.carlook.model.objects.dto.UnternehmenDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
+import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.Interfaces.StellenanzeigeControlInterface;
 import org.carlook.process.control.StellenanzeigeControl;
 import org.carlook.process.exceptions.DatabaseException;
@@ -25,12 +25,12 @@ public class StellenanzeigeControlProxy implements StellenanzeigeControlInterfac
 
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForUnternehmen(UnternehmenDTO unternehmenDTO) throws SQLException {
-        return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(unternehmenDTO);
+    public List<StellenanzeigeDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
+        return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
     }
 
-    public List<StellenanzeigeDTO> getAnzeigenForStudent(StudentDTO studentDTO) throws SQLException {
-        return StellenanzeigeControl.getInstance().getAnzeigenForStudent(studentDTO);
+    public List<StellenanzeigeDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+        return StellenanzeigeControl.getInstance().getAnzeigenForStudent(endkundeDTO);
     }
     public void createStellenanzeige(StellenanzeigeDTO stellenanzeigeDTO) throws StellenanzeigeException {
         StellenanzeigeControl.getInstance().createStellenanzeige(stellenanzeigeDTO);

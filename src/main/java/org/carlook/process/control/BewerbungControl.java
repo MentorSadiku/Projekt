@@ -5,7 +5,7 @@ import com.vaadin.ui.Notification;
 import org.carlook.model.dao.BewerbungDAO;
 import org.carlook.model.objects.dto.BewerbungDTO;
 import org.carlook.model.objects.dto.StellenanzeigeDTO;
-import org.carlook.model.objects.dto.StudentDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.BewerbungControlInterface;
 import org.carlook.process.exceptions.BewerbungException;
@@ -91,8 +91,8 @@ public class BewerbungControl implements BewerbungControlInterface {
     }
 
     public void checkAlreadyApplied(StellenanzeigeDTO stellenanzeigeDTO, UserDTO userDTO) throws DatabaseException, SQLException, BewerbungException {
-        StudentDTO studentDTO = new StudentDTO(userDTO);
-        List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(studentDTO);
+        EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
+        List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
         String sql = "SELECT id_anzeige " +
                 "FROM collhbrs.bewerbung_to_stellenanzeige " +
                 "WHERE id_bewerbung = ? " +
@@ -135,15 +135,15 @@ public class BewerbungControl implements BewerbungControlInterface {
     }
 
     public void createBewerbung(String bewerbungstext, UserDTO userDTO) throws BewerbungException {
-        StudentDTO studentDTO = new StudentDTO(userDTO);
-        boolean result = BewerbungDAO.getInstance().createBewerbung(bewerbungstext, studentDTO);
+        EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
+        boolean result = BewerbungDAO.getInstance().createBewerbung(bewerbungstext, endkundeDTO);
         if (!result) {
             throw new BewerbungException();
         }
     }
 
-    public BewerbungDTO getBewerbungForStellenanzeige(StellenanzeigeDTO selektiert, StudentDTO studentDTO) throws SQLException, DatabaseException {
-        List<BewerbungDTO> list = getBewerbungenForStudent(studentDTO);
+    public BewerbungDTO getBewerbungForStellenanzeige(StellenanzeigeDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
+        List<BewerbungDTO> list = getBewerbungenForStudent(endkundeDTO);
         BewerbungDTO bewerbungDTO = new BewerbungDTO();
         String sql = "SELECT id_bewerbung " +
                 "FROM collhbrs.bewerbung_to_stellenanzeige " +
@@ -170,8 +170,8 @@ public class BewerbungControl implements BewerbungControlInterface {
         return bewerbungDTO;
     }
 
-    public List<BewerbungDTO> getBewerbungenForStudent(StudentDTO studentDTO) throws SQLException {
-        return BewerbungDAO.getInstance().getBewerbungenForStudent(studentDTO);
+    public List<BewerbungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+        return BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
     }
 
     public void deleteBewerbung(BewerbungDTO bewerbungDTO) throws BewerbungException {
