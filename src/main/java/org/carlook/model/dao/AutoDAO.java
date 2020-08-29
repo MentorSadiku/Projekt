@@ -14,15 +14,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StellenanzeigeDAO extends AbstractDAO {
-    private static StellenanzeigeDAO dao = null;
+public class AutoDAO extends AbstractDAO {
+    private static AutoDAO dao = null;
 
-    private StellenanzeigeDAO() {
+    private AutoDAO() {
     }
 
-    public static StellenanzeigeDAO getInstance() {
+    public static AutoDAO getInstance() {
         if (dao == null) {
-            dao = new StellenanzeigeDAO();
+            dao = new AutoDAO();
         }
         return dao;
     }
