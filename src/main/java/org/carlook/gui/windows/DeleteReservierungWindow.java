@@ -25,7 +25,7 @@ public class DeleteReservierungWindow extends DeleteWindow {
                     Notification.show("DB-Fehler", "Löschen war nicht erfolgreich!", Notification.Type.ERROR_MESSAGE);
                 }
                 Notification.show("Reservierung gelöscht!", Notification.Type.HUMANIZED_MESSAGE);
-                UI.getCurrent().getNavigator().navigateTo(Views.BEWERBUNG);
+                UI.getCurrent().getNavigator().navigateTo(Views.RESERVIERUNG);
                 for (Window w : UI.getCurrent().getWindows()) {
                     w.close();
                 }

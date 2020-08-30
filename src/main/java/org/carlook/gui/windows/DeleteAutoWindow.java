@@ -24,7 +24,7 @@ public class DeleteAutoWindow extends DeleteWindow{
                 } catch (AutoException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
-                UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE);
+                UI.getCurrent().getNavigator().navigateTo(Views.AUTO);
                 for (Window w : UI.getCurrent().getWindows()) {
                     w.close();
                 }

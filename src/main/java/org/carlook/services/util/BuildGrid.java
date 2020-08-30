@@ -7,8 +7,8 @@ public class BuildGrid {
     public static void buildGrid(Grid<AutoDTO> grid) {
         grid.removeAllColumns();
        
-        grid.addColumn(AutoDTO::getMarke).setCaption("Art");
-        grid.addColumn(AutoDTO::getBaujahr).setCaption("Branche");
+        grid.addColumn(AutoDTO::getMarke).setCaption("Marke");
+        grid.addColumn(AutoDTO::getBaujahr).setCaption("Baujahr");
         grid.addColumn(AutoDTO::getBeschreibung).setCaption("Beschreibung");
 
     }
