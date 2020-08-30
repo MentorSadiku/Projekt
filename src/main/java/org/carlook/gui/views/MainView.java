@@ -73,7 +73,7 @@ public class MainView extends VerticalLayout implements View {
         //Combobox
         final ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setPlaceholder("Filtern nach");
-        comboBox.setItems("Name", "Art", "Branche", "Studiengang", "Ort");
+        comboBox.setItems("Marke", "Baujahr", "Beschreibung");
 
         //SelectionListener Tabelle
         grid.addSelectionListener(new SelectionListener<AutoDTO>() {
