@@ -9,7 +9,7 @@ import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.carlook.gui.components.TopPanel;
 import org.carlook.gui.ui.MyUI;
-import org.carlook.gui.windows.CreateStellenanzeigeWindow;
+import org.carlook.gui.windows.CreateAutoWindow;
 import org.carlook.gui.windows.DeleteAutoWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.gui.windows.AutoWindow;
@@ -99,7 +99,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         createButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                CreateStellenanzeigeWindow window = new CreateStellenanzeigeWindow(new AutoDTO(), grid, vertrieblerDTO);
+                CreateAutoWindow window = new CreateAutoWindow(new AutoDTO(), grid, vertrieblerDTO);
                 UI.getCurrent().addWindow(window);
             }
         });

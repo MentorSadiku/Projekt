@@ -9,9 +9,9 @@ import org.carlook.process.proxy.StellenanzeigeControlProxy;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CreateStellenanzeigeWindow extends Window {
+public class CreateAutoWindow extends Window {
 
-    public CreateStellenanzeigeWindow(AutoDTO stellenanzeige, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
+    public CreateAutoWindow(AutoDTO stellenanzeige, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
         super("Ihre Autos");
         center();
 
