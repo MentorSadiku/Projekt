@@ -89,7 +89,7 @@ public class ProfileView extends VerticalLayout implements View {
         //TextField branche = new TextField("Branche");
         //branche.setPlaceholder("IT");
 
-        Label meinUnternehmen = new Label("Mein Unternehmensprofil");
+        Label meinVertrieb = new Label("Mein Vertriebsprofil");
 
         if (userDTO.hasRole(Roles.ENDKUNDE)) {
             //Werte einsetzen
@@ -218,7 +218,7 @@ public class ProfileView extends VerticalLayout implements View {
         });
 
         // Horizontal Strasse
-        HorizontalLayout horizontalLayoutStrasse = new HorizontalLayout();
+       /* HorizontalLayout horizontalLayoutStrasse = new HorizontalLayout();
         horizontalLayoutStrasse.addComponent(strasse);
         horizontalLayoutStrasse.addComponent(haus_nr);
         horizontalLayoutStrasse.addComponent(zusatz);
@@ -227,34 +227,37 @@ public class ProfileView extends VerticalLayout implements View {
         HorizontalLayout horizontalLayoutOrt = new HorizontalLayout();
         horizontalLayoutOrt.addComponent(ort);
         horizontalLayoutOrt.addComponent(plz);
+        */
 
         //Horizontal Name
         HorizontalLayout horizontalLayoutName = new HorizontalLayout();
-        horizontalLayoutName.addComponent(vorname);
+        //horizontalLayoutName.addComponent(vorname);
         horizontalLayoutName.addComponent(name);
 
         //horizontal Uni
-        HorizontalLayout horizontalLayoutUni = new HorizontalLayout();
+        /*HorizontalLayout horizontalLayoutUni = new HorizontalLayout();
         horizontalLayoutUni.addComponent(hochschule);
         horizontalLayoutUni.addComponent(studiengang);
         horizontalLayoutUni.addComponent(semester);
 
+         */
+
         if (userDTO.hasRole(Roles.ENDKUNDE)) {
             this.addComponent(meinProfil);
-            this.addComponent(anrede);
+            //this.addComponent(anrede);
             this.addComponent(horizontalLayoutName);
-            this.addComponent(horizontalLayoutUni);
-            this.addComponent(kenntnisse);
-            this.addComponent(gebDatum);
+            //this.addComponent(horizontalLayoutUni);
+            // this.addComponent(kenntnisse);
+           // this.addComponent(gebDatum);
             this.addComponent(overwriteBtn);
             this.addComponent(deleteButton);
         } else {
-            this.addComponent(meinUnternehmen);
+            this.addComponent(meinVertrieb);
             this.addComponent(vertrieblername);
-            this.addComponent(ansprechpartner);
-            this.addComponent(horizontalLayoutStrasse);
-            this.addComponent(horizontalLayoutOrt);
-            this.addComponent(branche);
+           // this.addComponent(ansprechpartner);
+           // this.addComponent(horizontalLayoutStrasse);
+            //this.addComponent(horizontalLayoutOrt);
+            //this.addComponent(branche);
             this.addComponent(overwriteBtn);
             this.addComponent(deleteButton);
         }
