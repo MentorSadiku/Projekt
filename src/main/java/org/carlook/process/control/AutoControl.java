@@ -18,30 +18,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StellenanzeigeControl implements StellenanzeigeControlInterface {
-    private static StellenanzeigeControl search = null;
+public class AutoControl implements StellenanzeigeControlInterface {
+    private static AutoControl search = null;
 
-    public static StellenanzeigeControl getInstance() {
+    public static AutoControl getInstance() {
         if (search == null) {
-            search = new StellenanzeigeControl();
+            search = new AutoControl();
         }
         return search;
     }
 
-    private StellenanzeigeControl() {
+    private AutoControl() {
 
     }
 
-    public List<AutoDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
+    public List<AutoDTO> getAutoForVertriebler(VertrieblerDTO vertrieblerDTO) throws SQLException {
         return AutoDAO.getInstance().getAutoList(vertrieblerDTO);
     }
 
-    public List<AutoDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<AutoDTO> getAutoForEndkunde(EndkundeDTO endkundeDTO) throws SQLException {
         return AutoDAO.getInstance().reserviereAuto(endkundeDTO);
 
     }
 
-    public void createStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
+    public void createAuto(AutoDTO autoDTO) throws StellenanzeigeException {
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
         boolean result = AutoDAO.getInstance().createAuto(autoDTO, userDTO);
         if (result) {
@@ -50,7 +50,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
         throw new StellenanzeigeException();
     }
 
-    public void updateStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
+    public void updateAuto(AutoDTO autoDTO) throws StellenanzeigeException {
         boolean result = AutoDAO.getInstance().updateAuto(autoDTO);
         if (result) {
             return;
@@ -58,7 +58,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
         throw new StellenanzeigeException();
     }
 
-    public void deleteStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
+    public void deleteAuto(AutoDTO autoDTO) throws StellenanzeigeException {
         boolean result = AutoDAO.getInstance().deleteAuto(autoDTO);
         if (result) {
             return;
@@ -66,7 +66,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
         throw new StellenanzeigeException();
     }
 
-    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
+    public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
         return AutoDAO.getInstance().getAutoForSearch(suchtext, filter);
     }
 

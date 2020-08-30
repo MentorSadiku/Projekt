@@ -11,15 +11,15 @@ import java.util.List;
 
 public interface ProfileControlInterface {
 
-    void updateStudentData(EndkundeDTO endkundeDTO) throws ProfileException;
+    void updateEndkundeData(EndkundeDTO endkundeDTO) throws ProfileException;
 
-    void updateUnternehmenData(VertrieblerDTO vertrieblerDTO) throws ProfileException;
+    void updateVertrieblerData(VertrieblerDTO vertrieblerDTO) throws ProfileException;
 
-    EndkundeDTO getStudent(UserDTO userDTO) throws SQLException;
+    EndkundeDTO getEndkunde(UserDTO userDTO) throws SQLException;
 
-    VertrieblerDTO getUnternehmen(UserDTO userDTO) throws SQLException;
+    VertrieblerDTO getVertriebler(UserDTO userDTO) throws SQLException;
 
-    void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException;
+    void setReservierung(String text, EndkundeDTO endkundeDTO) throws ProfileException;
 
-    List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException;
+    List<ReservierungDTO> getReservierung(EndkundeDTO endkundeDTO) throws SQLException;
 }

@@ -51,7 +51,7 @@ public class ReservierungView extends VerticalLayout implements View {
         grid.setStyleName("schrift-tabelle");
         //Tabelle füllen
         try {
-            list = StellenanzeigeControlProxy.getInstance().getAnzeigenForStudent(endkundeDTO);
+            list = StellenanzeigeControlProxy.getInstance().getAutoForEndkunde(endkundeDTO);
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }

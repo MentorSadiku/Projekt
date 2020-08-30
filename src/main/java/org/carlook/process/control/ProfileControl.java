@@ -27,7 +27,7 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
 
-    public void updateStudentData(EndkundeDTO endkundeDTO) throws ProfileException {
+    public void updateEndkundeData(EndkundeDTO endkundeDTO) throws ProfileException {
         boolean result =  EndkundeDAO.getInstance().updateEndkunde(endkundeDTO);
         if (result) {
             return;
@@ -35,7 +35,7 @@ public class ProfileControl implements ProfileControlInterface {
         throw new ProfileException();
     }
 
-    public void updateUnternehmenData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
+    public void updateVertrieblerData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
         boolean result = VertrieblerDAO.getInstance().updateVertriebler(vertrieblerDTO);
         if (result) {
             return;
@@ -43,15 +43,15 @@ public class ProfileControl implements ProfileControlInterface {
         throw new ProfileException();
     }
 
-    public EndkundeDTO getStudent(UserDTO userDTO) throws SQLException {
+    public EndkundeDTO getEndkunde(UserDTO userDTO) throws SQLException {
         return EndkundeDAO.getInstance().getAllDataEndkunde(userDTO);
     }
 
-    public VertrieblerDTO getUnternehmen(UserDTO userDTO) throws SQLException {
+    public VertrieblerDTO getVertriebler(UserDTO userDTO) throws SQLException {
         return VertrieblerDAO.getInstance().getAllDataVertriebler(userDTO);
     }
 
-    public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
+    public void setReservierung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
         boolean result =  ReservierungDAO.getInstance().createReservierung(endkundeDTO);
         if (result) {
             return;
@@ -59,7 +59,7 @@ public class ProfileControl implements ProfileControlInterface {
         throw new ProfileException();
     }
 
-    public List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<ReservierungDTO> getReservierung(EndkundeDTO endkundeDTO) throws SQLException {
         return ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
     }
 }

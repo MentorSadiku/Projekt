@@ -4,7 +4,7 @@ import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.Interfaces.StellenanzeigeControlInterface;
-import org.carlook.process.control.StellenanzeigeControl;
+import org.carlook.process.control.AutoControl;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.exceptions.StellenanzeigeException;
 
@@ -25,29 +25,29 @@ public class StellenanzeigeControlProxy implements StellenanzeigeControlInterfac
 
     }
 
-    public List<AutoDTO> getAnzeigenForUnternehmen(VertrieblerDTO vertrieblerDTO) throws SQLException {
-        return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
+    public List<AutoDTO> getAutoForVertriebler(VertrieblerDTO vertrieblerDTO) throws SQLException {
+        return AutoControl.getInstance().getAutoForVertriebler(vertrieblerDTO);
     }
 
-    public List<AutoDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
-        return StellenanzeigeControl.getInstance().getAnzeigenForStudent(endkundeDTO);
+    public List<AutoDTO> getAutoForEndkunde(EndkundeDTO endkundeDTO) throws SQLException {
+        return AutoControl.getInstance().getAutoForEndkunde(endkundeDTO);
     }
-    public void createStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
-        StellenanzeigeControl.getInstance().createStellenanzeige(autoDTO);
+    public void createAuto(AutoDTO autoDTO) throws StellenanzeigeException {
+        AutoControl.getInstance().createAuto(autoDTO);
     }
-    public void updateStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
-        StellenanzeigeControl.getInstance().updateStellenanzeige(autoDTO);
-    }
-
-    public void deleteStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
-        StellenanzeigeControl.getInstance().deleteStellenanzeige(autoDTO);
+    public void updateAuto(AutoDTO autoDTO) throws StellenanzeigeException {
+        AutoControl.getInstance().updateAuto(autoDTO);
     }
 
-    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
-        return StellenanzeigeControl.getInstance().getAnzeigenForSearch(suchtext, filter);
+    public void deleteAuto(AutoDTO autoDTO) throws StellenanzeigeException {
+        AutoControl.getInstance().deleteAuto(autoDTO);
+    }
+
+    public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
+        return AutoControl.getInstance().getAutoForSearch(suchtext, filter);
     }
 
     public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
-        return StellenanzeigeControl.getInstance().getAnzahlRes(autoDTO);
+        return AutoControl.getInstance().getAnzahlRes(autoDTO);
     }
 }

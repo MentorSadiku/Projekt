@@ -17,7 +17,6 @@ import org.carlook.process.proxy.ProfileControlProxy;
 import org.carlook.services.util.Roles;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class ProfileView extends VerticalLayout implements View {
 
@@ -95,7 +94,7 @@ public class ProfileView extends VerticalLayout implements View {
             //Werte einsetzen
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
             try {
-                endkundeDTO = ProfileControlProxy.getInstance().getStudent(userDTO);
+                endkundeDTO = ProfileControlProxy.getInstance().getEndkunde(userDTO);
             } catch (SQLException e) {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
@@ -127,7 +126,7 @@ public class ProfileView extends VerticalLayout implements View {
             //Werte Setzen
             VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
             try {
-                vertrieblerDTO = ProfileControlProxy.getInstance().getUnternehmen(userDTO);
+                vertrieblerDTO = ProfileControlProxy.getInstance().getVertriebler(userDTO);
             } catch (SQLException e) {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
@@ -189,7 +188,7 @@ public class ProfileView extends VerticalLayout implements View {
                     endkundeDTO.setStudiengang(studiengang.getValue());*/
 
                     try {
-                        ProfileControlProxy.getInstance().updateStudentData(endkundeDTO);
+                        ProfileControlProxy.getInstance().updateEndkundeData(endkundeDTO);
                         UI.getCurrent().addWindow(new ConfirmationWindow("Ihr Profil wurde erfolgreich aktualisiert!"));
                     } catch (ProfileException e) {
                         Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
@@ -207,7 +206,7 @@ public class ProfileView extends VerticalLayout implements View {
                     vertrieblerDTO.setOrt(ort.getValue());*/
 
                     try {
-                        ProfileControlProxy.getInstance().updateUnternehmenData(vertrieblerDTO);
+                        ProfileControlProxy.getInstance().updateVertrieblerData(vertrieblerDTO);
                         UI.getCurrent().addWindow(new ConfirmationWindow("Ihr Profil wurde erfolgreich aktualisiert!"));
                     } catch (ProfileException e) {
                         Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);

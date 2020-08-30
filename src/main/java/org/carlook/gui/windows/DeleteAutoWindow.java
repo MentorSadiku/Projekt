@@ -20,7 +20,7 @@ public class DeleteAutoWindow extends DeleteWindow{
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
-                    StellenanzeigeControlProxy.getInstance().deleteStellenanzeige(autoDTO);
+                    StellenanzeigeControlProxy.getInstance().deleteAuto(autoDTO);
                 } catch (StellenanzeigeException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }

@@ -41,14 +41,14 @@ public class CreateAutoWindow extends Window {
                 stellenanzeige.setBeschreibung(beschreibung.getValue());
 
                 try {
-                    StellenanzeigeControlProxy.getInstance().createStellenanzeige(stellenanzeige);
+                    StellenanzeigeControlProxy.getInstance().createAuto(stellenanzeige);
                 } catch (StellenanzeigeException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
                 UI.getCurrent().addWindow(new ConfirmationWindow("Auto erfolgreich gespeichert"));
                 List<AutoDTO> list = null;
                 try {
-                    list = StellenanzeigeControlProxy.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
+                    list = StellenanzeigeControlProxy.getInstance().getAutoForVertriebler(vertrieblerDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
                 }

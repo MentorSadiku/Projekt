@@ -25,27 +25,27 @@ public class ProfileControlProxy implements ProfileControlInterface {
     }
 
 
-    public void updateStudentData(EndkundeDTO endkundeDTO) throws ProfileException {
-        ProfileControl.getInstance().updateStudentData(endkundeDTO);
+    public void updateEndkundeData(EndkundeDTO endkundeDTO) throws ProfileException {
+        ProfileControl.getInstance().updateEndkundeData(endkundeDTO);
     }
 
-    public void updateUnternehmenData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
-        ProfileControl.getInstance().updateUnternehmenData(vertrieblerDTO);
+    public void updateVertrieblerData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
+        ProfileControl.getInstance().updateVertrieblerData(vertrieblerDTO);
     }
 
-    public EndkundeDTO getStudent(UserDTO userDTO) throws SQLException {
-        return ProfileControl.getInstance().getStudent(userDTO);
+    public EndkundeDTO getEndkunde(UserDTO userDTO) throws SQLException {
+        return ProfileControl.getInstance().getEndkunde(userDTO);
     }
 
-    public VertrieblerDTO getUnternehmen(UserDTO userDTO) throws SQLException {
-        return ProfileControl.getInstance().getUnternehmen(userDTO);
+    public VertrieblerDTO getVertriebler(UserDTO userDTO) throws SQLException {
+        return ProfileControl.getInstance().getVertriebler(userDTO);
     }
 
-    public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
-        ProfileControl.getInstance().setBewerbung(text, endkundeDTO);
+    public void setReservierung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
+        ProfileControl.getInstance().setReservierung(text, endkundeDTO);
     }
 
-    public List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
-        return ProfileControl.getInstance().getBewerbung(endkundeDTO);
+    public List<ReservierungDTO> getReservierung(EndkundeDTO endkundeDTO) throws SQLException {
+        return ProfileControl.getInstance().getReservierung(endkundeDTO);
     }
 }

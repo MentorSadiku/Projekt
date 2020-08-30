@@ -30,16 +30,16 @@ public class SearchControl implements SearchControlInterface {
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
         if (userDTO.hasRole(Roles.ENDKUNDE)) {
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
-            return StellenanzeigeControl.getInstance().getAnzeigenForStudent(endkundeDTO);
+            return AutoControl.getInstance().getAutoForEndkunde(endkundeDTO);
         }
         VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
-        return StellenanzeigeControl.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
+        return AutoControl.getInstance().getAutoForVertriebler(vertrieblerDTO);
     }
 
     public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
         if (filter == null) {
             filter = "name";
         }
-        return StellenanzeigeControl.getInstance().getAnzeigenForSearch(suchtext, filter);
+        return AutoControl.getInstance().getAutoForSearch(suchtext, filter);
     }
 }

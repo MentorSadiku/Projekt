@@ -31,7 +31,7 @@ public class LoginControl implements LoginControlInterface {
 
     public void checkAuthentification( String email, String password) throws NoSuchUserOrPassword, DatabaseException, SQLException {
         String sql = "SELECT id " +
-                    "FROM collhbrs.user " +
+                    "FROM carlook.user " +
                     "WHERE email = ? "+
                     "AND password = ? ;";
         ResultSet rs;
@@ -52,10 +52,10 @@ public class LoginControl implements LoginControlInterface {
                 userDTO.setId(rs.getInt(1));
                 userDTO.setEmail(email);
                 if ( userDTO.hasRole(Roles.ENDKUNDE) ) {
-                    userDTO = ProfileControl.getInstance().getStudent(new EndkundeDTO(userDTO));
+                    userDTO = ProfileControl.getInstance().getEndkunde(new EndkundeDTO(userDTO));
                 }
                 else {
-                    userDTO = ProfileControl.getInstance().getUnternehmen(new VertrieblerDTO(userDTO));
+                    userDTO = ProfileControl.getInstance().getVertriebler(new VertrieblerDTO(userDTO));
                 }
             }
             else {

@@ -48,7 +48,7 @@ public class RegistrationControl implements RegistrationControlInterface {
 
         //DB Zugriff Emailcheck
         String sql = "SELECT email " +
-                     "FROM collhbrs.user " +
+                     "FROM carlook.user " +
                      "WHERE email = ? ;";
         ResultSet rs = null;
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
