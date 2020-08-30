@@ -1,14 +1,5 @@
 package org.carlook.gui.windows;
 
-import com.vaadin.ui.*;
-import org.carlook.model.objects.dto.AutoDTO;
-import org.carlook.model.objects.dto.UserDTO;
-import org.carlook.process.exceptions.BewerbungException;
-import org.carlook.process.exceptions.DatabaseException;
-import org.carlook.process.proxy.BewerbungControlProxy;
-
-import java.sql.SQLException;
-
 /*public class FreitextWindow extends Window {
 
     public FreitextWindow(AutoDTO stellenanzeige, UserDTO userDTO) {

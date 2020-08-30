@@ -8,7 +8,7 @@ import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.BewerbungControlInterface;
-import org.carlook.process.exceptions.BewerbungException;
+import org.carlook.process.exceptions.ReservierungException;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.services.db.JDBCConnection;
 import org.carlook.services.util.Roles;
@@ -69,7 +69,7 @@ public class BewerbungControl implements BewerbungControlInterface {
         }
     }
 
-    public void applyingIsAllowed() throws DatabaseException, SQLException, BewerbungException {
+    public void applyingIsAllowed() throws DatabaseException, SQLException, ReservierungException {
         String sql = "SELECT sichtbar " +
                 "FROM collhbrs.stellenanzeige_on_off";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
@@ -80,7 +80,7 @@ public class BewerbungControl implements BewerbungControlInterface {
                 if (rs.getBoolean(1)) {
                     return;
                 }
-                throw new BewerbungException();
+                throw new ReservierungException();
             }
         } catch (SQLException ex) {
             Logger.getLogger((ReservierungDAO.class.getName())).log(Level.SEVERE, null, ex);
@@ -90,7 +90,7 @@ public class BewerbungControl implements BewerbungControlInterface {
         }
     }
 
-    public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws DatabaseException, SQLException, BewerbungException {
+    public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws DatabaseException, SQLException, ReservierungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
         List<ReservierungDTO> list = ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
         String sql = "SELECT id_anzeige " +
@@ -106,7 +106,7 @@ public class BewerbungControl implements BewerbungControlInterface {
                 statement.setInt(2, autoDTO.getBaujahr());
                 rs = statement.executeQuery();
                 if (rs.next()) {
-                    throw new BewerbungException();
+                    throw new ReservierungException();
                 }
             } catch (SQLException e) {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
@@ -127,18 +127,18 @@ public class BewerbungControl implements BewerbungControlInterface {
             checkAlreadyApplied(stellenanzeige, userDTO);
         } catch (DatabaseException e) {
             Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
-        } catch (BewerbungException e) {
+        } catch (ReservierungException e) {
             bewerbenButton.setVisible(false);
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
         }
     }
 
-    public void createBewerbung(String bewerbungstext, UserDTO userDTO) throws BewerbungException {
+    public void createBewerbung(String bewerbungstext, UserDTO userDTO) throws ReservierungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
         boolean result = ReservierungDAO.getInstance().createReservierung(endkundeDTO);
         if (!result) {
-            throw new BewerbungException();
+            throw new ReservierungException();
         }
     }
 
@@ -174,11 +174,11 @@ public class BewerbungControl implements BewerbungControlInterface {
         return ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
     }
 
-    public void deleteBewerbung(ReservierungDTO reservierungDTO) throws BewerbungException {
+    public void deleteBewerbung(ReservierungDTO reservierungDTO) throws ReservierungException {
         boolean result = ReservierungDAO.getInstance().deleteReservierung(reservierungDTO);
         if (result) {
             return;
         }
-        throw new BewerbungException();
+        throw new ReservierungException();
     }
 }

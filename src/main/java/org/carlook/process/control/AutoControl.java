@@ -10,7 +10,7 @@ import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.Interfaces.StellenanzeigeControlInterface;
 import org.carlook.process.exceptions.DatabaseException;
-import org.carlook.process.exceptions.StellenanzeigeException;
+import org.carlook.process.exceptions.AutoException;
 import org.carlook.services.db.JDBCConnection;
 
 import java.sql.PreparedStatement;
@@ -41,29 +41,29 @@ public class AutoControl implements StellenanzeigeControlInterface {
 
     }
 
-    public void createAuto(AutoDTO autoDTO) throws StellenanzeigeException {
+    public void createAuto(AutoDTO autoDTO) throws AutoException {
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
         boolean result = AutoDAO.getInstance().createAuto(autoDTO, userDTO);
         if (result) {
             return;
         }
-        throw new StellenanzeigeException();
+        throw new AutoException();
     }
 
-    public void updateAuto(AutoDTO autoDTO) throws StellenanzeigeException {
+    public void updateAuto(AutoDTO autoDTO) throws AutoException {
         boolean result = AutoDAO.getInstance().updateAuto(autoDTO);
         if (result) {
             return;
         }
-        throw new StellenanzeigeException();
+        throw new AutoException();
     }
 
-    public void deleteAuto(AutoDTO autoDTO) throws StellenanzeigeException {
+    public void deleteAuto(AutoDTO autoDTO) throws AutoException {
         boolean result = AutoDAO.getInstance().deleteAuto(autoDTO);
         if (result) {
             return;
         }
-        throw new StellenanzeigeException();
+        throw new AutoException();
     }
 
     public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {

@@ -15,7 +15,7 @@ import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
-import org.carlook.process.proxy.BewerbungControlProxy;
+import org.carlook.process.proxy.ReservierungControlProxy;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
 import org.carlook.services.util.BuildGrid;
 
@@ -82,7 +82,7 @@ public class ReservierungView extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 ReservierungDTO reservierungDTO = null;
                 try {
-                    reservierungDTO = BewerbungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
+                    reservierungDTO = ReservierungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
                 } catch (DatabaseException e) {

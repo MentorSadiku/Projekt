@@ -3,7 +3,7 @@ package org.carlook.gui.windows;
 import com.vaadin.ui.*;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
-import org.carlook.process.exceptions.StellenanzeigeException;
+import org.carlook.process.exceptions.AutoException;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
 
 import java.sql.SQLException;
@@ -42,7 +42,7 @@ public class CreateAutoWindow extends Window {
 
                 try {
                     StellenanzeigeControlProxy.getInstance().createAuto(stellenanzeige);
-                } catch (StellenanzeigeException e) {
+                } catch (AutoException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
                 UI.getCurrent().addWindow(new ConfirmationWindow("Auto erfolgreich gespeichert"));

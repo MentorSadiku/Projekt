@@ -4,8 +4,8 @@ import com.vaadin.ui.*;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
-import org.carlook.process.exceptions.StellenanzeigeException;
-import org.carlook.process.proxy.BewerbungControlProxy;
+import org.carlook.process.exceptions.AutoException;
+import org.carlook.process.proxy.ReservierungControlProxy;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
 
 import java.sql.SQLException;
@@ -49,7 +49,7 @@ public class AutoWindow extends Window {
 
         //BewerbenButton
         Button bewerbenButton = new Button("Reservieren");
-        BewerbungControlProxy.getInstance().checkAllowed(auto, userDTO, bewerbenButton);
+        ReservierungControlProxy.getInstance().checkAllowed(auto, userDTO, bewerbenButton);
         bewerbenButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
@@ -99,7 +99,7 @@ public class AutoWindow extends Window {
 
                 try {
                     StellenanzeigeControlProxy.getInstance().updateAuto(auto);
-                } catch (StellenanzeigeException e) {
+                } catch (AutoException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
                 UI.getCurrent().addWindow(new ConfirmationWindow("Auto erfolgreich gespeichert"));
