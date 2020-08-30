@@ -21,7 +21,7 @@ import org.carlook.services.util.BuildGrid;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StellenanzeigeView extends VerticalLayout implements View {
+public class AutoView extends VerticalLayout implements View {
 
     private AutoDTO selektiert;
     private List<AutoDTO> list;
@@ -43,7 +43,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         this.addComponent(line);
         line.setSizeFull();
         //Tabelle
-        final Grid<AutoDTO> grid = new Grid<>("Ihre Stellenanzeigen");
+        final Grid<AutoDTO> grid = new Grid<>("Ihre Autos");
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
         grid.setStyleName("schrift-tabelle");
@@ -56,7 +56,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         BuildGrid.buildGrid(grid);
-        grid.addColumn(AutoDTO::getAnzahl_res).setCaption("Anzahl der Bewerber");
+        grid.addColumn(AutoDTO::getAnzahl_res).setCaption("Anzahl der Reservierungen");
         grid.setItems(list);
 
         //ShowButton

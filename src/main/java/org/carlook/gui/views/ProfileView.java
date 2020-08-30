@@ -36,58 +36,58 @@ public class ProfileView extends VerticalLayout implements View {
         this.addStyleName("schrift-profil");
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
         setStyleName("schrift-profil");
-        //Felder Student erzeugen
+        //Felder Endkunde erzeugen
 
-        final NativeSelect<String> anrede = new NativeSelect<>("Anrede");
-        anrede.setItems("Herr", "Frau");
+        //final NativeSelect<String> anrede = new NativeSelect<>("Anrede");
+        //anrede.setItems("Herr", "Frau");
 
-        final TextField vorname = new TextField("Vorname");
-        vorname.setPlaceholder("Max");
+        //final TextField vorname = new TextField("Vorname");
+        //vorname.setPlaceholder("Max");
 
         TextField name = new TextField("Name");
-        name.setPlaceholder("Mustermann");
+        name.setPlaceholder("Max Mustermann");
 
-        TextField hochschule = new TextField("Hochschule");
-        hochschule.setPlaceholder("HBRS");
+        //TextField hochschule = new TextField("Hochschule");
+        //hochschule.setPlaceholder("HBRS");
 
-        TextField semester = new TextField("Semester");
-        semester.setPlaceholder("1");
+        //TextField semester = new TextField("Semester");
+        //semester.setPlaceholder("1");
 
-        DateField gebDatum = new DateField("Geburtsdatum");
-        gebDatum.setValue(LocalDate.now());
+        //DateField gebDatum = new DateField("Geburtsdatum");
+        //gebDatum.setValue(LocalDate.now());
 
-        TextField kenntnisse = new TextField("Kenntnisse");
-        kenntnisse.setPlaceholder("Java, SQL");
+        //TextField kenntnisse = new TextField("Kenntnisse");
+        //kenntnisse.setPlaceholder("Java, SQL");
 
-        TextField studiengang = new TextField("Studiengang");
-        studiengang.setPlaceholder("Informatik");
+        //TextField studiengang = new TextField("Studiengang");
+        //studiengang.setPlaceholder("Informatik");
         //Upload profilbild = new Upload("Profilbild", reciever);
 
         Label meinProfil = new Label("Mein Profil");
         //Felder Unternehmen erzeugen
-        TextField firmenname = new TextField("Firmenname");
-        firmenname.setPlaceholder("Firma Exa");
+        TextField vertrieblername = new TextField("Name");
+        vertrieblername.setPlaceholder("Max Mustermann");
 
-        TextField ansprechpartner = new TextField("Ansprechpartner");
-        ansprechpartner.setPlaceholder("Herr Max Mustermann");
+        //TextField ansprechpartner = new TextField("Ansprechpartner");
+        //ansprechpartner.setPlaceholder("Herr Max Mustermann");
 
-        TextField strasse = new TextField("Strasse");
-        strasse.setPlaceholder("Beispielweg");
+        //TextField strasse = new TextField("Strasse");
+        //strasse.setPlaceholder("Beispielweg");
 
-        TextField haus_nr = new TextField("Hausnummer");
-        haus_nr.setPlaceholder("1");
+        //TextField haus_nr = new TextField("Hausnummer");
+        //haus_nr.setPlaceholder("1");
 
-        TextField zusatz = new TextField("Zusatz");
-        zusatz.setPlaceholder("a");
+        //TextField zusatz = new TextField("Zusatz");
+        //zusatz.setPlaceholder("a");
 
-        TextField ort = new TextField("Ort");
-        ort.setPlaceholder("Bonn");
+        TextField stadt = new TextField("Stadt");
+        stadt.setPlaceholder("Bonn");
 
-        TextField plz = new TextField("Plz");
-        plz.setPlaceholder("53123");
+        //TextField plz = new TextField("Plz");
+        //plz.setPlaceholder("53123");
 
-        TextField branche = new TextField("Branche");
-        branche.setPlaceholder("IT");
+        //TextField branche = new TextField("Branche");
+        //branche.setPlaceholder("IT");
 
         Label meinUnternehmen = new Label("Mein Unternehmensprofil");
 
@@ -132,7 +132,7 @@ public class ProfileView extends VerticalLayout implements View {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
             if (vertrieblerDTO.getName() != null) {
-                firmenname.setValue(vertrieblerDTO.getName());
+                vertrieblername.setValue(vertrieblerDTO.getName());
             }
             /*if (vertrieblerDTO.getAnsprechpartner() != null) {
                 ansprechpartner.setValue(vertrieblerDTO.getAnsprechpartner());
@@ -197,7 +197,7 @@ public class ProfileView extends VerticalLayout implements View {
 
                 } else {
                     VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
-                    vertrieblerDTO.setName(firmenname.getValue());
+                    vertrieblerDTO.setName(vertrieblername.getValue());
                    /* vertrieblerDTO.setAnsprechpartner(ansprechpartner.getValue());
                     vertrieblerDTO.setStrasse(strasse.getValue());
                     vertrieblerDTO.setPlz(Integer.valueOf(plz.getValue()));
@@ -250,7 +250,7 @@ public class ProfileView extends VerticalLayout implements View {
             this.addComponent(deleteButton);
         } else {
             this.addComponent(meinUnternehmen);
-            this.addComponent(firmenname);
+            this.addComponent(vertrieblername);
             this.addComponent(ansprechpartner);
             this.addComponent(horizontalLayoutStrasse);
             this.addComponent(horizontalLayoutOrt);

@@ -46,7 +46,7 @@ public class MyUI extends UI {
         navi.addView(Views.PROFILE, ProfileView.class);
         navi.addView(Views.REGISTRATION, RegistrationView.class);
         navi.addView(Views.LOGIN, LoginView.class);
-        navi.addView(Views.STELLENANZEIGE, StellenanzeigeView.class);
+        navi.addView(Views.STELLENANZEIGE, AutoView.class);
         navi.addView(Views.BEWERBUNG, BewerbungView.class);
 
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
