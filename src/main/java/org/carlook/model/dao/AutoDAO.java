@@ -175,7 +175,7 @@ public class AutoDAO extends AbstractDAO {
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 try {
 
-                    autoDTO.setAnzahl_res(StellenanzeigeControlProxy.getInstance().getAnzahlBewerber(autoDTO));
+                    autoDTO.setAnzahl_res(StellenanzeigeControlProxy.getInstance().getAnzahlRes(autoDTO));
 
                 } catch (DatabaseException e) {
 

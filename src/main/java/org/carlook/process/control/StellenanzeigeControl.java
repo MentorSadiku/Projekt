@@ -37,7 +37,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
     }
 
     public List<AutoDTO> getAnzeigenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
-        return AutoDAO.getInstance().getStellenanzeigeforStudent(endkundeDTO);
+        return AutoDAO.getInstance().reserviereAuto(endkundeDTO);
 
     }
 
@@ -51,7 +51,7 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
     }
 
     public void updateStellenanzeige(AutoDTO autoDTO) throws StellenanzeigeException {
-        boolean result = AutoDAO.getInstance().updateStellenanzeige(autoDTO);
+        boolean result = AutoDAO.getInstance().updateAuto(autoDTO);
         if (result) {
             return;
         }
@@ -67,14 +67,14 @@ public class StellenanzeigeControl implements StellenanzeigeControlInterface {
     }
 
     public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
-        return AutoDAO.getInstance().getStellenanzeigenForSearch(suchtext, filter);
+        return AutoDAO.getInstance().getAutoForSearch(suchtext, filter);
     }
 
-    public int getAnzahlBewerber(AutoDTO autoDTO) throws DatabaseException, SQLException {
+    public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
         int anzahl_bewerber = 0;
-        String sql = "SELECT count(id_bewerbung) " +
-                "FROM collhbrs.bewerbung_to_stellenanzeige " +
-                "WHERE id_anzeige = ? ;";
+        String sql = "SELECT count(reservierungs_id) " +
+                "FROM carlook.reservierung_to_auto" +
+                "WHERE reservierungs_id = ? ;";
         ResultSet rs;
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         try {

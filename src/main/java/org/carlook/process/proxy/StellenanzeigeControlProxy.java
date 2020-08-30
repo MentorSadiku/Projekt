@@ -47,7 +47,7 @@ public class StellenanzeigeControlProxy implements StellenanzeigeControlInterfac
         return StellenanzeigeControl.getInstance().getAnzeigenForSearch(suchtext, filter);
     }
 
-    public int getAnzahlBewerber(AutoDTO autoDTO) throws DatabaseException, SQLException {
-        return StellenanzeigeControl.getInstance().getAnzahlBewerber(autoDTO);
+    public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
+        return StellenanzeigeControl.getInstance().getAnzahlRes(autoDTO);
     }
 }

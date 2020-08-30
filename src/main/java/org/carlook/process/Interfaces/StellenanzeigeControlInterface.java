@@ -23,5 +23,5 @@ public interface StellenanzeigeControlInterface {
 
     List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException;
 
-    int getAnzahlBewerber(AutoDTO autoDTO) throws DatabaseException, SQLException;
+    int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException;
 }
