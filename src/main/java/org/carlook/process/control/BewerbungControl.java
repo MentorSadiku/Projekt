@@ -2,7 +2,7 @@ package org.carlook.process.control;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
-import org.carlook.model.dao.BewerbungDAO;
+import org.carlook.model.dao.ReservierungDAO;
 import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
@@ -48,7 +48,7 @@ public class BewerbungControl implements BewerbungControlInterface {
                 id_bewerbung = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger((BewerbungDAO.class.getName())).log(Level.SEVERE, null, ex);
+            Logger.getLogger((ReservierungDAO.class.getName())).log(Level.SEVERE, null, ex);
         } finally {
             assert rs != null;
             rs.close();
@@ -65,7 +65,7 @@ public class BewerbungControl implements BewerbungControlInterface {
             statement.setInt(2, stellenanzeige.getBaujahr());
             statement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger((BewerbungDAO.class.getName())).log(Level.SEVERE, null, ex);
+            Logger.getLogger((ReservierungDAO.class.getName())).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -83,7 +83,7 @@ public class BewerbungControl implements BewerbungControlInterface {
                 throw new BewerbungException();
             }
         } catch (SQLException ex) {
-            Logger.getLogger((BewerbungDAO.class.getName())).log(Level.SEVERE, null, ex);
+            Logger.getLogger((ReservierungDAO.class.getName())).log(Level.SEVERE, null, ex);
         } finally {
             assert rs != null;
             rs.close();
@@ -92,7 +92,7 @@ public class BewerbungControl implements BewerbungControlInterface {
 
     public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws DatabaseException, SQLException, BewerbungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
-        List<ReservierungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
+        List<ReservierungDTO> list = ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
         String sql = "SELECT id_anzeige " +
                 "FROM collhbrs.bewerbung_to_stellenanzeige " +
                 "WHERE id_bewerbung = ? " +
@@ -136,7 +136,7 @@ public class BewerbungControl implements BewerbungControlInterface {
 
     public void createBewerbung(String bewerbungstext, UserDTO userDTO) throws BewerbungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
-        boolean result = BewerbungDAO.getInstance().createBewerbung(bewerbungstext, endkundeDTO);
+        boolean result = ReservierungDAO.getInstance().createReservierung(endkundeDTO);
         if (!result) {
             throw new BewerbungException();
         }
@@ -171,11 +171,11 @@ public class BewerbungControl implements BewerbungControlInterface {
     }
 
     public List<ReservierungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
-        return BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
+        return ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
     }
 
     public void deleteBewerbung(ReservierungDTO reservierungDTO) throws BewerbungException {
-        boolean result = BewerbungDAO.getInstance().deleteBewerbung(reservierungDTO);
+        boolean result = ReservierungDAO.getInstance().deleteReservierung(reservierungDTO);
         if (result) {
             return;
         }

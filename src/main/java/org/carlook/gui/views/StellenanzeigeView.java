@@ -56,7 +56,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         BuildGrid.buildGrid(grid);
-        grid.addColumn(AutoDTO::getAnzahl_bewerber).setCaption("Anzahl der Bewerber");
+        grid.addColumn(AutoDTO::getAnzahl_res).setCaption("Anzahl der Bewerber");
         grid.setItems(list);
 
         //ShowButton

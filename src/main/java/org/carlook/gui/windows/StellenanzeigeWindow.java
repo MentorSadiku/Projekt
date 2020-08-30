@@ -20,38 +20,21 @@ public class StellenanzeigeWindow extends Window {
     private TextArea beschreibung;
 
     public StellenanzeigeWindow(AutoDTO stellenanzeige, UserDTO userDTO) {
-        super(stellenanzeige.getName());
+
+        super(stellenanzeige.getMarke());
         center();
 
-        //Name
-        name = new TextField("Titel");
-        name.setValue(stellenanzeige.getName());
-        name.setReadOnly(true);
-
         //Art
-        art = new TextField("Art");
+        art = new TextField("Marke");
         art.setValue(stellenanzeige.getMarke());
         art.setReadOnly(true);
 
         //Branche
-        branche = new TextField("Branche");
-        branche.setValue(stellenanzeige.getBranche());
+        branche = new TextField("Baujahr");
+        int x=stellenanzeige.getBaujahr();
+        String s=String.valueOf(x);
+        branche.setValue(s);
         branche.setReadOnly(true);
-
-        //Studiengang
-        studiengang = new TextField("Studiengang");
-        studiengang.setValue(stellenanzeige.getStudiengang());
-        studiengang.setReadOnly(true);
-
-        //Ort
-        ort = new TextField("Ort");
-        ort.setValue(stellenanzeige.getOrt());
-        ort.setReadOnly(true);
-
-        //Zeitraum
-        DateField zeitraum = new DateField("Ende der Ausschreibung");
-        zeitraum.setValue(stellenanzeige.getZeitraum());
-        zeitraum.setReadOnly(true);
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
@@ -68,12 +51,13 @@ public class StellenanzeigeWindow extends Window {
         });
 
         //BewerbenButton
-        Button bewerbenButton = new Button("Bewerben");
+        Button bewerbenButton = new Button("Reservieren");
         BewerbungControlProxy.getInstance().checkAllowed(stellenanzeige, userDTO, bewerbenButton);
         bewerbenButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                UI.getCurrent().addWindow(new FreitextWindow(stellenanzeige, userDTO));
+            //   UI.getCurrent().addWindow(new FreitextWindow(stellenanzeige, userDTO));
+
                 close();
             }
         });
@@ -90,32 +74,17 @@ public class StellenanzeigeWindow extends Window {
     }
 
     public StellenanzeigeWindow(AutoDTO stellenanzeige, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
-        super(stellenanzeige.getName());
+        super(stellenanzeige.getMarke());
         center();
-
-        //Name
-        name = new TextField("Titel");
-        name.setValue(stellenanzeige.getName());
 
         //Art
         art = new TextField("Art");
         art.setValue(stellenanzeige.getMarke());
 
-        //Branche
-        branche = new TextField("Branche");
-        branche.setValue(stellenanzeige.getBranche());
-
-        //Studiengang
-        studiengang = new TextField("Studiengang");
-        studiengang.setValue(stellenanzeige.getStudiengang());
-
-        //Ort
-        ort = new TextField("Ort");
-        ort.setValue(stellenanzeige.getOrt());
-
-        //Zeitraum
-        DateField zeitraum = new DateField("Ende der Ausschreibung");
-        zeitraum.setValue(stellenanzeige.getZeitraum());
+        branche = new TextField("Baujahr");
+        int x=stellenanzeige.getBaujahr();
+        String s=String.valueOf(x);
+        branche.setValue(s);
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
@@ -126,12 +95,8 @@ public class StellenanzeigeWindow extends Window {
         saveButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                stellenanzeige.setName(name.getValue());
                 stellenanzeige.setMarke(art.getValue());
-                stellenanzeige.setBranche(branche.getValue());
-                stellenanzeige.setStudiengang(studiengang.getValue());
-                stellenanzeige.setOrt(ort.getValue());
-                stellenanzeige.setZeitraum(zeitraum.getValue());
+                stellenanzeige.setBaujahr(x);
                 stellenanzeige.setBeschreibung(beschreibung.getValue());
 
                 try {

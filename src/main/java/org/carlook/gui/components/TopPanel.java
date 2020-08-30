@@ -40,7 +40,7 @@ public class  TopPanel extends HorizontalLayout {
             if (userDTO.hasRole(Roles.ENDKUNDE) && userDTO.getName() != null) {
                 welcome = new Label("Willkommen " + userDTO.getName() + "!");
             }
-            if (userDTO.hasRole(Roles.UNTERNEHMEN) && userDTO.getName() != null) {
+            if (userDTO.hasRole(Roles.VERTRIEBLER) && userDTO.getName() != null) {
                 welcome = new Label("Willkommen " + userDTO.getName() + "!");
             }
         }
@@ -79,7 +79,7 @@ public class  TopPanel extends HorizontalLayout {
             });
 
             //Unternehmer Menü
-            if ( userDTO.hasRole(Roles.UNTERNEHMEN) ) {
+            if ( userDTO.hasRole(Roles.VERTRIEBLER) ) {
                 item1.addItem("Meine Stellenanzeigen", VaadinIcons.FILE_TEXT_O, new MenuBar.Command() {
                     @Override
                     public void menuSelected(MenuBar.MenuItem menuItem) {

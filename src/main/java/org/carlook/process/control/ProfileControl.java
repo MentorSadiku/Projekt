@@ -1,6 +1,6 @@
 package org.carlook.process.control;
 
-import org.carlook.model.dao.BewerbungDAO;
+import org.carlook.model.dao.ReservierungDAO;
 import org.carlook.model.dao.EndkundeDAO;
 import org.carlook.model.dao.VertrieblerDAO;
 import org.carlook.model.objects.dto.ReservierungDTO;
@@ -52,7 +52,7 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
     public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
-        boolean result =  BewerbungDAO.getInstance().createBewerbung(text, endkundeDTO);
+        boolean result =  ReservierungDAO.getInstance().createReservierung(text, endkundeDTO);
         if (result) {
             return;
         }
@@ -60,6 +60,6 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
     public List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
-        return BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
+        return ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
     }
 }
