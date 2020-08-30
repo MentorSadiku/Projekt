@@ -28,7 +28,7 @@ public class SearchControl implements SearchControlInterface {
 
     public List<AutoDTO> getAnzeigenForUser() throws SQLException {
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
-        if (userDTO.hasRole(Roles.STUDENT)) {
+        if (userDTO.hasRole(Roles.ENDKUNDE)) {
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
             return StellenanzeigeControl.getInstance().getAnzeigenForStudent(endkundeDTO);
         }

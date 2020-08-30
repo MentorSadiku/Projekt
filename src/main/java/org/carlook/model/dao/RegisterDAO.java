@@ -23,12 +23,13 @@ public class RegisterDAO extends AbstractDAO {
     }
 
     public boolean addUser(UserDTO userDTO) {
-        String sql = "INSERT INTO collhbrs.user VALUES (default,?,?)";
+        String sql = "INSERT INTO carlook.user VALUES (default,?,?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
-            statement.setString(1, userDTO.getEmail());
-            statement.setString(2, userDTO.getPassword());
+            statement.setString(1, userDTO.getName());
+            statement.setString(2, userDTO.getEmail());
+            statement.setString(3, userDTO.getPassword());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -36,8 +37,8 @@ public class RegisterDAO extends AbstractDAO {
         }
     }
 
-    public boolean addStudent(UserDTO userDTO) {
-        String sql = "INSERT INTO collhbrs.student(id) VALUES (?)";
+    public boolean addEndkunde(UserDTO userDTO) {
+        String sql = "INSERT INTO carlook.endkunde(id) VALUES (?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
@@ -49,8 +50,8 @@ public class RegisterDAO extends AbstractDAO {
         }
     }
 
-    public boolean addUnternehmen(UserDTO userDTO) {
-        String sql = "INSERT INTO collhbrs.unternehmen(id) VALUES (?)";
+    public boolean addVertriebler(UserDTO userDTO) {
+        String sql = "INSERT INTO carlook.vertriebler(id) VALUES (?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
@@ -64,7 +65,7 @@ public class RegisterDAO extends AbstractDAO {
     //Lösche User
     public void deleteUser(UserDTO userDTO) {
             String sql = "DELETE " +
-                  "FROM collhbrs.user u " +
+                  "FROM carlook.user u" +
                   "WHERE u.id = ? ;";
         try {
             PreparedStatement statement = this.getPreparedStatement(sql);

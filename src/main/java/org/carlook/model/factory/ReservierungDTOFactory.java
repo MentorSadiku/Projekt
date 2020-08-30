@@ -2,12 +2,11 @@ package org.carlook.model.factory;
 
 import org.carlook.model.objects.dto.ReservierungDTO;
 
-public class BewerbungDTOFactory {
+public class ReservierungDTOFactory {
 
-    public static ReservierungDTO createBewerbungDTO(int id, String text) {
+    public static ReservierungDTO createReservierungDTO(int id) {
         ReservierungDTO reservierungDTO = new ReservierungDTO();
         reservierungDTO.setId(id);
-        reservierungDTO.setFreitext(text);
         return reservierungDTO;
     }
 

@@ -24,23 +24,18 @@ public class VertrieblerDAO extends AbstractDAO {
         return dao;
     }
 
-    public boolean updateUnternehmen(VertrieblerDTO vertrieblerDTO) {
-        String sql = "UPDATE collhbrs.unternehmen " +
-                "SET name_unternehmen = ?, ansprechpartner = ?, strasse = ?, plz = ?, " +
-                "hausnr = ?, zusatz = ?, ort = ?, branche = ? " +
-                "WHERE collhbrs.unternehmen.id = ? ;";
+    public boolean updateVertriebler(VertrieblerDTO vertrieblerDTO) {
+        String sql = "UPDATE carlook.vertriebler " +
+                "SET name= ?, email = ?, passwort = ?, stadt = ?" +
+                "WHERE carlook.vertriebler.id = ? ;";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
             statement.setString(1, vertrieblerDTO.getName());
-           /* statement.setString(2, vertrieblerDTO.getAnsprechpartner());
-            statement.setString(3, vertrieblerDTO.getStrasse());
-            statement.setInt(4, vertrieblerDTO.getPlz());
-            statement.setInt(5, vertrieblerDTO.getHaus_nr());
-            statement.setString(6, vertrieblerDTO.getZusatz());
-            statement.setString(7, vertrieblerDTO.getOrt());
-            statement.setString(8, vertrieblerDTO.getBranche());
-            */statement.setInt(9, vertrieblerDTO.getId());
+            statement.setString(2, vertrieblerDTO.getEmail());
+            statement.setString(3, vertrieblerDTO.getPassword());
+            statement.setString(4, vertrieblerDTO.getStadt());
+            statement.setInt(5, vertrieblerDTO.getId());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -48,10 +43,10 @@ public class VertrieblerDAO extends AbstractDAO {
         }
     }
 
-    public VertrieblerDTO getAllDataUnternehmen(UserDTO userDTO) throws SQLException {
+    public VertrieblerDTO getAllDataVertriebler(UserDTO userDTO) throws SQLException {
         String sql = "SELECT * " +
-                "FROM collhbrs.unternehmen " +
-                "WHERE collhbrs.unternehmen.id = ? ;";
+                "FROM carlook.unternehmen " +
+                "WHERE carlook.unternehmen.id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs;
 
@@ -68,14 +63,10 @@ public class VertrieblerDAO extends AbstractDAO {
             while (rs.next()) {
 
                 un.setName(rs.getString(2));
-                /*un.setAnsprechpartner(rs.getString(3));
-                un.setStrasse(rs.getString(4));
-                un.setPlz(rs.getInt(5));
-                un.setHaus_nr(rs.getInt(6));
-                un.setZusatz(rs.getString(7));
-                un.setOrt(rs.getString(8));
-                un.setBranche(rs.getString(9));
-                */
+                un.setEmail(rs.getString(3));
+                un.setPassword(rs.getString(4));
+                un.setStadt(rs.getString(5));
+
 
             }
 

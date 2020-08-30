@@ -24,22 +24,16 @@ public class EndkundeDAO extends AbstractDAO {
         return dao;
     }
 
-    public boolean updateStudent(EndkundeDTO endkundeDTO) {
-        String sql = "UPDATE collhbrs.student " +
-                "SET anrede = ?, vorname = ?, name = ?, hochschule = ?, " +
-                "semester = ?, gebdatum = ?, kenntnisse = ?, studiengang = ?" +
-                "WHERE collhbrs.student.id = ?;";
+    public boolean updateEndkunde(EndkundeDTO endkundeDTO) {
+        String sql = "UPDATE carlook.endkunde " +
+                "name = ?, email = ?, password = ?"+
+                "WHERE carlook.endkunde.id = ?;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
-            //statement.setString(1, endkundeDTO.getAnrede());
-           // statement.setString(2, endkundeDTO.getVorname());
-            statement.setString(3, endkundeDTO.getName());
-            /*statement.setString(4, endkundeDTO.getHochschule());
-            statement.setInt(5, endkundeDTO.getSemester());
-            statement.setObject(6, endkundeDTO.getGebDatum());
-            statement.setString(7, endkundeDTO.getKenntnisse());
-            statement.setString(8, endkundeDTO.getStudiengang());
-            */statement.setInt(9, endkundeDTO.getId());
+            statement.setString(1, endkundeDTO.getName());
+            statement.setString(2, endkundeDTO.getEmail());
+            statement.setString(3, endkundeDTO.getPassword());
+            statement.setInt(4, endkundeDTO.getId());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -47,10 +41,10 @@ public class EndkundeDAO extends AbstractDAO {
         }
     }
 
-    public EndkundeDTO getAllDataStudent(UserDTO userDTO) throws SQLException {
+    public EndkundeDTO getAllDataEndkunde(UserDTO userDTO) throws SQLException {
         String sql = "SELECT * " +
-                "FROM collhbrs.student " +
-                "WHERE collhbrs.student.id = ? ;";
+                "FROM carlook.endkunde " +
+                "WHERE collhbrs.endkunde.id = ? ;";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs;
@@ -66,16 +60,9 @@ public class EndkundeDAO extends AbstractDAO {
         try {
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
             while (rs.next()) {
-                //endkundeDTO.setAnrede(rs.getString(2));
-                //endkundeDTO.setVorname(rs.getString(3));
-                endkundeDTO.setName(rs.getString(4));
-                /*endkundeDTO.setHochschule(rs.getString(5));
-                endkundeDTO.setSemester(rs.getInt(6));
-                endkundeDTO.setGebDatum(rs.getDate(7).toLocalDate());
-                endkundeDTO.setKenntnisse(rs.getString(8));
-                endkundeDTO.setStudiengang(rs.getString(9));
-
-                 */
+                endkundeDTO.setName(rs.getString(1));
+                endkundeDTO.setEmail(rs.getString(2));
+                endkundeDTO.setPassword(rs.getString(3));
             }
             return endkundeDTO;
         } catch (SQLException ex) {

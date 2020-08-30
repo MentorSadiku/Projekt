@@ -37,7 +37,7 @@ public class  TopPanel extends HorizontalLayout {
         UserDTO userDTO = ( (MyUI) MyUI.getCurrent() ).getUserDTO();
         Label welcome = new Label("Willkommen bei carlook!");
         if (userDTO != null) {
-            if (userDTO.hasRole(Roles.STUDENT) && userDTO.getName() != null) {
+            if (userDTO.hasRole(Roles.ENDKUNDE) && userDTO.getName() != null) {
                 welcome = new Label("Willkommen " + userDTO.getName() + "!");
             }
             if (userDTO.hasRole(Roles.UNTERNEHMEN) && userDTO.getName() != null) {
@@ -89,7 +89,7 @@ public class  TopPanel extends HorizontalLayout {
             }
 
             //Student Menü
-            if ( userDTO.hasRole(Roles.STUDENT) ) {
+            if ( userDTO.hasRole(Roles.ENDKUNDE) ) {
                 item1.addItem("Meine Bewerbungen", VaadinIcons.FILE_TEXT_O, new MenuBar.Command() {
                     @Override
                     public void menuSelected(MenuBar.MenuItem menuItem) {

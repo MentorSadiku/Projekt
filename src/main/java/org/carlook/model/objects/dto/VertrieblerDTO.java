@@ -11,6 +11,9 @@ public class VertrieblerDTO extends UserDTO {
     public String getStadt() {
         return stadt;
     }
+    public void setStadt(String id) {
+        this.stadt = id;
+    }
 
 
 }

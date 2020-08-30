@@ -91,7 +91,7 @@ public class ProfileView extends VerticalLayout implements View {
 
         Label meinUnternehmen = new Label("Mein Unternehmensprofil");
 
-        if (userDTO.hasRole(Roles.STUDENT)) {
+        if (userDTO.hasRole(Roles.ENDKUNDE)) {
             //Werte einsetzen
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
             try {
@@ -173,7 +173,7 @@ public class ProfileView extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 //UI.getCurrent().addWindow(new ConfirmationWindow("Sollen alle Daten aktualisiert werden?"));
-                if (userDTO.hasRole(Roles.STUDENT)) {
+                if (userDTO.hasRole(Roles.ENDKUNDE)) {
                     EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
                     //endkundeDTO.setAnrede(anrede.getValue());
                     //endkundeDTO.setVorname(vorname.getValue());
@@ -239,7 +239,7 @@ public class ProfileView extends VerticalLayout implements View {
         horizontalLayoutUni.addComponent(studiengang);
         horizontalLayoutUni.addComponent(semester);
 
-        if (userDTO.hasRole(Roles.STUDENT)) {
+        if (userDTO.hasRole(Roles.ENDKUNDE)) {
             this.addComponent(meinProfil);
             this.addComponent(anrede);
             this.addComponent(horizontalLayoutName);

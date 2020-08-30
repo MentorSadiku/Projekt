@@ -118,7 +118,7 @@ public class BewerbungControl implements BewerbungControlInterface {
 
     }
     public void checkAllowed(AutoDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton) {
-        if (userDTO == null || !userDTO.hasRole(Roles.STUDENT)) {
+        if (userDTO == null || !userDTO.hasRole(Roles.ENDKUNDE)) {
             bewerbenButton.setVisible(false);
             return;
         }

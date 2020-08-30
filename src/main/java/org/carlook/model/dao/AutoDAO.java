@@ -115,7 +115,7 @@ public class AutoDAO extends AbstractDAO {
             }
         } else {
             String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
-                    "FROM carlook.auto " +
+                    "FROM carlook.auto44 " +
                     "WHERE " + filter + " like ? ;";
             statement = this.getPreparedStatement(sql);
 
@@ -143,7 +143,7 @@ public class AutoDAO extends AbstractDAO {
                 "FROM carlook.reservierung_to_auto " +
                 "WHERE reservierungs_id = ?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
-        List<ReservierungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
+        List<ReservierungDTO> list = ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
         List<AutoDTO> listAuto = new ArrayList<>();
         ResultSet rs = null;
         for (ReservierungDTO reservierungDTO : list) {

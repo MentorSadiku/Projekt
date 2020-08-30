@@ -28,7 +28,7 @@ public class ProfileControl implements ProfileControlInterface {
 
 
     public void updateStudentData(EndkundeDTO endkundeDTO) throws ProfileException {
-        boolean result =  EndkundeDAO.getInstance().updateStudent(endkundeDTO);
+        boolean result =  EndkundeDAO.getInstance().updateEndkunde(endkundeDTO);
         if (result) {
             return;
         }
@@ -36,7 +36,7 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
     public void updateUnternehmenData(VertrieblerDTO vertrieblerDTO) throws ProfileException {
-        boolean result = VertrieblerDAO.getInstance().updateUnternehmen(vertrieblerDTO);
+        boolean result = VertrieblerDAO.getInstance().updateVertriebler(vertrieblerDTO);
         if (result) {
             return;
         }
@@ -44,11 +44,11 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
     public EndkundeDTO getStudent(UserDTO userDTO) throws SQLException {
-        return EndkundeDAO.getInstance().getAllDataStudent(userDTO);
+        return EndkundeDAO.getInstance().getAllDataEndkunde(userDTO);
     }
 
     public VertrieblerDTO getUnternehmen(UserDTO userDTO) throws SQLException {
-        return VertrieblerDAO.getInstance().getAllDataUnternehmen(userDTO);
+        return VertrieblerDAO.getInstance().getAllDataVertriebler(userDTO);
     }
 
     public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
