@@ -16,14 +16,14 @@ public class CreateStellenanzeigeWindow extends Window {
         center();
 
         //Art
-        TextField marke = new TextField("Art der Anstellung");
+        TextField marke = new TextField("Automarke");
         marke.setValue(stellenanzeige.getMarke());
 
-        //Branche
-        TextField branche = new TextField("Branche");
+        //Baujahr
+        TextField baujahr = new TextField("Baujahr");
         int x=stellenanzeige.getBaujahr();
         String s=String.valueOf(x);
-        branche.setValue(s);
+        baujahr.setValue(s);
 
         //Beschreibung
         TextArea beschreibung = new TextArea("Beschreibung");
@@ -45,7 +45,7 @@ public class CreateStellenanzeigeWindow extends Window {
                 } catch (StellenanzeigeException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
-                UI.getCurrent().addWindow(new ConfirmationWindow("Stellenanzeige erfolgreich gespeichert"));
+                UI.getCurrent().addWindow(new ConfirmationWindow("Auto erfolgreich gespeichert"));
                 List<AutoDTO> list = null;
                 try {
                     list = StellenanzeigeControlProxy.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);
@@ -75,7 +75,7 @@ public class CreateStellenanzeigeWindow extends Window {
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.addComponent(marke);
-        verticalLayout.addComponent(branche);
+        verticalLayout.addComponent(baujahr);
         verticalLayout.addComponent(beschreibung);
         verticalLayout.addComponent(horizontalLayout);
         verticalLayout.setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);

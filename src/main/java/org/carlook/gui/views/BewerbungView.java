@@ -9,7 +9,7 @@ import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.carlook.gui.components.TopPanel;
 import org.carlook.gui.ui.MyUI;
-import org.carlook.gui.windows.DeleteBewerbungWindow;
+import org.carlook.gui.windows.DeleteReservierungWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
@@ -88,8 +88,8 @@ public class BewerbungView extends VerticalLayout implements View {
                 } catch (DatabaseException e) {
                     Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
-                DeleteBewerbungWindow deleteBewerbungWindow = new DeleteBewerbungWindow(reservierungDTO);
-                UI.getCurrent().addWindow( new DeleteWindow(deleteBewerbungWindow) );
+                DeleteReservierungWindow deleteReservierungWindow = new DeleteReservierungWindow(reservierungDTO);
+                UI.getCurrent().addWindow( new DeleteWindow(deleteReservierungWindow) );
             }
         });
 

@@ -5,7 +5,7 @@ import com.vaadin.ui.*;
 public class ConfirmationWindow extends Window {
     //Window zur Anmeldebestätigung
     public ConfirmationWindow(String text) {
-        super("Bestätigung:");
+        super("Bestätigen:");
         center();
 
         VerticalLayout content = new VerticalLayout();

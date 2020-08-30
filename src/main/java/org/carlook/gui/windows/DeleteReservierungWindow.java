@@ -9,11 +9,11 @@ import org.carlook.process.exceptions.BewerbungException;
 import org.carlook.process.proxy.BewerbungControlProxy;
 import org.carlook.services.util.Views;
 
-public class DeleteBewerbungWindow extends DeleteWindow {
+public class DeleteReservierungWindow extends DeleteWindow {
     //Window zum Löschen von Bewerbungen auf Stellenanzeigen
 
-    public DeleteBewerbungWindow(ReservierungDTO reservierungDTO) {
-        this.setText("Sind Sie sicher, dass Sie Ihre Bewerbung auf diese Stellenanzeige löschen wollen? <br>" +
+    public DeleteReservierungWindow(ReservierungDTO reservierungDTO) {
+        this.setText("Sind Sie sicher, dass Sie Die Reservierung auf dieses Auto rückgängig machen wollen? <br>" +
                 "Dieser Vorgang ist unumkehrbar!");
         this.setDto(reservierungDTO);
         this.setListener(new Button.ClickListener() {
@@ -24,7 +24,7 @@ public class DeleteBewerbungWindow extends DeleteWindow {
                 } catch (BewerbungException e) {
                     Notification.show("DB-Fehler", "Löschen war nicht erfolgreich!", Notification.Type.ERROR_MESSAGE);
                 }
-                Notification.show("Bewerbung gelöscht!", Notification.Type.HUMANIZED_MESSAGE);
+                Notification.show("Reservierung gelöscht!", Notification.Type.HUMANIZED_MESSAGE);
                 UI.getCurrent().getNavigator().navigateTo(Views.BEWERBUNG);
                 for (Window w : UI.getCurrent().getWindows()) {
                     w.close();

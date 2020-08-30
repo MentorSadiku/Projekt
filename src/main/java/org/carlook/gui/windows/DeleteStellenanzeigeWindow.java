@@ -13,7 +13,7 @@ public class DeleteStellenanzeigeWindow extends DeleteWindow{
     //Window zum Löschen von Stellenanzeigen
 
     public DeleteStellenanzeigeWindow(AutoDTO autoDTO) {
-        this.setText("Sind Sie sicher, dass Sie die Stellenanzeige löschen wollen? <br>" +
+        this.setText("Sind Sie sicher, dass Sie das Auto entfernen wollen? <br>" +
                 "Dieser Vorgang ist unumkehrbar!");
         this.setDto(autoDTO);
         this.setListener(new Button.ClickListener() {
