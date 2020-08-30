@@ -1,7 +1,7 @@
 package org.carlook.model.dao;
 
 import com.vaadin.ui.Notification;
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -141,13 +141,13 @@ public class AutoDAO extends AbstractDAO {
                 "FROM carlook.auto " +
                 "WHERE auto_id = ( SELECT auto_id " +
                 "FROM carlook.reservierung_to_auto " +
-                "WHERE reservierungs_id = ? );";
+                "WHERE reservierungs_id = ?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
-        List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
-        List<AutoDTO> listStellenanzeige = new ArrayList<>();
+        List<ReservierungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
+        List<AutoDTO> listAuto = new ArrayList<>();
         ResultSet rs = null;
-        for (BewerbungDTO bewerbungDTO : list) {
-            int id_bewerbung = bewerbungDTO.getId();
+        for (ReservierungDTO reservierungDTO : list) {
+            int id_bewerbung = reservierungDTO.getId();
             try {
                 statement.setInt(1, id_bewerbung);
                 rs = statement.executeQuery();
@@ -155,10 +155,10 @@ public class AutoDAO extends AbstractDAO {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
             assert rs != null;
-            buildList(rs, listStellenanzeige);
+            buildList(rs, listAuto);
         }
 
-        return listStellenanzeige;
+        return listAuto;
     }
 
     private void buildList(ResultSet rs, List<AutoDTO> listStellenanzeige) throws SQLException {
@@ -175,7 +175,7 @@ public class AutoDAO extends AbstractDAO {
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 try {
 
-                    autoDTO.setAnzahl_bewerber(StellenanzeigeControlProxy.getInstance().getAnzahlBewerber(autoDTO));
+                    autoDTO.setAnzahl_res(StellenanzeigeControlProxy.getInstance().getAnzahlBewerber(autoDTO));
 
                 } catch (DatabaseException e) {
 

@@ -1,6 +1,6 @@
 package org.carlook.process.proxy;
 
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -45,7 +45,7 @@ public class ProfileControlProxy implements ProfileControlInterface {
         ProfileControl.getInstance().setBewerbung(text, endkundeDTO);
     }
 
-    public List<BewerbungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
         return ProfileControl.getInstance().getBewerbung(endkundeDTO);
     }
 }

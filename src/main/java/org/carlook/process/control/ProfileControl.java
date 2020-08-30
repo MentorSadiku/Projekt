@@ -3,7 +3,7 @@ package org.carlook.process.control;
 import org.carlook.model.dao.BewerbungDAO;
 import org.carlook.model.dao.EndkundeDAO;
 import org.carlook.model.dao.VertrieblerDAO;
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -59,7 +59,7 @@ public class ProfileControl implements ProfileControlInterface {
         throw new ProfileException();
     }
 
-    public List<BewerbungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException {
         return BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
     }
 }

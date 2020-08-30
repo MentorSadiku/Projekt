@@ -2,7 +2,7 @@ package org.carlook.model.dao;
 
 import com.vaadin.ui.Notification;
 import org.carlook.model.factory.BewerbungDTOFactory;
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.services.db.JDBCConnection;
@@ -29,20 +29,20 @@ public class BewerbungDAO extends AbstractDAO {
         return bewerbungDAO;
     }
 
-    public BewerbungDTO getBewerbung(int id_bewerbung) throws DatabaseException, SQLException {
+    public ReservierungDTO getBewerbung(int id_bewerbung) throws DatabaseException, SQLException {
         String sql = "SELECT id_bewerbung, freitext " +
                 "FROM collhbrs.bewerbung " +
                 "WHERE id_bewerbung = ?";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         ResultSet rs = null;
-        BewerbungDTO bewerbungDTO = null;
+        ReservierungDTO reservierungDTO = null;
         try {
             statement.setInt(1, id_bewerbung);
             rs = statement.executeQuery();
             if (rs.next()) {
                 int id = rs.getInt(1);
                 String text = rs.getString(2);
-                bewerbungDTO = BewerbungDTOFactory.createBewerbungDTO(id, text);
+                reservierungDTO = BewerbungDTOFactory.createBewerbungDTO(id, text);
             }
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
@@ -50,14 +50,14 @@ public class BewerbungDAO extends AbstractDAO {
             assert rs != null;
             rs.close();
         }
-        return bewerbungDTO;
+        return reservierungDTO;
     }
 
-    public List<BewerbungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<ReservierungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
         String sql = "SELECT id_bewerbung, freitext " +
                 "FROM collhbrs.bewerbung " +
                 "WHERE id = ? ;";
-        List<BewerbungDTO> list = new ArrayList<>();
+        List<ReservierungDTO> list = new ArrayList<>();
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs = null;
         try {
@@ -66,15 +66,15 @@ public class BewerbungDAO extends AbstractDAO {
         } catch (SQLException ex) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
-        BewerbungDTO bewerbungDTO;
+        ReservierungDTO reservierungDTO;
         try {
             while (true) {
                 assert rs != null;
                 if (!rs.next()) break;
                 int id = rs.getInt(1);
                 String text = rs.getString(2);
-                bewerbungDTO = BewerbungDTOFactory.createBewerbungDTO(id, text);
-                list.add(bewerbungDTO);
+                reservierungDTO = BewerbungDTOFactory.createBewerbungDTO(id, text);
+                list.add(reservierungDTO);
 
             }
         } catch (SQLException ex) {
@@ -102,13 +102,13 @@ public class BewerbungDAO extends AbstractDAO {
 
     }
 
-    public boolean deleteBewerbung(BewerbungDTO bewerbungDTO) {
+    public boolean deleteBewerbung(ReservierungDTO reservierungDTO) {
         String sql = "DELETE " +
                 "FROM collhbrs.bewerbung " +
                 "WHERE id_bewerbung = ?";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
-            statement.setInt(1, bewerbungDTO.getId());
+            statement.setInt(1, reservierungDTO.getId());
             statement.executeUpdate();
             return true;
 

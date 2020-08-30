@@ -1,6 +1,6 @@
 package org.carlook.process.Interfaces;
 
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -21,5 +21,5 @@ public interface ProfileControlInterface {
 
     void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException;
 
-    List<BewerbungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException;
+    List<ReservierungDTO> getBewerbung(EndkundeDTO endkundeDTO) throws SQLException;
 }

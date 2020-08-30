@@ -1,14 +1,14 @@
 package org.carlook.model.factory;
 
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 
 public class BewerbungDTOFactory {
 
-    public static BewerbungDTO createBewerbungDTO(int id, String text) {
-        BewerbungDTO bewerbungDTO = new BewerbungDTO();
-        bewerbungDTO.setId(id);
-        bewerbungDTO.setFreitext(text);
-        return bewerbungDTO;
+    public static ReservierungDTO createBewerbungDTO(int id, String text) {
+        ReservierungDTO reservierungDTO = new ReservierungDTO();
+        reservierungDTO.setId(id);
+        reservierungDTO.setFreitext(text);
+        return reservierungDTO;
     }
 
     public Object clone() throws CloneNotSupportedException {

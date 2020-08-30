@@ -11,7 +11,7 @@ import org.carlook.gui.components.TopPanel;
 import org.carlook.gui.ui.MyUI;
 import org.carlook.gui.windows.DeleteBewerbungWindow;
 import org.carlook.gui.windows.DeleteWindow;
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
@@ -80,15 +80,15 @@ public class BewerbungView extends VerticalLayout implements View {
         deleteButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                BewerbungDTO bewerbungDTO = null;
+                ReservierungDTO reservierungDTO = null;
                 try {
-                    bewerbungDTO = BewerbungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
+                    reservierungDTO = BewerbungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
                 } catch (DatabaseException e) {
                     Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
-                DeleteBewerbungWindow deleteBewerbungWindow = new DeleteBewerbungWindow(bewerbungDTO);
+                DeleteBewerbungWindow deleteBewerbungWindow = new DeleteBewerbungWindow(reservierungDTO);
                 UI.getCurrent().addWindow( new DeleteWindow(deleteBewerbungWindow) );
             }
         });

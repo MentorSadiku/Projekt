@@ -1,7 +1,7 @@
 package org.carlook.process.proxy;
 
 import com.vaadin.ui.Button;
-import org.carlook.model.objects.dto.BewerbungDTO;
+import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -51,15 +51,15 @@ public class BewerbungControlProxy implements BewerbungControlInterface {
         BewerbungControl.getInstance().createBewerbung(bewerbungstext, userDTO);
     }
 
-    public BewerbungDTO getBewerbungForStellenanzeige(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
+    public ReservierungDTO getBewerbungForStellenanzeige(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
         return BewerbungControl.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
     }
 
-    public List<BewerbungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
+    public List<ReservierungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
         return BewerbungControl.getInstance().getBewerbungenForStudent(endkundeDTO);
     }
 
-    public void deleteBewerbung(BewerbungDTO bewerbungDTO) throws BewerbungException {
-        BewerbungControl.getInstance().deleteBewerbung(bewerbungDTO);
+    public void deleteBewerbung(ReservierungDTO reservierungDTO) throws BewerbungException {
+        BewerbungControl.getInstance().deleteBewerbung(reservierungDTO);
     }
 }
