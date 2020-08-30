@@ -22,7 +22,7 @@ import org.carlook.services.util.BuildGrid;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BewerbungView extends VerticalLayout implements View {
+public class ReservierungView extends VerticalLayout implements View {
 
     private AutoDTO selektiert;
     private List<AutoDTO> list;
@@ -44,7 +44,7 @@ public class BewerbungView extends VerticalLayout implements View {
         line.setSizeFull();
         setStyleName("schrift-profil");
         //Tabelle
-        final Grid<AutoDTO> grid = new Grid<>("Ihre Bewerbungen");
+        final Grid<AutoDTO> grid = new Grid<>("Ihre Reservierungen");
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
         SingleSelect<AutoDTO> selection = grid.asSingleSelect();

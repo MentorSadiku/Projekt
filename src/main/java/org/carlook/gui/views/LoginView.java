@@ -33,10 +33,10 @@ public class LoginView extends VerticalLayout implements View {
         //Login Felder
         final TextField userLogin = new TextField("Email:");
         userLogin.focus();
-        userLogin.setPlaceholder("beispiel@gmx.de");
+        userLogin.setPlaceholder("beispiel@gmail.com");
         Binder<UserDTO> binder = new Binder<>();
         binder.forField(userLogin)
-                .withValidator(new EmailValidator("Bitte geben Sie eine korrekte Emailadresse ein!"))
+                .withValidator(new EmailValidator("Bitte geben Sie eine gültige Emailadresse ein!"))
                 .bind(UserDTO::getEmail, UserDTO::setEmail);
         final PasswordField passwordField = new PasswordField("Passwort:");
         passwordField.setPlaceholder("Passwort");
@@ -53,7 +53,7 @@ public class LoginView extends VerticalLayout implements View {
                 try {
                     LoginControlProxy.getInstance().checkAuthentification(email, password);
                 } catch (NoSuchUserOrPassword noSuchUserOrPassword) {
-                    Notification.show("Benutzer-Fehler", "Login oder Passwort falsch!", Notification.Type.ERROR_MESSAGE);
+                    Notification.show("Benutzer-Fehler", "E-Mail oder Passwort falsch!", Notification.Type.ERROR_MESSAGE);
                 } catch (DatabaseException e) {
                     Notification.show("DB-Fehler", e.getReason(), Notification.Type.ERROR_MESSAGE);
                 } catch (SQLException e) {
