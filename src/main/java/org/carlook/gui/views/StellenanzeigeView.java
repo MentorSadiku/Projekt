@@ -10,7 +10,7 @@ import com.vaadin.ui.*;
 import org.carlook.gui.components.TopPanel;
 import org.carlook.gui.ui.MyUI;
 import org.carlook.gui.windows.CreateStellenanzeigeWindow;
-import org.carlook.gui.windows.DeleteStellenanzeigeWindow;
+import org.carlook.gui.windows.DeleteAutoWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.gui.windows.AutoWindow;
 import org.carlook.model.objects.dto.AutoDTO;
@@ -108,8 +108,8 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         deleteButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                DeleteStellenanzeigeWindow deleteStellenanzeigeWindow = new DeleteStellenanzeigeWindow(selektiert);
-                UI.getCurrent().addWindow(new DeleteWindow(deleteStellenanzeigeWindow));
+                DeleteAutoWindow deleteAutoWindow = new DeleteAutoWindow(selektiert);
+                UI.getCurrent().addWindow(new DeleteWindow(deleteAutoWindow));
             }
         });
 

@@ -9,10 +9,10 @@ import org.carlook.process.exceptions.StellenanzeigeException;
 import org.carlook.process.proxy.StellenanzeigeControlProxy;
 import org.carlook.services.util.Views;
 
-public class DeleteStellenanzeigeWindow extends DeleteWindow{
+public class DeleteAutoWindow extends DeleteWindow{
     //Window zum Löschen von Stellenanzeigen
 
-    public DeleteStellenanzeigeWindow(AutoDTO autoDTO) {
+    public DeleteAutoWindow(AutoDTO autoDTO) {
         this.setText("Sind Sie sicher, dass Sie das Auto entfernen wollen? <br>" +
                 "Dieser Vorgang ist unumkehrbar!");
         this.setDto(autoDTO);
