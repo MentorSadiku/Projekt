@@ -140,8 +140,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
         String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
                 "FROM carlook.auto " +
                 "WHERE auto_id = ( SELECT auto_id " +
-                "FROM carlook.reservierung " +
-                "WHERE auto_id = ? );";
+                "FROM carlook.reservierung_to_auto " +
+                "WHERE reservierungs_id = ? );";
         PreparedStatement statement = this.getPreparedStatement(sql);
         List<BewerbungDTO> list = BewerbungDAO.getInstance().getBewerbungenForStudent(endkundeDTO);
         List<AutoDTO> listStellenanzeige = new ArrayList<>();
