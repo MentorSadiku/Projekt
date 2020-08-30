@@ -11,34 +11,31 @@ import org.carlook.process.proxy.StellenanzeigeControlProxy;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StellenanzeigeWindow extends Window {
-    private TextField name;
+public class AutoWindow extends Window {
     private TextField marke;
     private TextField baujahr;
-    private TextField studiengang;
-    private TextField ort;
     private TextArea beschreibung;
 
-    public StellenanzeigeWindow(AutoDTO stellenanzeige, UserDTO userDTO) {
+    public AutoWindow(AutoDTO auto, UserDTO userDTO) {
 
-        super(stellenanzeige.getMarke());
+        super(auto.getMarke());
         center();
 
-        //Art
+        //Marke
         marke = new TextField("Marke");
-        marke.setValue(stellenanzeige.getMarke());
+        marke.setValue(auto.getMarke());
         marke.setReadOnly(true);
 
-        //Branche
+        //Baujahr
         baujahr = new TextField("Baujahr");
-        int x=stellenanzeige.getBaujahr();
+        int x=auto.getBaujahr();
         String s=String.valueOf(x);
         baujahr.setValue(s);
         baujahr.setReadOnly(true);
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
-        beschreibung.setValue(stellenanzeige.getBeschreibung());
+        beschreibung.setValue(auto.getBeschreibung());
         beschreibung.setReadOnly(true);
 
         //OkButton
@@ -52,11 +49,11 @@ public class StellenanzeigeWindow extends Window {
 
         //BewerbenButton
         Button bewerbenButton = new Button("Reservieren");
-        BewerbungControlProxy.getInstance().checkAllowed(stellenanzeige, userDTO, bewerbenButton);
+        BewerbungControlProxy.getInstance().checkAllowed(auto, userDTO, bewerbenButton);
         bewerbenButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-            //   UI.getCurrent().addWindow(new FreitextWindow(stellenanzeige, userDTO));
+            //   UI.getCurrent().addWindow(new FreitextWindow(auto, userDTO));
 
                 close();
             }
@@ -73,38 +70,39 @@ public class StellenanzeigeWindow extends Window {
         setContent(verticalLayout);
     }
 
-    public StellenanzeigeWindow(AutoDTO stellenanzeige, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
-        super(stellenanzeige.getMarke());
+    public AutoWindow(AutoDTO auto, Grid<AutoDTO> grid, VertrieblerDTO vertrieblerDTO) {
+        super(auto.getMarke());
         center();
 
-        //Art
-        marke = new TextField("Art");
-        marke.setValue(stellenanzeige.getMarke());
+        //Marke
+        marke = new TextField("Marke");
+        marke.setValue(auto.getMarke());
 
+        //Baujahr
         baujahr = new TextField("Baujahr");
-        int x=stellenanzeige.getBaujahr();
+        int x=auto.getBaujahr();
         String s=String.valueOf(x);
         baujahr.setValue(s);
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
-        beschreibung.setValue(stellenanzeige.getBeschreibung());
+        beschreibung.setValue(auto.getBeschreibung());
 
         //SaveButton
         Button saveButton = new Button("Speichern");
         saveButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                stellenanzeige.setMarke(marke.getValue());
-                stellenanzeige.setBaujahr(x);
-                stellenanzeige.setBeschreibung(beschreibung.getValue());
+                auto.setMarke(marke.getValue());
+                auto.setBaujahr(x);
+                auto.setBeschreibung(beschreibung.getValue());
 
                 try {
-                    StellenanzeigeControlProxy.getInstance().updateStellenanzeige(stellenanzeige);
+                    StellenanzeigeControlProxy.getInstance().updateStellenanzeige(auto);
                 } catch (StellenanzeigeException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
-                UI.getCurrent().addWindow(new ConfirmationWindow("Stellenanzeige erfolgreich gespeichert"));
+                UI.getCurrent().addWindow(new ConfirmationWindow("Auto erfolgreich gespeichert"));
                 List<AutoDTO> list = null;
                 try {
                     list = StellenanzeigeControlProxy.getInstance().getAnzeigenForUnternehmen(vertrieblerDTO);

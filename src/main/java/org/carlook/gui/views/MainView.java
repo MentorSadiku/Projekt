@@ -12,7 +12,7 @@ import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.carlook.gui.components.TopPanel;
 import org.carlook.gui.ui.MyUI;
-import org.carlook.gui.windows.StellenanzeigeWindow;
+import org.carlook.gui.windows.AutoWindow;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.proxy.SearchControlProxy;
@@ -62,7 +62,7 @@ public class MainView extends VerticalLayout implements View {
                     detailButton.setEnabled(false);
                 }
                 selektiert = selection.getValue();
-                UI.getCurrent().addWindow( new StellenanzeigeWindow(selektiert, userDTO) );
+                UI.getCurrent().addWindow( new AutoWindow(selektiert, userDTO) );
             }
         });
 
