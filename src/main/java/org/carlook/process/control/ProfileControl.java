@@ -52,7 +52,7 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
     public void setBewerbung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
-        boolean result =  ReservierungDAO.getInstance().createReservierung(text, endkundeDTO);
+        boolean result =  ReservierungDAO.getInstance().createReservierung(endkundeDTO);
         if (result) {
             return;
         }
