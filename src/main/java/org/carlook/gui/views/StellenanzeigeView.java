@@ -12,7 +12,7 @@ import org.carlook.gui.ui.MyUI;
 import org.carlook.gui.windows.CreateStellenanzeigeWindow;
 import org.carlook.gui.windows.DeleteStellenanzeigeWindow;
 import org.carlook.gui.windows.DeleteWindow;
-import org.carlook.gui.windows.StellenanzeigeWindow;
+import org.carlook.gui.windows.AutoWindow;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.proxy.SearchControlProxy;
@@ -90,7 +90,7 @@ public class StellenanzeigeView extends VerticalLayout implements View {
         showButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                StellenanzeigeWindow window = new StellenanzeigeWindow(selektiert, grid, vertrieblerDTO);
+                AutoWindow window = new AutoWindow(selektiert, grid, vertrieblerDTO);
                 UI.getCurrent().addWindow(window);
             }
         });
