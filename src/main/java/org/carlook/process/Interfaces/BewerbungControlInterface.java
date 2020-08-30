@@ -23,7 +23,7 @@ public interface BewerbungControlInterface {
 
     void checkAllowed(AutoDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton);
 
-    void createBewerbung(String bewerbungstext, UserDTO userDTO) throws ReservierungException;
+    void createBewerbung(UserDTO userDTO) throws ReservierungException;
 
     ReservierungDTO getBewerbungForStellenanzeige(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException;
 
