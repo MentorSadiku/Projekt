@@ -6,7 +6,7 @@ import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.DatabaseException;
-import org.carlook.process.proxy.StellenanzeigeControlProxy;
+import org.carlook.process.proxy.AutoControlProxy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -175,7 +175,7 @@ public class AutoDAO extends AbstractDAO {
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 try {
 
-                    autoDTO.setAnzahl_res(StellenanzeigeControlProxy.getInstance().getAnzahlRes(autoDTO));
+                    autoDTO.setAnzahl_res(AutoControlProxy.getInstance().getAnzahlRes(autoDTO));
 
                 } catch (DatabaseException e) {
 

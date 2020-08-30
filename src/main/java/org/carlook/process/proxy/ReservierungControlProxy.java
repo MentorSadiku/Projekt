@@ -5,7 +5,7 @@ import org.carlook.model.objects.dto.ReservierungDTO;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.UserDTO;
-import org.carlook.process.Interfaces.BewerbungControlInterface;
+import org.carlook.process.Interfaces.ReservierungControlInterface;
 import org.carlook.process.control.ReservierungControl;
 import org.carlook.process.exceptions.ReservierungException;
 import org.carlook.process.exceptions.DatabaseException;
@@ -13,7 +13,7 @@ import org.carlook.process.exceptions.DatabaseException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ReservierungControlProxy implements BewerbungControlInterface {
+public class ReservierungControlProxy implements ReservierungControlInterface {
     private static ReservierungControlProxy bewerbungControl = null;
 
     private ReservierungControlProxy() {
@@ -27,39 +27,39 @@ public class ReservierungControlProxy implements BewerbungControlInterface {
         return bewerbungControl;
     }
 
-    public int getLatestApply(UserDTO userDTO) throws DatabaseException, SQLException {
-        return ReservierungControl.getInstance().getLatestApply(userDTO);
+    public int getLatestReservation(UserDTO userDTO) throws DatabaseException, SQLException {
+        return ReservierungControl.getInstance().getLatestReservation(userDTO);
     }
 
-    public void applyForStellenanzeige(AutoDTO stellenanzeige, int id_bewerbung) throws DatabaseException {
-        ReservierungControl.getInstance().applyForStellenanzeige(stellenanzeige, id_bewerbung);
+    public void reserveACar(AutoDTO autoDTO, int id_bewerbung) throws DatabaseException {
+        ReservierungControl.getInstance().reserveACar(autoDTO, id_bewerbung);
     }
 
-    public void applyingIsAllowed() throws DatabaseException, ReservierungException, SQLException {
-        ReservierungControl.getInstance().applyingIsAllowed();
+    public void reservingIsAllowed() throws DatabaseException, ReservierungException, SQLException {
+        ReservierungControl.getInstance().reservingIsAllowed();
     }
 
-    public void checkAlreadyApplied(AutoDTO autoDTO, UserDTO userDTO) throws ReservierungException, DatabaseException, SQLException {
-        ReservierungControl.getInstance().checkAlreadyApplied(autoDTO, userDTO);
+    public void checkAlreadyReserved(AutoDTO autoDTO, UserDTO userDTO) throws ReservierungException, DatabaseException, SQLException {
+        ReservierungControl.getInstance().checkAlreadyReserved(autoDTO, userDTO);
 
     }
-    public void checkAllowed(AutoDTO stellenanzeige, UserDTO userDTO, Button bewerbenButton) {
-        ReservierungControl.getInstance().checkAllowed(stellenanzeige, userDTO, bewerbenButton);
+    public void checkAllowed(AutoDTO autoDTO, UserDTO userDTO, Button bewerbenButton) {
+        ReservierungControl.getInstance().checkAllowed(autoDTO, userDTO, bewerbenButton);
     }
 
-    public void createBewerbung( UserDTO userDTO) throws ReservierungException {
-        ReservierungControl.getInstance().createBewerbung(userDTO);
+    public void createReservation(UserDTO userDTO) throws ReservierungException {
+        ReservierungControl.getInstance().createReservation(userDTO);
     }
 
-    public ReservierungDTO getBewerbungForStellenanzeige(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
-        return ReservierungControl.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
+    public ReservierungDTO getReservationForAuto(AutoDTO selektiert, EndkundeDTO endkundeDTO) throws SQLException, DatabaseException {
+        return ReservierungControl.getInstance().getReservationForAuto(selektiert, endkundeDTO);
     }
 
-    public List<ReservierungDTO> getBewerbungenForStudent(EndkundeDTO endkundeDTO) throws SQLException {
-        return ReservierungControl.getInstance().getBewerbungenForStudent(endkundeDTO);
+    public List<ReservierungDTO> getReservationForEndkunde(EndkundeDTO endkundeDTO) throws SQLException {
+        return ReservierungControl.getInstance().getReservationForEndkunde(endkundeDTO);
     }
 
-    public void deleteBewerbung(ReservierungDTO reservierungDTO) throws ReservierungException {
-        ReservierungControl.getInstance().deleteBewerbung(reservierungDTO);
+    public void deleteReservierung(ReservierungDTO reservierungDTO) throws ReservierungException {
+        ReservierungControl.getInstance().deleteReservierung(reservierungDTO);
     }
 }

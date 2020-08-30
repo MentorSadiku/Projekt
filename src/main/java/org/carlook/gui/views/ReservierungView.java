@@ -16,7 +16,7 @@ import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.proxy.ReservierungControlProxy;
-import org.carlook.process.proxy.StellenanzeigeControlProxy;
+import org.carlook.process.proxy.AutoControlProxy;
 import org.carlook.services.util.BuildGrid;
 
 import java.sql.SQLException;
@@ -51,7 +51,7 @@ public class ReservierungView extends VerticalLayout implements View {
         grid.setStyleName("schrift-tabelle");
         //Tabelle füllen
         try {
-            list = StellenanzeigeControlProxy.getInstance().getAutoForEndkunde(endkundeDTO);
+            list = AutoControlProxy.getInstance().getAutoForEndkunde(endkundeDTO);
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
@@ -82,7 +82,7 @@ public class ReservierungView extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 ReservierungDTO reservierungDTO = null;
                 try {
-                    reservierungDTO = ReservierungControlProxy.getInstance().getBewerbungForStellenanzeige(selektiert, endkundeDTO);
+                    reservierungDTO = ReservierungControlProxy.getInstance().getReservationForAuto(selektiert, endkundeDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
                 } catch (DatabaseException e) {

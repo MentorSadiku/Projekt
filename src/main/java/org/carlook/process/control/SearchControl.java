@@ -26,7 +26,7 @@ public class SearchControl implements SearchControlInterface {
 
     }
 
-    public List<AutoDTO> getAnzeigenForUser() throws SQLException {
+    public List<AutoDTO> getAutoForUser() throws SQLException {
         UserDTO userDTO = ( (MyUI)UI.getCurrent() ).getUserDTO();
         if (userDTO.hasRole(Roles.ENDKUNDE)) {
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
@@ -36,7 +36,7 @@ public class SearchControl implements SearchControlInterface {
         return AutoControl.getInstance().getAutoForVertriebler(vertrieblerDTO);
     }
 
-    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
+    public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
         if (filter == null) {
             filter = "name";
         }

@@ -6,7 +6,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.process.exceptions.AutoException;
-import org.carlook.process.proxy.StellenanzeigeControlProxy;
+import org.carlook.process.proxy.AutoControlProxy;
 import org.carlook.services.util.Views;
 
 public class DeleteAutoWindow extends DeleteWindow{
@@ -20,7 +20,7 @@ public class DeleteAutoWindow extends DeleteWindow{
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
-                    StellenanzeigeControlProxy.getInstance().deleteAuto(autoDTO);
+                    AutoControlProxy.getInstance().deleteAuto(autoDTO);
                 } catch (AutoException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }

@@ -19,7 +19,7 @@ public interface ProfileControlInterface {
 
     VertrieblerDTO getVertriebler(UserDTO userDTO) throws SQLException;
 
-    void setReservierung(String text, EndkundeDTO endkundeDTO) throws ProfileException;
+    void setReservierung(EndkundeDTO endkundeDTO) throws ProfileException;
 
     List<ReservierungDTO> getReservierung(EndkundeDTO endkundeDTO) throws SQLException;
 }

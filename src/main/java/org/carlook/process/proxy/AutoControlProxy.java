@@ -3,7 +3,7 @@ package org.carlook.process.proxy;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
-import org.carlook.process.Interfaces.StellenanzeigeControlInterface;
+import org.carlook.process.Interfaces.AutoControlInterface;
 import org.carlook.process.control.AutoControl;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.exceptions.AutoException;
@@ -11,17 +11,17 @@ import org.carlook.process.exceptions.AutoException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StellenanzeigeControlProxy implements StellenanzeigeControlInterface {
-    private static StellenanzeigeControlProxy search = null;
+public class AutoControlProxy implements AutoControlInterface {
+    private static AutoControlProxy search = null;
 
-    public static StellenanzeigeControlProxy getInstance() {
+    public static AutoControlProxy getInstance() {
         if (search == null) {
-            search = new StellenanzeigeControlProxy();
+            search = new AutoControlProxy();
         }
         return search;
     }
 
-    private StellenanzeigeControlProxy() {
+    private AutoControlProxy() {
 
     }
 

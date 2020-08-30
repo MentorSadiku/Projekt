@@ -21,11 +21,11 @@ public class SearchControlProxy implements SearchControlInterface {
 
     }
 
-    public List<AutoDTO> getAnzeigenForUser() throws SQLException {
-        return SearchControl.getInstance().getAnzeigenForUser();
+    public List<AutoDTO> getAutoForUser() throws SQLException {
+        return SearchControl.getInstance().getAutoForUser();
     }
 
-    public List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException {
-        return SearchControl.getInstance().getAnzeigenForSearch(suchtext, filter);
+    public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
+        return SearchControl.getInstance().getAutoForSearch(suchtext, filter);
     }
 }

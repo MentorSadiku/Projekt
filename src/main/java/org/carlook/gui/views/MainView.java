@@ -106,7 +106,7 @@ public class MainView extends VerticalLayout implements View {
                 suchtext = search.getValue();
                 if(suchtext.equals("")) {
                     try {
-                        list = SearchControlProxy.getInstance().getAnzeigenForSearch(suchtext, comboBox.getValue());
+                        list = SearchControlProxy.getInstance().getAutoForSearch(suchtext, comboBox.getValue());
                     } catch (SQLException e) {
                         Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
                     }
@@ -138,7 +138,7 @@ public class MainView extends VerticalLayout implements View {
             suchtext = search.getValue();
             String filter = comboBox.getValue();
             try {
-                list = SearchControlProxy.getInstance().getAnzeigenForSearch(suchtext, filter);
+                list = SearchControlProxy.getInstance().getAutoForSearch(suchtext, filter);
             } catch (SQLException e) {
                 Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }

@@ -51,7 +51,7 @@ public class AutoView extends VerticalLayout implements View {
 
         //Tabelle befüllen
         try {
-            list = SearchControlProxy.getInstance().getAnzeigenForUser();
+            list = SearchControlProxy.getInstance().getAutoForUser();
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }

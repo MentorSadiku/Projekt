@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SearchControlInterface {
 
-    List<AutoDTO> getAnzeigenForUser() throws SQLException;
+    List<AutoDTO> getAutoForUser() throws SQLException;
 
-    List<AutoDTO> getAnzeigenForSearch(String suchtext, String filter) throws SQLException;
+    List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException;
 }

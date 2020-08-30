@@ -20,7 +20,7 @@ public class DeleteReservierungWindow extends DeleteWindow {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
-                    ReservierungControlProxy.getInstance().deleteBewerbung(reservierungDTO);
+                    ReservierungControlProxy.getInstance().deleteReservierung(reservierungDTO);
                 } catch (ReservierungException e) {
                     Notification.show("DB-Fehler", "Löschen war nicht erfolgreich!", Notification.Type.ERROR_MESSAGE);
                 }

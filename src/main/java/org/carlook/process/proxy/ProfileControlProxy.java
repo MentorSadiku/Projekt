@@ -41,8 +41,8 @@ public class ProfileControlProxy implements ProfileControlInterface {
         return ProfileControl.getInstance().getVertriebler(userDTO);
     }
 
-    public void setReservierung(String text, EndkundeDTO endkundeDTO) throws ProfileException {
-        ProfileControl.getInstance().setReservierung(text, endkundeDTO);
+    public void setReservierung( EndkundeDTO endkundeDTO) throws ProfileException {
+        ProfileControl.getInstance().setReservierung(endkundeDTO);
     }
 
     public List<ReservierungDTO> getReservierung(EndkundeDTO endkundeDTO) throws SQLException {

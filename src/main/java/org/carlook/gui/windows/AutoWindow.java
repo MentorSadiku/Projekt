@@ -6,7 +6,7 @@ import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.process.exceptions.AutoException;
 import org.carlook.process.proxy.ReservierungControlProxy;
-import org.carlook.process.proxy.StellenanzeigeControlProxy;
+import org.carlook.process.proxy.AutoControlProxy;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -98,14 +98,14 @@ public class AutoWindow extends Window {
                 auto.setBeschreibung(beschreibung.getValue());
 
                 try {
-                    StellenanzeigeControlProxy.getInstance().updateAuto(auto);
+                    AutoControlProxy.getInstance().updateAuto(auto);
                 } catch (AutoException e) {
                     Notification.show("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
                 }
                 UI.getCurrent().addWindow(new ConfirmationWindow("Auto erfolgreich gespeichert"));
                 List<AutoDTO> list = null;
                 try {
-                    list = StellenanzeigeControlProxy.getInstance().getAutoForVertriebler(vertrieblerDTO);
+                    list = AutoControlProxy.getInstance().getAutoForVertriebler(vertrieblerDTO);
                 } catch (SQLException e) {
                     Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
                 }

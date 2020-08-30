@@ -9,7 +9,7 @@ import org.carlook.process.exceptions.AutoException;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface StellenanzeigeControlInterface {
+public interface AutoControlInterface {
 
     List<AutoDTO> getAutoForVertriebler(VertrieblerDTO vertrieblerDTO) throws SQLException;
 

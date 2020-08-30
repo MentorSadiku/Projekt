@@ -8,7 +8,7 @@ import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
-import org.carlook.process.Interfaces.StellenanzeigeControlInterface;
+import org.carlook.process.Interfaces.AutoControlInterface;
 import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.exceptions.AutoException;
 import org.carlook.services.db.JDBCConnection;
@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AutoControl implements StellenanzeigeControlInterface {
+public class AutoControl implements AutoControlInterface {
     private static AutoControl search = null;
 
     public static AutoControl getInstance() {
