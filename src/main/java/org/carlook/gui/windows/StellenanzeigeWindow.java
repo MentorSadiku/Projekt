@@ -13,8 +13,8 @@ import java.util.List;
 
 public class StellenanzeigeWindow extends Window {
     private TextField name;
-    private TextField art;
-    private TextField branche;
+    private TextField marke;
+    private TextField baujahr;
     private TextField studiengang;
     private TextField ort;
     private TextArea beschreibung;
@@ -25,16 +25,16 @@ public class StellenanzeigeWindow extends Window {
         center();
 
         //Art
-        art = new TextField("Marke");
-        art.setValue(stellenanzeige.getMarke());
-        art.setReadOnly(true);
+        marke = new TextField("Marke");
+        marke.setValue(stellenanzeige.getMarke());
+        marke.setReadOnly(true);
 
         //Branche
-        branche = new TextField("Baujahr");
+        baujahr = new TextField("Baujahr");
         int x=stellenanzeige.getBaujahr();
         String s=String.valueOf(x);
-        branche.setValue(s);
-        branche.setReadOnly(true);
+        baujahr.setValue(s);
+        baujahr.setReadOnly(true);
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
@@ -69,7 +69,7 @@ public class StellenanzeigeWindow extends Window {
 
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout = this.buildVerticalLayout(verticalLayout, name, art, branche, studiengang, ort, zeitraum, beschreibung, horizontalLayout);
+        verticalLayout = this.buildVerticalLayout(verticalLayout, marke, baujahr, beschreibung, horizontalLayout);
         setContent(verticalLayout);
     }
 
@@ -78,13 +78,13 @@ public class StellenanzeigeWindow extends Window {
         center();
 
         //Art
-        art = new TextField("Art");
-        art.setValue(stellenanzeige.getMarke());
+        marke = new TextField("Art");
+        marke.setValue(stellenanzeige.getMarke());
 
-        branche = new TextField("Baujahr");
+        baujahr = new TextField("Baujahr");
         int x=stellenanzeige.getBaujahr();
         String s=String.valueOf(x);
-        branche.setValue(s);
+        baujahr.setValue(s);
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
@@ -95,7 +95,7 @@ public class StellenanzeigeWindow extends Window {
         saveButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                stellenanzeige.setMarke(art.getValue());
+                stellenanzeige.setMarke(marke.getValue());
                 stellenanzeige.setBaujahr(x);
                 stellenanzeige.setBeschreibung(beschreibung.getValue());
 
@@ -133,17 +133,13 @@ public class StellenanzeigeWindow extends Window {
 
         //Vertikal
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout = this.buildVerticalLayout(verticalLayout, name, art, branche, studiengang, ort, zeitraum, beschreibung, horizontalLayout);
+        verticalLayout = this.buildVerticalLayout(verticalLayout, marke, baujahr, beschreibung, horizontalLayout);
         setContent(verticalLayout);
     }
-    public VerticalLayout buildVerticalLayout(VerticalLayout verticalLayout, TextField name, TextField art, TextField branche, TextField studiengang,
-                                              TextField ort, DateField zeitraum, TextArea beschreibung, HorizontalLayout horizontalLayout ){
-        verticalLayout.addComponent(name);
-        verticalLayout.addComponent(art);
-        verticalLayout.addComponent(branche);
-        verticalLayout.addComponent(studiengang);
-        verticalLayout.addComponent(ort);
-        verticalLayout.addComponent(zeitraum);
+    public VerticalLayout buildVerticalLayout(VerticalLayout verticalLayout, TextField marke, TextField baujahr,
+                                               TextArea beschreibung, HorizontalLayout horizontalLayout ){
+        verticalLayout.addComponent(marke);
+        verticalLayout.addComponent(baujahr);
         verticalLayout.addComponent(beschreibung);
         verticalLayout.addComponent(horizontalLayout);
         verticalLayout.setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);
