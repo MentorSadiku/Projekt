@@ -37,7 +37,7 @@ public class ReservierungControl implements ReservierungControlInterface {
     public int getLatestReservation(UserDTO userDTO) throws DatabaseException, SQLException {
         int reservierungs_id = 0;
         String sql = "SELECT max(reservierungs_id) " +
-                "FROM coarlook.reservierung " +
+                "FROM carlook.reservierung " +
                 "WHERE id = ?";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         ResultSet rs = null;
@@ -69,7 +69,7 @@ public class ReservierungControl implements ReservierungControlInterface {
         }
     }
 
-    public void reservingIsAllowed() throws DatabaseException, SQLException, ReservierungException {
+  /*  public void reservingIsAllowed() throws DatabaseException, SQLException, ReservierungException {
         String sql = "SELECT sichtbar " +
                 "FROM collhbrs.stellenanzeige_on_off";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
@@ -88,13 +88,13 @@ public class ReservierungControl implements ReservierungControlInterface {
             assert rs != null;
             rs.close();
         }
-    }
+    }*/
 
     public void checkAlreadyReserved(AutoDTO autoDTO, UserDTO userDTO) throws DatabaseException, SQLException, ReservierungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
         List<ReservierungDTO> list = ReservierungDAO.getInstance().getReservierungForEndkunde(endkundeDTO);
         String sql = "SELECT auto_id " +
-                "FROM collhbrs.reservierung_to_auto " +
+                "FROM carlook.reservierung_to_auto " +
                 "WHERE reservierungs_id = ? " +
                 "AND auto_id = ?";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
@@ -117,18 +117,18 @@ public class ReservierungControl implements ReservierungControlInterface {
         }
 
     }
-    public void checkAllowed(AutoDTO autoDTO, UserDTO userDTO, Button bewerbenButton) {
+    public void checkAllowed(AutoDTO autoDTO, UserDTO userDTO, Button reservierungsButton) {
         if (userDTO == null || !userDTO.hasRole(Roles.ENDKUNDE)) {
-            bewerbenButton.setVisible(false);
+            reservierungsButton.setVisible(false);
             return;
         }
         try {
-            reservingIsAllowed();
+            //reservingIsAllowed();
             checkAlreadyReserved(autoDTO, userDTO);
         } catch (DatabaseException e) {
             Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte versuchen Sie es erneut!", Notification.Type.ERROR_MESSAGE);
         } catch (ReservierungException e) {
-            bewerbenButton.setVisible(false);
+            reservierungsButton.setVisible(false);
         } catch (SQLException e) {
             Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte kontaktieren Sie den Administrator!", Notification.Type.ERROR_MESSAGE);
         }

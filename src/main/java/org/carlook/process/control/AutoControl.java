@@ -95,7 +95,7 @@ public class AutoControl implements AutoControlInterface {
         }
 
         return anzahl_bewerber;
-    }
+    }*/
 
      */
 }
