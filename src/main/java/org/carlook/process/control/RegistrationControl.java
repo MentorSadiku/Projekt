@@ -57,7 +57,7 @@ public class RegistrationControl implements RegistrationControlInterface {
             statement.setString(1,email);
             rs = statement.executeQuery();
         } catch (SQLException throwables) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("23 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         }
 
         try {

@@ -57,7 +57,7 @@ public class LoginView extends VerticalLayout implements View {
                 } catch (DatabaseException e) {
                     Notification.show("DB-Fehler", e.getReason(), Notification.Type.ERROR_MESSAGE);
                 } catch (SQLException e) {
-                    Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+                    Notification.show("7 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
                 }
             }
         });

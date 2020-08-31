@@ -74,7 +74,7 @@ public class UserDTO extends AbstractDTO implements Serializable {
         try {
             this.roles = RoleDAO.getInstance().getRolesForUser(this);
         } catch (SQLException e) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("24 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         }
     }
 }

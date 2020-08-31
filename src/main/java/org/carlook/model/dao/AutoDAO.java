@@ -31,14 +31,14 @@ public class AutoDAO extends AbstractDAO {
     public List<AutoDTO> getAutoList(UserDTO userDTO) throws SQLException {
         String sql = "SELECT marke, baujahr, beschreibung, auto_id" +
                 "FROM carlook.auto" +
-                "WHERE id = ? ;";
+                "WHERE vertriebler_id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs = null;
         try {
             statement.setInt(1, userDTO.getId());
             rs = statement.executeQuery();
         } catch (SQLException e) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+            Notification.show("9 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         List<AutoDTO> list = new ArrayList<>();
         assert rs != null;
@@ -112,7 +112,7 @@ public class AutoDAO extends AbstractDAO {
             try {
                 rs = statement.executeQuery();
             } catch (SQLException e) {
-                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+                Notification.show("17 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
         } else {
             String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
@@ -125,7 +125,7 @@ public class AutoDAO extends AbstractDAO {
                 statement.setString(1, "%" + suchtext + "%");
                 rs = statement.executeQuery();
             } catch (SQLException e) {
-                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+                Notification.show("19 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
         }
 
@@ -153,7 +153,7 @@ public class AutoDAO extends AbstractDAO {
                 statement.setInt(1, id_bewerbung);
                 rs = statement.executeQuery();
             } catch (SQLException e) {
-                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+                Notification.show("20 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
             assert rs != null;
             buildList(rs, listAuto);

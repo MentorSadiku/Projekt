@@ -88,7 +88,7 @@ public class AutoControl implements AutoControlInterface {
                 anzahl_bewerber = rs.getInt(1);
             }
         } catch (SQLException e) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("4 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         } finally {
             //JDBCConnection.getInstance().closeConnection();
             rs.close();

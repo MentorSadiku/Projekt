@@ -62,7 +62,7 @@ public class LoginControl implements LoginControlInterface {
                 throw new NoSuchUserOrPassword();
             }
         } catch (SQLException throwables) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("6 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         }
         finally {
             JDBCConnection.getInstance().closeConnection();

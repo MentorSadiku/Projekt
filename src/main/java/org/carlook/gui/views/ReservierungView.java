@@ -53,7 +53,7 @@ public class ReservierungView extends VerticalLayout implements View {
         try {
             list = AutoControlProxy.getInstance().getAutoForEndkunde(endkundeDTO);
         } catch (SQLException e) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+            Notification.show("10 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         BuildGrid.buildGrid(grid);
         grid.setItems(list);

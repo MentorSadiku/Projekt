@@ -44,7 +44,7 @@ public class ReservierungDAO extends AbstractDAO {
                 reservierungDTO = ReservierungDTOFactory.createReservierungDTO(id);
             }
         } catch (SQLException e) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+            Notification.show("11 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         } finally {
             assert rs != null;
             rs.close();
@@ -63,7 +63,7 @@ public class ReservierungDAO extends AbstractDAO {
             statement.setInt(1, endkundeDTO.getId());
             rs = statement.executeQuery();
         } catch (SQLException ex) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+            Notification.show("16 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         ReservierungDTO reservierungDTO;
         try {
@@ -76,7 +76,7 @@ public class ReservierungDAO extends AbstractDAO {
 
             }
         } catch (SQLException ex) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+            Notification.show("18 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         finally{
             assert rs != null;

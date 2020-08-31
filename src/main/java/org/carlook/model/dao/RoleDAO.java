@@ -37,7 +37,7 @@ public class RoleDAO extends AbstractDAO{
             statement.setInt(1,userDTO.getId());
             rs = statement.executeQuery();
         } catch (SQLException throwables) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("5 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         }
 
         List<RoleDTO> liste = new ArrayList<>();

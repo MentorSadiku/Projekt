@@ -97,7 +97,7 @@ public class ProfileView extends VerticalLayout implements View {
             try {
                 endkundeDTO = ProfileControlProxy.getInstance().getEndkunde(userDTO);
             } catch (SQLException e) {
-                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+                Notification.show("3 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
             /*if (endkundeDTO.getAnrede() != null) {
                 anrede.setValue(endkundeDTO.getAnrede());
@@ -117,7 +117,7 @@ public class ProfileView extends VerticalLayout implements View {
             try {
                 vertrieblerDTO = ProfileControlProxy.getInstance().getVertriebler(userDTO);
             } catch (SQLException e) {
-                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+                Notification.show("8 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
             if (vertrieblerDTO.getName() != null) {
                 vertrieblername.setValue(vertrieblerDTO.getName());

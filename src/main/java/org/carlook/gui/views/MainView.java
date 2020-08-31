@@ -108,7 +108,7 @@ public class MainView extends VerticalLayout implements View {
                     try {
                         list = SearchControlProxy.getInstance().getAutoForSearch(suchtext, comboBox.getValue());
                     } catch (SQLException e) {
-                        Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+                        Notification.show("1 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
                     }
                     grid.setItems(list);
                     addComponent(grid);
@@ -140,7 +140,7 @@ public class MainView extends VerticalLayout implements View {
             try {
                 list = SearchControlProxy.getInstance().getAutoForSearch(suchtext, filter);
             } catch (SQLException e) {
-                Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+                Notification.show("12 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
             grid.setItems();
             grid.setItems(list);

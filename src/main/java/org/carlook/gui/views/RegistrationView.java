@@ -123,7 +123,7 @@ public class RegistrationView extends VerticalLayout implements View {
                 } catch (EmptyFieldException e) {
                     Notification.show("Es sind ein oder mehrere Eingabefehler aufgetreten!", e.getReason(), Notification.Type.ERROR_MESSAGE);
                 } catch (SQLException e) {
-                    Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+                    Notification.show("13 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
                 }
             }
         });

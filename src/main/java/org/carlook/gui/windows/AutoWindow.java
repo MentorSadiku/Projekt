@@ -107,7 +107,7 @@ public class AutoWindow extends Window {
                 try {
                     list = AutoControlProxy.getInstance().getAutoForVertriebler(vertrieblerDTO);
                 } catch (SQLException e) {
-                    Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+                    Notification.show("14 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
                 }
                 grid.setItems();
                 grid.setItems(list);

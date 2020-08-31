@@ -31,7 +31,7 @@ public class JDBCConnection {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
         } catch (SQLException throwables) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("22 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         }
         this.openConnection();
     }
@@ -73,7 +73,7 @@ public class JDBCConnection {
         try {
             this.conn.close();
         } catch (SQLException throwables) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
+            Notification.show("21 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
         }
     }
 

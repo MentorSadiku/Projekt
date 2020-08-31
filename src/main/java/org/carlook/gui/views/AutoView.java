@@ -4,6 +4,7 @@ import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.event.selection.SelectionListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
@@ -14,9 +15,11 @@ import org.carlook.gui.windows.DeleteAutoWindow;
 import org.carlook.gui.windows.DeleteWindow;
 import org.carlook.gui.windows.AutoWindow;
 import org.carlook.model.objects.dto.AutoDTO;
+import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.process.proxy.SearchControlProxy;
 import org.carlook.services.util.BuildGrid;
+import org.carlook.services.util.Roles;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,7 +32,7 @@ public class AutoView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        //User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+        //UserDTO user = (UserDTO) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
         VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(((MyUI) UI.getCurrent()).getUserDTO());
         this.setUp(vertrieblerDTO);
     }
@@ -53,7 +56,7 @@ public class AutoView extends VerticalLayout implements View {
         try {
             list = SearchControlProxy.getInstance().getAutoForUser();
         } catch (SQLException e) {
-            Notification.show("Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
+            Notification.show("2 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
         }
         BuildGrid.buildGrid(grid);
         grid.addColumn(AutoDTO::getAnzahl_res).setCaption("Anzahl der Reservierungen");
