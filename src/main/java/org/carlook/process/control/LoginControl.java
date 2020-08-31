@@ -33,7 +33,7 @@ public class LoginControl implements LoginControlInterface {
         String sql = "SELECT id " +
                     "FROM carlook.user " +
                     "WHERE email = ? "+
-                    "AND password = ? ;";
+                    "AND passwort = ? ;";
         ResultSet rs;
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         try {

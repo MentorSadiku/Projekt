@@ -80,7 +80,7 @@ public class RegistrationControl implements RegistrationControlInterface {
         userDTO.setPassword(password);
         boolean registerUser;
         RegisterDAO.getInstance().addUser(userDTO);
-       // userDTO.setId(UserDAO.getInstance().getMaxID());
+        userDTO.setId(UserDAO.getInstance().getMaxID());
 
         if (regAs.equals(Roles.ENDKUNDE)) {
             RegisterDAO.getInstance().addEndkunde(userDTO);

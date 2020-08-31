@@ -23,13 +23,15 @@ public class RegisterDAO extends AbstractDAO {
     }
 
     public boolean addUser(UserDTO userDTO) {
-        String sql = "INSERT INTO carlook.user VALUES (?,?,?,default)";
+        String sql = "INSERT INTO carlook.user VALUES (?,?,?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
-            statement.setString(1, userDTO.getName());
-            statement.setString(2, userDTO.getEmail());
-            statement.setString(3, userDTO.getPassword());
+            int x=UserDAO.getInstance().getMaxID() +1;
+            statement.setString(3, userDTO.getName());
+            statement.setString(1, userDTO.getEmail());
+            statement.setString(2, userDTO.getPassword());
+            statement.setInt(4, x);
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
