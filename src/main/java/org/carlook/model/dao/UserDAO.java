@@ -18,7 +18,7 @@ public class UserDAO extends AbstractDAO {
         return dao;
     }
 
-    public int getMaxID() throws SQLException {
+   /* public int getMaxID() throws SQLException {
         String sql = "SELECT max(id) " +
         "FROM collhbrs.user ;";
         PreparedStatement statement = getPreparedStatement(sql);
@@ -43,5 +43,5 @@ public class UserDAO extends AbstractDAO {
             rs.close();
         }
         return currentValue;
-    }
+    }*/
 }

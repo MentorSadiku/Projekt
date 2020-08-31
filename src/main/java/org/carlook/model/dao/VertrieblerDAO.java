@@ -26,13 +26,13 @@ public class VertrieblerDAO extends AbstractDAO {
 
     public boolean updateVertriebler(VertrieblerDTO vertrieblerDTO) {
         String sql = "UPDATE carlook.vertriebler " +
-                "SET name= ?, email = ?, passwort = ?, stadt = ?" +
+                "SET email = ?, name= ?, passwort = ?, stadt = ?" +
                 "WHERE carlook.vertriebler.id = ? ;";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
-            statement.setString(1, vertrieblerDTO.getName());
-            statement.setString(2, vertrieblerDTO.getEmail());
+            statement.setString(1, vertrieblerDTO.getEmail());
+            statement.setString(2, vertrieblerDTO.getName());
             statement.setString(3, vertrieblerDTO.getPassword());
             statement.setString(4, vertrieblerDTO.getStadt());
             statement.setInt(5, vertrieblerDTO.getId());
@@ -45,8 +45,8 @@ public class VertrieblerDAO extends AbstractDAO {
 
     public VertrieblerDTO getAllDataVertriebler(UserDTO userDTO) throws SQLException {
         String sql = "SELECT * " +
-                "FROM carlook.unternehmen " +
-                "WHERE carlook.unternehmen.id = ? ;";
+                "FROM carlook.vertriebler " +
+                "WHERE carlook.vertriebler.vertriebler_id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs;
 
@@ -62,9 +62,9 @@ public class VertrieblerDAO extends AbstractDAO {
         try {
             while (rs.next()) {
 
-                un.setName(rs.getString(2));
-                un.setEmail(rs.getString(3));
-                un.setPassword(rs.getString(4));
+                un.setName(rs.getString(3));
+                un.setEmail(rs.getString(1));
+                un.setPassword(rs.getString(2));
                 un.setStadt(rs.getString(5));
 
 
