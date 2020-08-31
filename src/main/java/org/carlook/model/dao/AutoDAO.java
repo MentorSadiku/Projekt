@@ -29,8 +29,8 @@ public class AutoDAO extends AbstractDAO {
 
     //Erzeugt die Autos, die ein Vertriebler erstellt hat
     public List<AutoDTO> getAutoList(UserDTO userDTO) throws SQLException {
-        String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
-                "FROM carlook.auto " +
+        String sql = "SELECT marke, baujahr, beschreibung, auto_id" +
+                "FROM carlook.auto" +
                 "WHERE id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs = null;
@@ -172,6 +172,7 @@ public class AutoDAO extends AbstractDAO {
                 autoDTO.setMarke(rs.getString(1));
                 autoDTO.setBaujahr(rs.getInt(2));
                 autoDTO.setBeschreibung(rs.getString(3));
+                autoDTO.setAuto_id(rs.getInt(4));
 
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 /*try {

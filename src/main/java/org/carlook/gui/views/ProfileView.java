@@ -46,8 +46,9 @@ public class ProfileView extends VerticalLayout implements View {
         TextField name = new TextField("Name");
         name.setPlaceholder("Max Mustermann");
 
-        //TextField hochschule = new TextField("Hochschule");
-        //hochschule.setPlaceholder("HBRS");
+
+        //TextField stadt = new TextField("Stadt");
+        //stadt.setPlaceholder("Bonn");
 
         //TextField semester = new TextField("Semester");
         //semester.setPlaceholder("1");
@@ -104,25 +105,13 @@ public class ProfileView extends VerticalLayout implements View {
             if (endkundeDTO.getVorname() != null) {
                 vorname.setValue(endkundeDTO.getVorname());
             }*/
+
             if (endkundeDTO.getName() != null) {
                 name.setValue(endkundeDTO.getName());
             }
-           /* if (endkundeDTO.getHochschule() != null) {
-                hochschule.setValue(endkundeDTO.getHochschule());
-            }
-            if (endkundeDTO.getSemester() != 0) {
-                semester.setValue(String.valueOf(endkundeDTO.getSemester()));
-            }
-            if (endkundeDTO.getGebDatum() != null) {
-                gebDatum.setValue(endkundeDTO.getGebDatum());
-            }
-            if (endkundeDTO.getKenntnisse() != null) {
-                kenntnisse.setValue(endkundeDTO.getKenntnisse());
-            }
-            if (endkundeDTO.getStudiengang() != null) {
-                studiengang.setValue(endkundeDTO.getStudiengang());
-            }*/
-        } else {
+
+        }
+        else {
             //Werte Setzen
             VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
             try {
@@ -133,27 +122,10 @@ public class ProfileView extends VerticalLayout implements View {
             if (vertrieblerDTO.getName() != null) {
                 vertrieblername.setValue(vertrieblerDTO.getName());
             }
-            /*if (vertrieblerDTO.getAnsprechpartner() != null) {
-                ansprechpartner.setValue(vertrieblerDTO.getAnsprechpartner());
+            if (vertrieblerDTO.getStadt() != null) {
+                vertrieblername.setValue(vertrieblerDTO.getStadt());
             }
-            if (vertrieblerDTO.getStrasse() != null) {
-                strasse.setValue(vertrieblerDTO.getStrasse());
-            }
-            if (vertrieblerDTO.getPlz() != null) {
-                plz.setValue(String.valueOf(vertrieblerDTO.getPlz()));
-            }
-            if (vertrieblerDTO.getHaus_nr() != null) {
-                haus_nr.setValue(String.valueOf(vertrieblerDTO.getHaus_nr()));
-            }
-            if (vertrieblerDTO.getZusatz() != null) {
-                zusatz.setValue(vertrieblerDTO.getZusatz());
-            }
-            if (vertrieblerDTO.getOrt() != null) {
-                ort.setValue(vertrieblerDTO.getOrt());
-            }
-            if (vertrieblerDTO.getBranche() != null) {
-                branche.setValue(vertrieblerDTO.getBranche());
-            }*/
+
         }
 
         //Event Nutzer löschen
@@ -174,18 +146,9 @@ public class ProfileView extends VerticalLayout implements View {
                 //UI.getCurrent().addWindow(new ConfirmationWindow("Sollen alle Daten aktualisiert werden?"));
                 if (userDTO.hasRole(Roles.ENDKUNDE)) {
                     EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
-                    //endkundeDTO.setAnrede(anrede.getValue());
-                    //endkundeDTO.setVorname(vorname.getValue());
+
                     endkundeDTO.setName(name.getValue());
                     //endkundeDTO.setHochschule(hochschule.getValue());
-                    /*try {
-                        endkundeDTO.setSemester(Integer.valueOf(semester.getValue()));
-                    } catch (NumberFormatException e) {
-                        endkundeDTO.setSemester(0);
-                    }
-                    endkundeDTO.setGebDatum(gebDatum.getValue());
-                    endkundeDTO.setKenntnisse(kenntnisse.getValue());
-                    endkundeDTO.setStudiengang(studiengang.getValue());*/
 
                     try {
                         ProfileControlProxy.getInstance().updateEndkundeData(endkundeDTO);
@@ -197,13 +160,7 @@ public class ProfileView extends VerticalLayout implements View {
                 } else {
                     VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
                     vertrieblerDTO.setName(vertrieblername.getValue());
-                   /* vertrieblerDTO.setAnsprechpartner(ansprechpartner.getValue());
-                    vertrieblerDTO.setStrasse(strasse.getValue());
-                    vertrieblerDTO.setPlz(Integer.valueOf(plz.getValue()));
-                    vertrieblerDTO.setHaus_nr(Integer.valueOf(haus_nr.getValue()));
-                    vertrieblerDTO.setZusatz(zusatz.getValue());
-                    vertrieblerDTO.setBranche(branche.getValue());
-                    vertrieblerDTO.setOrt(ort.getValue());*/
+                    vertrieblerDTO.setStadt(stadt.getValue());
 
                     try {
                         ProfileControlProxy.getInstance().updateVertrieblerData(vertrieblerDTO);
@@ -253,10 +210,7 @@ public class ProfileView extends VerticalLayout implements View {
         } else {
             this.addComponent(meinVertrieb);
             this.addComponent(vertrieblername);
-           // this.addComponent(ansprechpartner);
-           // this.addComponent(horizontalLayoutStrasse);
-            //this.addComponent(horizontalLayoutOrt);
-            //this.addComponent(branche);
+            this.addComponent(stadt);
             this.addComponent(overwriteBtn);
             this.addComponent(deleteButton);
         }
