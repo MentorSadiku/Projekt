@@ -23,5 +23,5 @@ public interface AutoControlInterface {
 
     List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException;
 
-    int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException;
+    //int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException;
 }

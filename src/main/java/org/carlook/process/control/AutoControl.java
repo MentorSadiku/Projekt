@@ -70,7 +70,7 @@ public class AutoControl implements AutoControlInterface {
         return AutoDAO.getInstance().getAutoForSearch(suchtext, filter);
     }
 
-    public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
+    /*public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
         int anzahl_bewerber = 0;
         String sql = "SELECT count(reservierungs_id) " +
                 "FROM carlook.reservierung_to_auto" +
@@ -96,4 +96,6 @@ public class AutoControl implements AutoControlInterface {
 
         return anzahl_bewerber;
     }
+
+     */
 }
