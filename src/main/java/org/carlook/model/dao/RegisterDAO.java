@@ -23,7 +23,7 @@ public class RegisterDAO extends AbstractDAO {
     }
 
     public boolean addUser(UserDTO userDTO) {
-        String sql = "INSERT INTO carlook.user VALUES (default,?,?,?)";
+        String sql = "INSERT INTO carlook.user VALUES (?,?,?,default)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {

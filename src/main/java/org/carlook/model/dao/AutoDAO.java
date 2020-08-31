@@ -29,8 +29,8 @@ public class AutoDAO extends AbstractDAO {
 
     //Erzeugt die Autos, die ein Vertriebler erstellt hat
     public List<AutoDTO> getAutoList(UserDTO userDTO) throws SQLException {
-        String sql = "SELECT id_anzeige, beschreibung, art, name, zeitraum, branche, studiengang, ort " +
-                "FROM collhbrs.stellenanzeige " +
+        String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
+                "FROM carlook.auto " +
                 "WHERE id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs = null;
@@ -69,14 +69,15 @@ public class AutoDAO extends AbstractDAO {
 
     //Verändert ein bestehendes Auto in der Datenbank
     public boolean updateAuto(AutoDTO auto) {
-        String sql = "UPDATE collhbrs.auto " +
-                "SET marke = ?, art = ?,  baujahr = ?, beschreibung = ?" +
+        String sql = "UPDATE carlook.auto " +
+                "SET marke = ?, baujahr = ?, beschreibung = ?" +
                 "WHERE carlook.auto.auto_id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
             statement.setString(1, auto.getMarke());
             statement.setInt(2, auto.getBaujahr());
             statement.setString(3, auto.getBeschreibung());
+            statement.setInt(4, auto.getAuto_id());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -115,7 +116,7 @@ public class AutoDAO extends AbstractDAO {
             }
         } else {
             String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
-                    "FROM carlook.auto44 " +
+                    "FROM carlook.auto " +
                     "WHERE " + filter + " like ? ;";
             statement = this.getPreparedStatement(sql);
 
@@ -135,7 +136,7 @@ public class AutoDAO extends AbstractDAO {
         return list;
     }
 
-    //Zeigt alle Stellenanzeigen an, auf die sich ein Student beworben hat (***Benz***)
+    //Zeigt alle Autos an, die sich ein Endunde reserviert hat (***Benz***)
     public List<AutoDTO> reserviereAuto(EndkundeDTO endkundeDTO) throws SQLException {
         String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
                 "FROM carlook.auto " +

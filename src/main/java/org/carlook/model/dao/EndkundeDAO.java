@@ -44,7 +44,7 @@ public class EndkundeDAO extends AbstractDAO {
     public EndkundeDTO getAllDataEndkunde(UserDTO userDTO) throws SQLException {
         String sql = "SELECT * " +
                 "FROM carlook.endkunde " +
-                "WHERE collhbrs.endkunde.id = ? ;";
+                "WHERE carlook.endkunde.id = ? ;";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs;

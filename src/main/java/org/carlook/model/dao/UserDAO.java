@@ -20,7 +20,7 @@ public class UserDAO extends AbstractDAO {
 
    /* public int getMaxID() throws SQLException {
         String sql = "SELECT max(id) " +
-        "FROM collhbrs.user ;";
+        "FROM carlook.user ;";
         PreparedStatement statement = getPreparedStatement(sql);
         ResultSet rs = null;
 
