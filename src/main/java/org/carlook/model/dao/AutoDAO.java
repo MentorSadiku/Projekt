@@ -174,7 +174,7 @@ public class AutoDAO extends AbstractDAO {
                 autoDTO.setBeschreibung(rs.getString(3));
 
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
-                try {
+                /*try {
 
                     autoDTO.setAnzahl_res(AutoControlProxy.getInstance().getAnzahlRes(autoDTO));
 
@@ -182,7 +182,7 @@ public class AutoDAO extends AbstractDAO {
 
                     Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte informieren Sie einen Administrator!");
 
-                }
+                }*/
                 listStellenanzeige.add(autoDTO);
             }
         } catch (SQLException e) {

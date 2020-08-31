@@ -47,7 +47,7 @@ public class AutoControlProxy implements AutoControlInterface {
         return AutoControl.getInstance().getAutoForSearch(suchtext, filter);
     }
 
-    public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
+    /*public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
         return AutoControl.getInstance().getAnzahlRes(autoDTO);
-    }
+    }*/
 }
