@@ -28,9 +28,7 @@ public class AutoWindow extends Window {
 
         //Baujahr
         baujahr = new TextField("Baujahr");
-        int x=auto.getBaujahr();
-        String s=String.valueOf(x);
-        baujahr.setValue(s);
+        baujahr.setValue(auto.getBaujahr());
         baujahr.setReadOnly(true);
 
         //Beschreibung
@@ -80,9 +78,7 @@ public class AutoWindow extends Window {
 
         //Baujahr
         baujahr = new TextField("Baujahr");
-        int x=auto.getBaujahr();
-        String s=String.valueOf(x);
-        baujahr.setValue(s);
+        baujahr.setValue(auto.getBaujahr());
 
         //Beschreibung
         beschreibung = new TextArea("Beschreibung");
@@ -94,7 +90,7 @@ public class AutoWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 auto.setMarke(marke.getValue());
-                auto.setBaujahr(x);
+                auto.setBaujahr((Integer.parseInt(baujahr.getValue())));
                 auto.setBeschreibung(beschreibung.getValue());
 
                 try {

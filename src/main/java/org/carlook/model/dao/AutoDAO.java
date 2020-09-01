@@ -57,7 +57,7 @@ public class AutoDAO extends AbstractDAO {
         try {
             int x=AutoDAO.getInstance().getMaxID()+1;
             statement.setString(1, auto.getMarke());
-            statement.setInt(2, auto.getBaujahr());
+            statement.setInt(2, Integer.parseInt(auto.getBaujahr()));
             statement.setString(3, auto.getBeschreibung());
             statement.setInt(4, x);
             statement.setInt(5, userDTO.getId());
@@ -77,7 +77,7 @@ public class AutoDAO extends AbstractDAO {
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
             statement.setString(1, auto.getMarke());
-            statement.setInt(2, auto.getBaujahr());
+            statement.setInt(2, Integer.parseInt(auto.getBaujahr()));
             statement.setString(3, auto.getBeschreibung());
             statement.setInt(4, auto.getAuto_id());
             statement.executeUpdate();

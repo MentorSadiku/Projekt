@@ -17,8 +17,8 @@ public class AutoDTO extends AbstractDTO {
         this.auto_id = auto_id;
     }
 
-    public int getBaujahr() {
-        return baujahr;
+    public String getBaujahr() {
+        return ""+baujahr;
     }
 
     public void setBaujahr(int baujahr) {

@@ -21,9 +21,7 @@ public class CreateAutoWindow extends Window {
 
         //Baujahr
         TextField baujahr = new TextField("Baujahr");
-        int x=stellenanzeige.getBaujahr();
-        String s=String.valueOf(x);
-        baujahr.setValue(s);
+        baujahr.setValue(stellenanzeige.getBaujahr());
 
         //Beschreibung
         TextArea beschreibung = new TextArea("Beschreibung");
@@ -37,7 +35,7 @@ public class CreateAutoWindow extends Window {
             public void buttonClick(Button.ClickEvent clickEvent) {
 
                 stellenanzeige.setMarke(marke.getValue());
-                stellenanzeige.setBaujahr(x);
+                stellenanzeige.setBaujahr(Integer.parseInt(baujahr.getValue()));
                 stellenanzeige.setBeschreibung(beschreibung.getValue());
 
                 try {
