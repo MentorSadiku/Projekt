@@ -71,7 +71,7 @@ public class ReservierungControl implements ReservierungControlInterface {
 
   /*  public void reservingIsAllowed() throws DatabaseException, SQLException, ReservierungException {
         String sql = "SELECT sichtbar " +
-                "FROM collhbrs.stellenanzeige_on_off";
+                "FROM carlook.stellenanzeige_on_off";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         ResultSet rs = null;
         try {

@@ -39,6 +39,8 @@ public class ReservierungControlProxy implements ReservierungControlInterface {
         ReservierungControl.getInstance().reservingIsAllowed();
     }*/
 
+
+
     public void checkAlreadyReserved(AutoDTO autoDTO, UserDTO userDTO) throws ReservierungException, DatabaseException, SQLException {
         ReservierungControl.getInstance().checkAlreadyReserved(autoDTO, userDTO);
 

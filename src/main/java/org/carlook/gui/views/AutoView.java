@@ -17,6 +17,8 @@ import org.carlook.gui.windows.AutoWindow;
 import org.carlook.model.objects.dto.AutoDTO;
 import org.carlook.model.objects.dto.UserDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
+import org.carlook.process.control.AutoControl;
+import org.carlook.process.proxy.AutoControlProxy;
 import org.carlook.process.proxy.SearchControlProxy;
 import org.carlook.services.util.BuildGrid;
 import org.carlook.services.util.Roles;
@@ -32,7 +34,7 @@ public class AutoView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        //UserDTO user = (UserDTO) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+        UserDTO user = (UserDTO) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
         VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(((MyUI) UI.getCurrent()).getUserDTO());
         this.setUp(vertrieblerDTO);
     }
