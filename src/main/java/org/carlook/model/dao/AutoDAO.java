@@ -49,8 +49,8 @@ public class AutoDAO extends AbstractDAO {
 
     //Erstellt ein neues Auto in der Datenbank
     public boolean createAuto(AutoDTO auto, UserDTO userDTO) {
-        String sql = "INSERT INTO carlook.auto(marke, baujahr, beschreibung, id)" +
-                "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO carlook.auto(marke, baujahr, beschreibung, auto_id, vertriebler_id) " +
+                "VALUES (?, ?, ?, ?, ?)";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
 
@@ -58,7 +58,8 @@ public class AutoDAO extends AbstractDAO {
             statement.setString(1, auto.getMarke());
             statement.setInt(2, auto.getBaujahr());
             statement.setString(3, auto.getBeschreibung());
-            statement.setInt(4, userDTO.getId());
+            statement.setInt(4, 1+userDTO.getId());
+            statement.setInt(5, userDTO.getId());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
