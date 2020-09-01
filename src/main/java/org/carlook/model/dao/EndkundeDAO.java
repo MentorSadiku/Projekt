@@ -26,7 +26,7 @@ public class EndkundeDAO extends AbstractDAO {
 
     public boolean updateEndkunde(EndkundeDTO endkundeDTO) {
         String sql = "UPDATE carlook.endkunde " +
-                "name = ?, email = ?, password = ?"+
+                "name = ?, email = ?, password = ? "+
                 "WHERE carlook.endkunde.id = ?;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {

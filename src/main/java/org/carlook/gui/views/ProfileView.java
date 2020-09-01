@@ -80,8 +80,8 @@ public class ProfileView extends VerticalLayout implements View {
         //TextField zusatz = new TextField("Zusatz");
         //zusatz.setPlaceholder("a");
 
-        TextField stadt = new TextField("Stadt");
-        stadt.setPlaceholder("Bonn");
+       // TextField stadt = new TextField("Stadt");
+        //stadt.setPlaceholder("Bonn");
 
         //TextField plz = new TextField("Plz");
         //plz.setPlaceholder("53123");
@@ -158,9 +158,12 @@ public class ProfileView extends VerticalLayout implements View {
                     }
 
                 } else {
+                    String x=userDTO.getPassword();
                     VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
                     vertrieblerDTO.setName(vertrieblername.getValue());
-                    vertrieblerDTO.setStadt(stadt.getValue());
+                    vertrieblerDTO.setPassword(x);
+
+                    //vertrieblerDTO.setStadt(stadt.getValue());
 
                     try {
                         ProfileControlProxy.getInstance().updateVertrieblerData(vertrieblerDTO);
@@ -210,7 +213,7 @@ public class ProfileView extends VerticalLayout implements View {
         } else {
             this.addComponent(meinVertrieb);
             this.addComponent(vertrieblername);
-            this.addComponent(stadt);
+           // this.addComponent(stadt);
             this.addComponent(overwriteBtn);
             this.addComponent(deleteButton);
         }

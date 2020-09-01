@@ -25,17 +25,15 @@ public class VertrieblerDAO extends AbstractDAO {
     }
 
     public boolean updateVertriebler(VertrieblerDTO vertrieblerDTO) {
-        String sql = "UPDATE carlook.vertriebler " +
-                "SET email = ?, name= ?, passwort = ?, stadt = ?" +
-                "WHERE carlook.vertriebler.id = ? ;";
+        String sql = "UPDATE carlook.user " +
+                "SET email = ?, name= ? " +
+                "WHERE carlook.user.id = ? ;";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
             statement.setString(1, vertrieblerDTO.getEmail());
             statement.setString(2, vertrieblerDTO.getName());
-            statement.setString(3, vertrieblerDTO.getPassword());
-            statement.setString(4, vertrieblerDTO.getStadt());
-            statement.setInt(5, vertrieblerDTO.getId());
+            statement.setInt(3, vertrieblerDTO.getId());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
