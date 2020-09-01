@@ -22,19 +22,19 @@ public class AutoWindow extends Window {
         center();
 
         //Marke
-        marke = new TextField("marke");
+        marke = new TextField("Marke");
         marke.setValue(auto.getMarke());
         marke.setReadOnly(true);
 
         //Baujahr
-        baujahr = new TextField("baujahr");
+        baujahr = new TextField("Baujahr");
         int x=auto.getBaujahr();
         String s=String.valueOf(x);
         baujahr.setValue(s);
         baujahr.setReadOnly(true);
 
         //Beschreibung
-        beschreibung = new TextArea("beschreibung");
+        beschreibung = new TextArea("Beschreibung");
         beschreibung.setValue(auto.getBeschreibung());
         beschreibung.setReadOnly(true);
 

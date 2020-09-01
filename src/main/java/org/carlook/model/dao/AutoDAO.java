@@ -55,10 +55,11 @@ public class AutoDAO extends AbstractDAO {
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
+            int x=AutoDAO.getInstance().getMaxID()+1;
             statement.setString(1, auto.getMarke());
             statement.setInt(2, auto.getBaujahr());
             statement.setString(3, auto.getBeschreibung());
-            statement.setInt(4, 1+userDTO.getId());
+            statement.setInt(4, x);
             statement.setInt(5, userDTO.getId());
             statement.executeUpdate();
             return true;
@@ -193,6 +194,34 @@ public class AutoDAO extends AbstractDAO {
             assert rs != null;
             rs.close();
         }
+    }
+
+
+    public int getMaxID() throws SQLException {
+        String sql = "SELECT max(auto_id) " +
+                "FROM carlook.auto ;";
+        PreparedStatement statement = getPreparedStatement(sql);
+        ResultSet rs = null;
+
+        try {
+            rs = statement.executeQuery();
+        } catch (SQLException throwables) {
+            System.out.println("Fehler 1 bei addAuto");
+        }
+
+        int currentValue = 0;
+
+        try {
+            assert rs != null;
+            rs.next();
+            currentValue = rs.getInt(1);
+        } catch (SQLException throwables) {
+            System.out.println("Fehler 2 bei addAuto");
+        } finally {
+            assert rs != null;
+            rs.close();
+        }
+        return currentValue;
     }
 
 
