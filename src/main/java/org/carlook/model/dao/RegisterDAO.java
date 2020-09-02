@@ -38,6 +38,8 @@ public class RegisterDAO extends AbstractDAO {
         }
     }
 
+
+
     public boolean addEndkunde(UserDTO userDTO) {
         String sql = "INSERT INTO carlook.endkunde(id) VALUES (?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
@@ -66,7 +68,7 @@ public class RegisterDAO extends AbstractDAO {
     //Lösche User
     public void deleteUser(UserDTO userDTO) {
             String sql = "DELETE " +
-                  "FROM carlook.user u" +
+                  "FROM carlook.user u " +
                   "WHERE u.id = ? ;";
         try {
             PreparedStatement statement = this.getPreparedStatement(sql);
@@ -77,4 +79,5 @@ public class RegisterDAO extends AbstractDAO {
             Logger.getLogger((RegisterDAO.class.getName())).log(Level.SEVERE, null, ex);
         }
     }
+
 }
