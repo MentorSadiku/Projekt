@@ -43,8 +43,8 @@ public class VertrieblerDAO extends AbstractDAO {
 
     public VertrieblerDTO getAllDataVertriebler(UserDTO userDTO) throws SQLException {
         String sql = "SELECT * " +
-                "FROM carlook.vertriebler " +
-                "WHERE carlook.vertriebler.vertriebler_id = ? ;";
+                "FROM carlook.user " +
+                "WHERE carlook.user.id = ? ;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs;
 
@@ -63,8 +63,6 @@ public class VertrieblerDAO extends AbstractDAO {
                 un.setName(rs.getString(3));
                 un.setEmail(rs.getString(1));
                 un.setPassword(rs.getString(2));
-                un.setStadt(rs.getString(5));
-
 
             }
 

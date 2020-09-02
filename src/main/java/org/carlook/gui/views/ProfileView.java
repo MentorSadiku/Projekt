@@ -47,7 +47,8 @@ public class ProfileView extends VerticalLayout implements View {
 
         //Vertriebler Namen hinzufügen
         TextField vertrieblername = new TextField("Name");
-        vertrieblername.setPlaceholder("Max Mustermann");
+            vertrieblername.setPlaceholder("Max Mustermann");
+
 
         Label meinVertrieb = new Label("Mein Vertriebsprofil");
 
@@ -108,11 +109,8 @@ public class ProfileView extends VerticalLayout implements View {
                     }
 
                 } else {
-                    String x=userDTO.getPassword();
                     VertrieblerDTO vertrieblerDTO = new VertrieblerDTO(userDTO);
                     vertrieblerDTO.setName(vertrieblername.getValue());
-                    vertrieblerDTO.setPassword(x);
-
                     //vertrieblerDTO.setStadt(stadt.getValue());
 
                     try {
