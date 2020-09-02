@@ -8,6 +8,8 @@ import org.carlook.process.exceptions.AutoException;
 import org.carlook.process.proxy.ReservierungControlProxy;
 import org.carlook.process.proxy.AutoControlProxy;
 
+import java.io.ObjectInput;
+import java.io.ObjectStreamField;
 import java.sql.SQLException;
 import java.util.List;
 

@@ -9,6 +9,8 @@ import org.carlook.gui.ui.MyUI;
 import org.carlook.gui.windows.ConfirmationWindow;
 import org.carlook.gui.windows.DeleteProfileWindow;
 import org.carlook.gui.windows.DeleteWindow;
+import org.carlook.model.dao.EndkundeDAO;
+import org.carlook.model.dao.UserDAO;
 import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
@@ -35,59 +37,17 @@ public class ProfileView extends VerticalLayout implements View {
         this.addStyleName("schrift-profil");
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
         setStyleName("schrift-profil");
-        //Felder Endkunde erzeugen
 
-        //final NativeSelect<String> anrede = new NativeSelect<>("Anrede");
-        //anrede.setItems("Herr", "Frau");
-
-        //final TextField vorname = new TextField("Vorname");
-        //vorname.setPlaceholder("Max");
-
+        //Endkunde Namen hinzufügen
         TextField name = new TextField("Name");
         name.setPlaceholder("Max Mustermann");
 
-
-        //TextField stadt = new TextField("Stadt");
-        //stadt.setPlaceholder("Bonn");
-
-        //TextField semester = new TextField("Semester");
-        //semester.setPlaceholder("1");
-
-        //DateField gebDatum = new DateField("Geburtsdatum");
-        //gebDatum.setValue(LocalDate.now());
-
-        //TextField kenntnisse = new TextField("Kenntnisse");
-        //kenntnisse.setPlaceholder("Java, SQL");
-
-        //TextField studiengang = new TextField("Studiengang");
-        //studiengang.setPlaceholder("Informatik");
-        //Upload profilbild = new Upload("Profilbild", reciever);
-
         Label meinProfil = new Label("Mein Profil");
-        //Felder Unternehmen erzeugen
+
+
+        //Vertriebler Namen hinzufügen
         TextField vertrieblername = new TextField("Name");
         vertrieblername.setPlaceholder("Max Mustermann");
-
-        //TextField ansprechpartner = new TextField("Ansprechpartner");
-        //ansprechpartner.setPlaceholder("Herr Max Mustermann");
-
-        //TextField strasse = new TextField("Strasse");
-        //strasse.setPlaceholder("Beispielweg");
-
-        //TextField haus_nr = new TextField("Hausnummer");
-        //haus_nr.setPlaceholder("1");
-
-        //TextField zusatz = new TextField("Zusatz");
-        //zusatz.setPlaceholder("a");
-
-       // TextField stadt = new TextField("Stadt");
-        //stadt.setPlaceholder("Bonn");
-
-        //TextField plz = new TextField("Plz");
-        //plz.setPlaceholder("53123");
-
-        //TextField branche = new TextField("Branche");
-        //branche.setPlaceholder("IT");
 
         Label meinVertrieb = new Label("Mein Vertriebsprofil");
 
@@ -99,12 +59,6 @@ public class ProfileView extends VerticalLayout implements View {
             } catch (SQLException e) {
                 Notification.show("3 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
             }
-            /*if (endkundeDTO.getAnrede() != null) {
-                anrede.setValue(endkundeDTO.getAnrede());
-            }
-            if (endkundeDTO.getVorname() != null) {
-                vorname.setValue(endkundeDTO.getVorname());
-            }*/
 
             if (endkundeDTO.getName() != null) {
                 name.setValue(endkundeDTO.getName());
@@ -122,10 +76,6 @@ public class ProfileView extends VerticalLayout implements View {
             if (vertrieblerDTO.getName() != null) {
                 vertrieblername.setValue(vertrieblerDTO.getName());
             }
-            if (vertrieblerDTO.getStadt() != null) {
-                vertrieblername.setValue(vertrieblerDTO.getStadt());
-            }
-
         }
 
         //Event Nutzer löschen
