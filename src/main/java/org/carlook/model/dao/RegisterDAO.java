@@ -65,9 +65,8 @@ public class RegisterDAO extends AbstractDAO {
     }
     //Lösche User
     public void deleteUser(UserDTO userDTO) {
-            String sql = "DELETE " +
-                  "FROM carlook.user u" +
-                  "WHERE u.id = ? ;";
+            String sql = "DELETE FROM carlook.user " +
+                  "WHERE id = ? ;";
         try {
             PreparedStatement statement = this.getPreparedStatement(sql);
             statement.setInt(1, userDTO.getId());
