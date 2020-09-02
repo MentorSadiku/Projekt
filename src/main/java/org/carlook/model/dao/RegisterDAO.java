@@ -1,6 +1,8 @@
 package org.carlook.model.dao;
 
 import org.carlook.model.objects.dto.UserDTO;
+import org.carlook.services.util.Roles;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;

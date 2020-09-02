@@ -73,6 +73,8 @@ public class RoleDAO extends AbstractDAO{
             return false;
         }
     }
+
+
     public boolean setRolesForVertriebler(UserDTO userDTO) {
         String sql = "INSERT INTO carlook.user_to_rolle VALUES (?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
@@ -86,4 +88,5 @@ public class RoleDAO extends AbstractDAO{
             return false;
         }
     }
+
  }

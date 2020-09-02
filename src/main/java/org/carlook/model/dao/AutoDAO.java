@@ -56,9 +56,9 @@ public class AutoDAO extends AbstractDAO {
 
         try {
             int x=AutoDAO.getInstance().getMaxID()+1;
-            statement.setString(1, auto.getMarke());
+            statement.setString(1, auto.getMarke().toLowerCase());
             statement.setInt(2, Integer.parseInt(auto.getBaujahr()));
-            statement.setString(3, auto.getBeschreibung());
+            statement.setString(3, auto.getBeschreibung().toLowerCase());
             statement.setInt(4, x);
             statement.setInt(5, userDTO.getId());
             statement.executeUpdate();
@@ -105,10 +105,11 @@ public class AutoDAO extends AbstractDAO {
 
     public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
         filter = filter.toLowerCase();
+        suchtext=suchtext.toLowerCase();
         PreparedStatement statement;
         ResultSet rs = null;
         if (suchtext.equals("")) {
-            String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
+            String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
                     "FROM carlook.auto; ";
             statement = this.getPreparedStatement(sql);
             try {
@@ -117,7 +118,7 @@ public class AutoDAO extends AbstractDAO {
                 Notification.show("17 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
             }
         } else {
-            String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
+            String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
                     "FROM carlook.auto " +
                     "WHERE " + filter + " like ? ;";
             statement = this.getPreparedStatement(sql);
@@ -171,11 +172,10 @@ public class AutoDAO extends AbstractDAO {
             while (rs.next()) {
 
                 autoDTO = new AutoDTO();
-                autoDTO.setMarke(rs.getString(1));
-                autoDTO.setBaujahr(rs.getInt(2));
-                autoDTO.setBeschreibung(rs.getString(3));
-                autoDTO.setAuto_id(rs.getInt(4));
-
+                autoDTO.setMarke(rs.getString(2));
+                autoDTO.setBeschreibung(rs.getString(4));
+                autoDTO.setAuto_id(rs.getInt(1));
+                autoDTO.setBaujahr(Integer.parseInt(rs.getString(3)));
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 /*try {
 

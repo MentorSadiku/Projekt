@@ -38,7 +38,7 @@ public class SearchControl implements SearchControlInterface {
 
     public List<AutoDTO> getAutoForSearch(String suchtext, String filter) throws SQLException {
         if (filter == null) {
-            filter = "name";
+            filter = "marke";
         }
         return AutoControl.getInstance().getAutoForSearch(suchtext, filter);
     }
