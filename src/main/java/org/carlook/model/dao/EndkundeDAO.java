@@ -25,9 +25,9 @@ public class EndkundeDAO extends AbstractDAO {
     }
 
     public boolean updateEndkunde(EndkundeDTO endkundeDTO) {
-        String sql = "UPDATE carlook.endkunde " +
-                "name = ?, email = ?, password = ? "+
-                "WHERE carlook.endkunde.id = ?;";
+        String sql = "UPDATE carlook.user " +
+                "SET name = ?, email = ?, passwort = ? "+
+                "WHERE carlook.user.id = ?;";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
             statement.setString(1, endkundeDTO.getName());
@@ -43,8 +43,8 @@ public class EndkundeDAO extends AbstractDAO {
 
     public EndkundeDTO getAllDataEndkunde(UserDTO userDTO) throws SQLException {
         String sql = "SELECT * " +
-                "FROM carlook.endkunde " +
-                "WHERE carlook.endkunde.id = ? ;";
+                "FROM carlook.user " +
+                "WHERE carlook.user.id = ? ;";
 
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs;
@@ -60,9 +60,9 @@ public class EndkundeDAO extends AbstractDAO {
         try {
             EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
             while (rs.next()) {
-                endkundeDTO.setName(rs.getString(1));
-                endkundeDTO.setEmail(rs.getString(2));
-                endkundeDTO.setPassword(rs.getString(3));
+                endkundeDTO.setName(rs.getString(3));
+                endkundeDTO.setEmail(rs.getString(1));
+                endkundeDTO.setPassword(rs.getString(2));
             }
             return endkundeDTO;
         } catch (SQLException ex) {
