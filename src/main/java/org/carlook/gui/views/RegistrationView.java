@@ -33,6 +33,18 @@ public class RegistrationView extends VerticalLayout implements View {
         line.setSizeFull();
         setStyleName("schrift-profil");
         //Eingabefelder
+
+        //Name
+        final Binder<UserDTO> nameBinder = new Binder<>();
+        final TextField fieldName = new TextField("Name:");
+        fieldName.focus();
+        fieldName.setPlaceholder("Name");
+        fieldName.setRequiredIndicatorVisible(true);
+        nameBinder.forField(fieldName)
+                .withValidator(new EmailValidator("Bitte geben Sie einen gültigen Namen ein"))
+                .bind(UserDTO::getName, UserDTO::setName);
+        fieldName.setId("name");
+
         //Email
         final Binder<UserDTO> emailBinder = new Binder<>();
         final TextField fieldEmail = new TextField("Email:");
@@ -40,7 +52,7 @@ public class RegistrationView extends VerticalLayout implements View {
         fieldEmail.setPlaceholder("Email");
         fieldEmail.setRequiredIndicatorVisible(true);
         emailBinder.forField(fieldEmail)
-                .withValidator(new EmailValidator("Biite geben Sie eine korrekte Emailadresse ein!"))
+                .withValidator(new EmailValidator("Bitte geben Sie eine korrekte Emailadresse ein!"))
                 .bind(UserDTO::getEmail, UserDTO::setEmail);
         fieldEmail.setId("email");
 
@@ -104,10 +116,12 @@ public class RegistrationView extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 try {
+                    nameBinder.validate();
                     emailBinder.validate();
                     password1Binder.validate();
                     password2Binder.validate();
                     checkboxBinder.validate();
+                    String name = fieldName.getValue();
                     String email = fieldEmail.getValue();
                     String password1 = fieldPassword1.getValue();
                     String password2 = fieldPassword2.getValue();
@@ -117,7 +131,7 @@ public class RegistrationView extends VerticalLayout implements View {
                         email = email.substring(0,email.indexOf("@")+1)+"carlook.de";
                         RegistrationControlProxy.getInstance().checkValid( email, emailBinder.isValid(), password1, password2 , password1Binder.isValid(), password2Binder.isValid(), checkboxBinder.isValid() );
                     }
-                    RegistrationControlProxy.getInstance().registerUser( email, password1, regAs );
+                    RegistrationControlProxy.getInstance().registerUser(name, email, password1, regAs );
                 } catch (NoEqualPasswordException e) {
                     Notification.show("Passwort-Fehler!", e.getReason(), Notification.Type.WARNING_MESSAGE);
                 } catch (DatabaseException e) {
@@ -148,6 +162,7 @@ public class RegistrationView extends VerticalLayout implements View {
 
         //Vertical Layout
         VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.addComponent(fieldName);
         verticalLayout.addComponent(fieldEmail);
         verticalLayout.addComponent(fieldPassword1);
         verticalLayout.addComponent(counter1);

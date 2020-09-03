@@ -56,11 +56,12 @@ public class RegisterDAO extends AbstractDAO {
     }
 
     public boolean addVertriebler(UserDTO userDTO) {
-        String sql = "INSERT INTO carlook.vertriebler(id) VALUES (?)";
+        String sql = "INSERT INTO carlook.vertriebler(id, name) VALUES (?, ?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
             statement.setInt(1, userDTO.getId());
+            statement.setString(1, userDTO.getName());
             statement.executeUpdate();
             return true;
         } catch (SQLException ex) {
