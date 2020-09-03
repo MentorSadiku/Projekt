@@ -176,10 +176,10 @@ public class AutoDAO extends AbstractDAO {
             while (rs.next()) {
 
                 autoDTO = new AutoDTO();
-                autoDTO.setMarke(rs.getString(2));
-                autoDTO.setBeschreibung(rs.getString(4));
-                autoDTO.setAuto_id(rs.getInt(1));
-                autoDTO.setBaujahr(Integer.parseInt(rs.getString(3)));
+                autoDTO.setMarke(rs.getString(1));
+                autoDTO.setBeschreibung(rs.getString(3));
+                autoDTO.setAuto_id(rs.getInt(4));
+                autoDTO.setBaujahr(Integer.parseInt(rs.getString(2)));
                //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
                 /*try {
 
