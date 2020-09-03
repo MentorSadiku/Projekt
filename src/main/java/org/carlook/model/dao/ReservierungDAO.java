@@ -53,9 +53,9 @@ public class ReservierungDAO extends AbstractDAO {
     }
 
     public List<ReservierungDTO> getReservierungForEndkunde(EndkundeDTO endkundeDTO) throws SQLException {
-        String sql = "SELECT reservierungs_id" +
+        String sql = "SELECT reservierungs_id " +
                 "FROM carlook.reservierung " +
-                "WHERE id = ? ;";
+                "WHERE endkunde_id = ? ;";
         List<ReservierungDTO> list = new ArrayList<>();
         PreparedStatement statement = this.getPreparedStatement(sql);
         ResultSet rs = null;
@@ -85,16 +85,49 @@ public class ReservierungDAO extends AbstractDAO {
         return list;
     }
 
-    public boolean createReservierung(EndkundeDTO endkundeDTO) {
-        String sql = "INSERT INTO carlook.reservierung (id) " +
-                "VALUES (?); ";
+    public int getMaxID() throws SQLException {
+        String sql = "SELECT max(reservierungs_id) " +
+                "FROM carlook.reservierung ;";
+        PreparedStatement statement = getPreparedStatement(sql);
+        ResultSet rs = null;
+
+        try {
+            rs = statement.executeQuery();
+        } catch (SQLException throwables) {
+            System.out.println("Fehler 1 bei addReservierung");
+        }
+
+        int currentValue = 0;
+
+        try {
+            assert rs != null;
+            rs.next();
+            currentValue = rs.getInt(1);
+        } catch (SQLException throwables) {
+            System.out.println("Fehler 2 bei addReservierung");
+        } finally {
+            assert rs != null;
+            rs.close();
+        }
+        return currentValue;
+    }
+
+    public int getId (){
+        return reservierungDAO.getId();
+    }
+
+    public int createReservierung(EndkundeDTO endkundeDTO) {
+        String sql = "INSERT INTO carlook.reservierung (endkunde_id, reservierungs_id) " +
+                "VALUES (?,?); ";
         PreparedStatement statement = this.getPreparedStatement(sql);
         try {
+            int x=reservierungDAO.getMaxID()+1;
             statement.setInt(1, endkundeDTO.getId());
+            statement.setInt(2, reservierungDAO.getMaxID()+1);
             statement.executeUpdate();
-            return true;
+            return x;
         } catch (SQLException ex) {
-            return false;
+            return -1;
         }
 
     }

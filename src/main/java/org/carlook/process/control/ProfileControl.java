@@ -52,8 +52,8 @@ public class ProfileControl implements ProfileControlInterface {
     }
 
     public void setReservierung( EndkundeDTO endkundeDTO) throws ProfileException {
-        boolean result =  ReservierungDAO.getInstance().createReservierung(endkundeDTO);
-        if (result) {
+        int result =  ReservierungDAO.getInstance().createReservierung(endkundeDTO);
+        if (result!=-1) {
             return;
         }
         throw new ProfileException();

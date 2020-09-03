@@ -69,26 +69,6 @@ public class ReservierungControl implements ReservierungControlInterface {
         }
     }
 
-  /*  public void reservingIsAllowed() throws DatabaseException, SQLException, ReservierungException {
-        String sql = "SELECT sichtbar " +
-                "FROM carlook.stellenanzeige_on_off";
-        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
-        ResultSet rs = null;
-        try {
-            rs = statement.executeQuery();
-            if ( rs.next() ) {
-                if (rs.getBoolean(1)) {
-                    return;
-                }
-                throw new ReservierungException();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger((ReservierungDAO.class.getName())).log(Level.SEVERE, null, ex);
-        } finally {
-            assert rs != null;
-            rs.close();
-        }
-    }*/
 
     public void checkAlreadyReserved(AutoDTO autoDTO, UserDTO userDTO) throws DatabaseException, SQLException, ReservierungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
@@ -136,8 +116,8 @@ public class ReservierungControl implements ReservierungControlInterface {
 
     public void createReservation(UserDTO userDTO) throws ReservierungException {
         EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
-        boolean result = ReservierungDAO.getInstance().createReservierung(endkundeDTO);
-        if (!result) {
+        int result = ReservierungDAO.getInstance().createReservierung(endkundeDTO);
+        if (result==-1) {
             throw new ReservierungException();
         }
     }

@@ -158,7 +158,7 @@ public class AutoDAO extends AbstractDAO {
 
     //Zeigt alle Autos an, die sich ein Endunde reserviert hat (***Benz***)
     public List<AutoDTO> reserviereAuto(EndkundeDTO endkundeDTO) throws SQLException {
-        String sql = "SELECT auto_id, marke, baujahr, beschreibung" +
+        String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
                 "FROM carlook.auto " +
                 "WHERE auto_id = ( SELECT auto_id " +
                 "FROM carlook.reservierung_to_auto " +

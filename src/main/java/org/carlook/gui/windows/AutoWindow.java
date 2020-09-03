@@ -1,10 +1,14 @@
 package org.carlook.gui.windows;
 
 import com.vaadin.ui.*;
+import org.carlook.model.dao.ReservierungDAO;
 import org.carlook.model.objects.dto.AutoDTO;
+import org.carlook.model.objects.dto.EndkundeDTO;
 import org.carlook.model.objects.dto.VertrieblerDTO;
 import org.carlook.model.objects.dto.UserDTO;
+import org.carlook.process.control.ReservierungControl;
 import org.carlook.process.exceptions.AutoException;
+import org.carlook.process.exceptions.DatabaseException;
 import org.carlook.process.proxy.ReservierungControlProxy;
 import org.carlook.process.proxy.AutoControlProxy;
 
@@ -54,7 +58,12 @@ public class AutoWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
             //   UI.getCurrent().addWindow(new FreitextWindow(auto, userDTO));
-
+                int x= ReservierungDAO.getInstance().createReservierung((EndkundeDTO)userDTO);
+                try {
+                    ReservierungControl.getInstance().reserveACar(auto,x);
+                } catch (DatabaseException e) {
+                    e.printStackTrace();
+                }
                 close();
             }
         });
