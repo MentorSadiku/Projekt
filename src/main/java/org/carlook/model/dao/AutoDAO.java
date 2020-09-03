@@ -121,19 +121,6 @@ public class AutoDAO extends AbstractDAO {
 
         }
 
-        if (filter.equals("baujahr")) {
-            String sql = "SELECT auto_id, marke, CAST(baujahr AS varchar), beschreibung " +
-                    "FROM carlook.auto "+
-                    "WHERE " + filter + " like CAST(? AS INT) ;";
-            statement = this.getPreparedStatement(sql);
-            try {
-                statement.setString(1, suchtext );
-                rs = statement.executeQuery();
-            } catch (SQLException e) {
-                Notification.show("17 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!");
-            }
-        }
-
         else {
             String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
                     "FROM carlook.auto " +
