@@ -113,6 +113,10 @@ public class RegistrationView extends VerticalLayout implements View {
                     String password2 = fieldPassword2.getValue();
                     String regAs = radioButtonGroup.getValue();
                     RegistrationControlProxy.getInstance().checkValid( email, emailBinder.isValid(), password1, password2 , password1Binder.isValid(), password2Binder.isValid(), checkboxBinder.isValid() );
+                    if(regAs.equals("Vertriebler")){
+                        email = email.substring(0,email.indexOf("@")+1)+"carlook.de";
+                        RegistrationControlProxy.getInstance().checkValid( email, emailBinder.isValid(), password1, password2 , password1Binder.isValid(), password2Binder.isValid(), checkboxBinder.isValid() );
+                    }
                     RegistrationControlProxy.getInstance().registerUser( email, password1, regAs );
                 } catch (NoEqualPasswordException e) {
                     Notification.show("Passwort-Fehler!", e.getReason(), Notification.Type.WARNING_MESSAGE);

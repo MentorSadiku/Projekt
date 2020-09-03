@@ -91,7 +91,13 @@ public class RegistrationControl implements RegistrationControlInterface {
         }
 
         if (registerUser) {
-            UI.getCurrent().addWindow( new ConfirmationWindow("Registration erfolgreich!") );
+            if(regAs.equals("Vertriebler")){
+                UI.getCurrent().addWindow( new ConfirmationWindow("Registration erfolgreich! \n"+
+                        " Sie sind als Vertriebler registriert, für den Loggin wurde für Sie eine Vertrieblermail erstellt: "+email) );
+            }
+            else {
+                UI.getCurrent().addWindow(new ConfirmationWindow("Registration erfolgreich!"));
+            }
             ( (MyUI)UI.getCurrent() ).setUserDTO(userDTO);
             UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
         } else {
