@@ -109,7 +109,7 @@ public class AutoDAO extends AbstractDAO {
         PreparedStatement statement;
         ResultSet rs = null;
         if (suchtext.equals("")) {
-            String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
+            String sql = "SELECT marke, baujahr, beschreibung, auto_id " +
                     "FROM carlook.auto; ";
             statement = this.getPreparedStatement(sql);
             try {
@@ -133,7 +133,7 @@ public class AutoDAO extends AbstractDAO {
         }
 
         else {
-            String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
+            String sql = "SELECT marke, baujahr, beschreibung, auto_id " +
                     "FROM carlook.auto " +
                     "WHERE " + filter + " like ? ;";
             statement = this.getPreparedStatement(sql);
