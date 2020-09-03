@@ -145,7 +145,7 @@ public class AutoDAO extends AbstractDAO {
 
     //Zeigt alle Autos an, die sich ein Endunde reserviert hat (***Benz***)
     public List<AutoDTO> reserviereAuto(EndkundeDTO endkundeDTO) throws SQLException {
-        String sql = "SELECT auto_id, marke, baujahr, beschreibung " +
+        String sql = "SELECT  marke, baujahr, beschreibung, auto_id " +
                 "FROM carlook.auto " +
                 "WHERE auto_id = ( SELECT auto_id " +
                 "FROM carlook.reservierung_to_auto " +
@@ -180,16 +180,7 @@ public class AutoDAO extends AbstractDAO {
                 autoDTO.setBeschreibung(rs.getString(3));
                 autoDTO.setAuto_id(rs.getInt(4));
                 autoDTO.setBaujahr(Integer.parseInt(rs.getString(2)));
-               //Brauchen wir die Anzahl der Reservierungen für ein Auto?? (***Mentor***)
-                /*try {
 
-                    autoDTO.setAnzahl_res(AutoControlProxy.getInstance().getAnzahlRes(autoDTO));
-
-                } catch (DatabaseException e) {
-
-                    Notification.show("Es ist ein Datenbankfehler aufgetreten. Bitte informieren Sie einen Administrator!");
-
-                }*/
                 listStellenanzeige.add(autoDTO);
             }
         } catch (SQLException e) {
@@ -199,6 +190,8 @@ public class AutoDAO extends AbstractDAO {
             rs.close();
         }
     }
+
+
 
 
     public int getMaxID() throws SQLException {
