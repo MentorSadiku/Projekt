@@ -120,7 +120,7 @@ public class AutoDAO extends AbstractDAO {
 
 
         } else if (filter.equals("baujahr")) {
-            String sql = "SELECT id, marke, baujahr, beschreibung " +
+            String sql = "SELECT marke, baujahr, beschreibung, auto_id " +
                     "FROM carlook.auto " +
                     "WHERE " + filter + " = ? ;";
             statement = this.getPreparedStatement(sql);
