@@ -44,20 +44,14 @@ public class SeleniumTest {
             driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/span[1]/span")).click();
 
             //Daten eingeben
-            //driver.findElement(By.xpath("//*[@id=\"name\"]")).sendKeys("Gustav");
             driver.findElement(By.xpath("//*[@id=\"gwt-uid-3\"]")).sendKeys("max@web.de");
             driver.findElement(By.xpath("//*[@id=\"gwt-uid-5\"]")).sendKeys("123");
-            //driver.findElement(By.xpath("//*[@id=\"passwort2\"]")).sendKeys("123");
 
             //Click on Button "Login"
             driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[5]/div/div[2]/div/div[5]/div/div[1]/div")).click();
 
-            //Registrieren button drücken
-            //driver.findElement(By.xpath("//*[@id=\"Projektwarexploded-4492806\"]/div/div[2]/div[5]/div/div[2]/div/div[15]/div/div[1]/div")).click();
-
-            //Ok Button clicken
-            //driver.findElement(By.xpath("//*[@id=\"Projektwarexploded-4492806-overlays\"]/div[2]/div/div/div[3]/div/div/div[3]/div")).click();
             TimeUnit.SECONDS.sleep(3);
+
             assertEquals("http://localhost:8080/Projekt_war_exploded/#!main",driver.getCurrentUrl());
         }
         @After
