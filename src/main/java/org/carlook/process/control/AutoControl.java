@@ -70,32 +70,5 @@ public class AutoControl implements AutoControlInterface {
         return AutoDAO.getInstance().getAutoForSearch(suchtext, filter);
     }
 
-    /*public int getAnzahlRes(AutoDTO autoDTO) throws DatabaseException, SQLException {
-        int anzahl_bewerber = 0;
-        String sql = "SELECT count(reservierungs_id) " +
-                "FROM carlook.reservierung_to_auto" +
-                "WHERE reservierungs_id = ? ;";
-        ResultSet rs;
-        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
-        try {
-            statement.setInt(1, autoDTO.getBaujahr());
-            rs = statement.executeQuery();
-        } catch (SQLException throwables) {
-            throw new DatabaseException("Fehler im SQL-Befehl: Bitte den Programmierer informieren!");
-        }
-        try {
-            if (rs.next()) {
-                anzahl_bewerber = rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            Notification.show("4 Es ist ein SQL-Fehler aufgetreten. Bitte informieren Sie einen Administrator!", Notification.Type.ERROR_MESSAGE);
-        } finally {
-            //JDBCConnection.getInstance().closeConnection();
-            rs.close();
-        }
-
-        return anzahl_bewerber;
-    }*/
-
 
 }

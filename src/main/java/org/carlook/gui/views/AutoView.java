@@ -75,6 +75,7 @@ public class AutoView extends VerticalLayout implements View {
         Button deleteButton = new Button("Löschen");
         deleteButton.setEnabled(false);
 
+
         //Tabellen Select Config
         grid.addSelectionListener(new SelectionListener<AutoDTO>() {
             @Override

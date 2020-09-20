@@ -17,8 +17,6 @@ public interface ReservierungControlInterface {
 
     void reserveACar(AutoDTO autoDTO, int id_bewerbung) throws DatabaseException;
 
-   // void reservingIsAllowed() throws DatabaseException, ReservierungException, SQLException;
-
     void checkAlreadyReserved(AutoDTO autoDTO, UserDTO userDTO) throws ReservierungException, DatabaseException, SQLException;
 
     void checkAllowed(AutoDTO autoDTO, UserDTO userDTO, Button bewerbenButton);

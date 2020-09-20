@@ -24,10 +24,6 @@ public class UserDTO extends AbstractDTO implements Serializable {
         this.roles = userDTO.roles;
     }
 
-
-
-
-
     public String getName() {
         return name;
     }

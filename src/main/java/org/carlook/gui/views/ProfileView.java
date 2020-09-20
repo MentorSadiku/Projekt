@@ -94,12 +94,10 @@ public class ProfileView extends VerticalLayout implements View {
         overwriteBtn.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                //UI.getCurrent().addWindow(new ConfirmationWindow("Sollen alle Daten aktualisiert werden?"));
+
                 if (userDTO.hasRole(Roles.ENDKUNDE)) {
                     EndkundeDTO endkundeDTO = new EndkundeDTO(userDTO);
-
                     endkundeDTO.setName(name.getValue());
-                    //endkundeDTO.setHochschule(hochschule.getValue());
 
                     try {
                         ProfileControlProxy.getInstance().updateEndkundeData(endkundeDTO);
@@ -124,44 +122,21 @@ public class ProfileView extends VerticalLayout implements View {
             }
         });
 
-        // Horizontal Strasse
-       /* HorizontalLayout horizontalLayoutStrasse = new HorizontalLayout();
-        horizontalLayoutStrasse.addComponent(strasse);
-        horizontalLayoutStrasse.addComponent(haus_nr);
-        horizontalLayoutStrasse.addComponent(zusatz);
 
-        //Horizontal Ort
-        HorizontalLayout horizontalLayoutOrt = new HorizontalLayout();
-        horizontalLayoutOrt.addComponent(ort);
-        horizontalLayoutOrt.addComponent(plz);
-        */
 
         //Horizontal Name
         HorizontalLayout horizontalLayoutName = new HorizontalLayout();
-        //horizontalLayoutName.addComponent(vorname);
         horizontalLayoutName.addComponent(name);
 
-        //horizontal Uni
-        /*HorizontalLayout horizontalLayoutUni = new HorizontalLayout();
-        horizontalLayoutUni.addComponent(hochschule);
-        horizontalLayoutUni.addComponent(studiengang);
-        horizontalLayoutUni.addComponent(semester);
-
-         */
 
         if (userDTO.hasRole(Roles.ENDKUNDE)) {
             this.addComponent(meinProfil);
-            //this.addComponent(anrede);
             this.addComponent(horizontalLayoutName);
-            //this.addComponent(horizontalLayoutUni);
-            // this.addComponent(kenntnisse);
-           // this.addComponent(gebDatum);
             this.addComponent(overwriteBtn);
             this.addComponent(deleteButton);
         } else {
             this.addComponent(meinVertrieb);
             this.addComponent(vertrieblername);
-           // this.addComponent(stadt);
             this.addComponent(overwriteBtn);
             this.addComponent(deleteButton);
         }

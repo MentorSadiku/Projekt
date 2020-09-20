@@ -35,12 +35,6 @@ public class ReservierungControlProxy implements ReservierungControlInterface {
         ReservierungControl.getInstance().reserveACar(autoDTO, id_bewerbung);
     }
 
-    /*public void reservingIsAllowed() throws DatabaseException, ReservierungException, SQLException {
-        ReservierungControl.getInstance().reservingIsAllowed();
-    }*/
-
-
-
     public void checkAlreadyReserved(AutoDTO autoDTO, UserDTO userDTO) throws ReservierungException, DatabaseException, SQLException {
         ReservierungControl.getInstance().checkAlreadyReserved(autoDTO, userDTO);
 

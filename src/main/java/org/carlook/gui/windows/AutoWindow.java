@@ -57,7 +57,7 @@ public class AutoWindow extends Window {
         bewerbenButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-            //   UI.getCurrent().addWindow(new FreitextWindow(auto, userDTO));
+
                 int x= ReservierungDAO.getInstance().createReservierung((EndkundeDTO)userDTO);
                 try {
                     ReservierungControl.getInstance().reserveACar(auto,x);
